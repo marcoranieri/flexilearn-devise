@@ -2,13 +2,26 @@
 <% provide(:title, 'Lesson') %>
 
 <p>Lessons#show</p>
+
 <div class="text-center">
   <h2>Subject: <br><strong><%= @lesson.subject.name %></strong></h2>
   <br>
   <img style="border-radius: 50%;" src="https://loremflickr.com/150/150/work,book,library/all" alt="Lesson Pic">
   <br><br>
-  <p>Location: <%= @lesson.location %></p>
-  <p>Date: <%= @lesson.date %></p>
+  <p><strong>Location:</strong> <%= @lesson.location %> | <strong>Date:</strong> <%= @lesson.date %></p>
+
+  <div>
+
+    <h3><i class="fas fa-chalkboard-teacher"></i>
+      <strong>Tutor:</strong> <%= link_to @lesson.tutor.last_name, tutor_path(@lesson.tutor) %>
+    </h3>
+
+    <h3><i class="fas fa-user-graduate"></i>
+      <strong>Student:</strong> <%= link_to @lesson.student.last_name, student_path(@lesson.student) %>
+    </h3>
+
+  </div>
+
   <h3>Status: <%= @lesson.status %></h3>
   <br>
   <p>
