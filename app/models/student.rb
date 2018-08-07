@@ -12,5 +12,6 @@ class Student < ApplicationRecord
   validates :phone, presence: true, uniqueness: true
   validates :first_name, presence: true
   validates :last_name, presence: true
+
   enum status: [ :available, :unavailable ]
 end

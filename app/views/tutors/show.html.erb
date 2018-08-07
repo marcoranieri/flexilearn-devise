@@ -1,18 +1,41 @@
 <!-- Dynamic Head Title -->
 <% provide(:title, 'Tutor') %>
 
-<p>Tutors#show</p>
-
 <div class="text-center">
 
   <h2>TUTOR:</h2>
 
   <img style="border-radius: 50%;" src="https://loremflickr.com/150/150/boy,girl/all" alt="Profile Pic">
 
-  <h2><%= @tutor.last_name %> <%= @tutor.first_name %></h2>
+  <h1><%= @tutor.last_name %> <%= @tutor.first_name %></h1>
   <p><strong>@Email: <%= @tutor.email %></strong></p>
   <p>Phone: <%= @tutor.phone %></p>
-  <p>Bio: <%= @tutor.bio %></p>
+  <p><strong>Bio:</strong> <%= @tutor.bio %></p>
+
+  <br>
+  <h3 style="border-top: 2px solid darkgray; width: 70%; margin: 0 auto;padding-top: 20px;">Reviews:</h3>
+
+  <div style="display: flex; width: 100%;">
+
+    <% @tutor.reviews.each do | review | %>
+
+      <div class="text-center" style="padding: 40px; width: 50%;">
+        <p><strong><%= review.title %></strong></p>
+        <p><small><%= review.content %></small></p>
+
+        <% blank_stars = 5 - review.rating.to_i %>
+        <% review.rating.to_i.times do  %>
+          <i style="color:gold;" class="fas fa-star filledstars"></i>
+          <% end %>
+          <% blank_stars.times do %>
+          <i class="far fa-star blankstars"></i>
+        <% end %>
+
+      </div>
+
+    <% end %>
+
+  </div>
 
   <%= link_to "<< Back", tutors_path, class:"btn btn-primary " %>
 
