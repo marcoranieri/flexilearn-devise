@@ -6,4 +6,5 @@ class Lesson < ApplicationRecord
   validates :tutor, presence: :true
   validates :student, presence: :true
   validates :subject, presence: :true
+  enum status: [ :requested, :scheduled, :canceled ]
 end
