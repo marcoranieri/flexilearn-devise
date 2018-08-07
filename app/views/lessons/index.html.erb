@@ -1,2 +1,21 @@
+<!-- Dynamic Head Title -->
+<% provide(:title, 'Lessons') %>
+
 <h1>Lessons#index</h1>
 <p>Find me in app/views/lessons/index.html.erb</p>
+
+<% if current_tutor %>
+  <h3>Current user: <%= current_user.email %></h3>
+<% else %>
+  <h3>Not Logged...</h3>
+<% end %>
+
+<!-- NAVIGATION index -->
+<%= link_to "Go to STUDENTS", students_path, class:"btn btn-primary" %>
+<%= link_to "Go to TUTORS", tutors_path, class:"btn btn-primary" %>
+<br>
+<% @lessons.each do |lesson| %>
+  <br>
+  |→ <%= link_to lesson.subject.name, lesson_path(lesson) %>
+  <br>
+<% end %>
