@@ -31,7 +31,7 @@ puts "Finally creating the lessons"
 end
 
 200.times do
-  r = Review.new(title: Faker::Lorem.sentence, content: Faker::Community.quotes, rating: 5)
+  r = Review.new(title: Faker::Lorem.sentence, content: Faker::Community.quotes, rating: rand(1..5))
   tut = Tutor.find(rand(Tutor.first.id..Tutor.last.id))
   r.tutor = tut
 
