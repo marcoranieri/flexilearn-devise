@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Flexilearn</title>
+  <title>Flexi Learn | <%= yield(:title) %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
+  <!-- IMPORT Font Awesome - Open Sans-->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+
+  <!-- IMPORT BOOTSTRAP 4.1.0 -->
+  <!-- ( just for initial boost ;D )-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <!-- Add these line for detecting device width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 </head>
 
 <body>
- <p class="notice"><%= notice %></p>
- <p class="alert"><%= alert %></p>
- <%= yield %>
+  <%= render 'shared/navbar' %>
+  <%= render 'shared/flashes' %>
+  <%= yield %>
+
+  <!-- Turbolinks works better with async -->
+  <%= javascript_include_tag 'application', async: true  %>
+  <%#= javascript_pack_tag 'application' %>
 </body>
 </html>

@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   resources :tutors
   resources :students
   resources :lessons
-  # root to: "home#index"
+  root to: "students#index"
 end
