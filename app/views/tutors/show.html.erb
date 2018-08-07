@@ -1,2 +1,19 @@
-<h1>Tutorss#show</h1>
-<p>Find me in app/views/tutorss/show.html.erb</p>
+<!-- Dynamic Head Title -->
+<% provide(:title, 'Tutor') %>
+
+<p>Tutors#show</p>
+
+<div class="text-center">
+
+  <h2>TUTOR:</h2>
+
+  <img style="border-radius: 50%;" src="https://loremflickr.com/150/150/boy,girl/all" alt="Profile Pic">
+
+  <h2><%= @tutor.last_name %> <%= @tutor.first_name %></h2>
+  <p><strong>@Email: <%= @tutor.email %></strong></p>
+  <p>Phone: <%= @tutor.phone %></p>
+  <p>Bio: <%= @tutor.bio %></p>
+
+  <%= link_to "<< Back", tutors_path, class:"btn btn-primary " %>
+
+</div>

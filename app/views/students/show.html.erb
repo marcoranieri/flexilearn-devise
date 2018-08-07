@@ -1,4 +1,18 @@
-<h1>Students#show</h1>
-<p>Find me in app/views/students/show.html.erb</p>
-<h3><%= @student.first_name %> <%= @student.last_name %></h3>
-<p><%= @student.email %></p>
+<!-- Dynamic Head Title -->
+<% provide(:title, 'Student') %>
+
+<p>Students#show</p>
+<div class="text-center">
+
+  <h2>STUDENT:</h2>
+
+  <img style="border-radius: 50%;" src="https://loremflickr.com/150/150/boy,girl/all" alt="Profile Pic">
+
+  <h2><%= @student.last_name %> <%= @student.first_name %></h2>
+  <h3>@Email: <%= @student.email %></h3>
+
+  <p>Bio: <%= @student.bio %></p>
+
+  <%= link_to "<< Back", students_path, class:"btn btn-primary"  %>
+
+</div>

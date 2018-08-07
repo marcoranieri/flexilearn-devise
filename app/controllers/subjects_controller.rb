@@ -1,5 +1,6 @@
 class SubjectsController < ApplicationController
   def index
+    @subjects = Subject.all
   end
 
   def new
@@ -7,4 +8,5 @@ class SubjectsController < ApplicationController
 
   def create
   end
+
 end

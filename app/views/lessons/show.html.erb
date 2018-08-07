@@ -1,2 +1,20 @@
-<h1>Lessons#show</h1>
-<p>Find me in app/views/lessons/show.html.erb</p>
+<!-- Dynamic Head Title -->
+<% provide(:title, 'Lesson') %>
+
+<p>Lessons#show</p>
+<div class="text-center">
+  <h2>Subject: <br><strong><%= @lesson.subject.name %></strong></h2>
+  <br>
+  <img style="border-radius: 50%;" src="https://loremflickr.com/150/150/work,book,library/all" alt="Lesson Pic">
+  <br><br>
+  <p>Location: <%= @lesson.location %></p>
+  <p>Date: <%= @lesson.date %></p>
+  <h3>Status: <%= @lesson.status %></h3>
+  <br>
+  <p>
+    <strong>Price: £ <%= @lesson.price %></strong> <br>
+    Notes: <%= @lesson.notes %>
+  </p>
+  <br>
+  <%= link_to "<< Back", lessons_path, class:"btn btn-primary " %>
+</div>
