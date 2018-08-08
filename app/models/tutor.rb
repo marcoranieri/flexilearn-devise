@@ -5,6 +5,7 @@ class Tutor < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :reviews, dependent: :destroy
+  has_many :subject, dependent: :destroy
   has_many :lessons
   has_many :students, through: :lessons
 
