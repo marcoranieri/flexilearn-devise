@@ -39,7 +39,7 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
-<%= link_to "SIGN UP", login_path %>
+<%= link_to "SIGN UP", signup_path %>
 
       <%= link_to t(".sign_up", default: "Student Sign Up"), new_student_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to t(".sign_in", default: "Student Login"), new_student_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
