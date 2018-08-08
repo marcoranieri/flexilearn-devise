@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
-  def login
+  def signup
     @student = Student.new
     @tutor = Tutor.new
-  render 'login/login'
+  render 'signup/signup'
   end
 end
