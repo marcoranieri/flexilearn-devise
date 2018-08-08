@@ -1,2 +1,20 @@
-<h1>Reviews#new</h1>
-<p>Find me in app/views/reviews/new.html.erb</p>
+<!-- Dynamic Head Title -->
+<% provide(:title, 'New Review') %>
+
+<h1 class="text-center">Post Review for <%= @tutor.last_name %> <%= @tutor.first_name %></h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+      <%= simple_form_for [@tutor, @review] do |f| %>
+        <%= f.input :title, placeholder: "Ex: Great experience..." %>
+        <%= f.input :content, placeholder: "Insert content here!" %>
+        <%=   f.collection_radio_buttons :rating, [[1, '1'] ,[2, '2'],[3, '3'],[4, '4'],[5, '5']], :first, :last %>
+        <br>
+        <%= f.submit "Post Review", class:"btn btn-primary" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

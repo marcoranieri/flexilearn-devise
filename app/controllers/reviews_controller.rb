@@ -1,18 +1,24 @@
 class ReviewsController < ApplicationController
+  before_action :set_tutor
+
   def new
     # we need @tutor in our `simple_form_for`
-    @tutor = Tutor.find(params[:tutor_id])
     @review = Review.new
   end
 
   def create
     @review = Review.new(review_params)
-    # we need `tutor_id` to asssociate review with corresponding restaurant
-    @review.tutor = Tutor.find(params[:tutor_id])
+    # we need `tutor_id` to associate review with corresponding restaurant
+    @review.tutor = @tutor
     @review.save
+    redirect_to tutor_path(@tutor)
   end
 
   private
+
+  def set_tutor
+    @tutor = Tutor.find(params[:tutor_id])
+  end
 
   def review_params
     params.require(:review).permit(:title, :content, :rating, :tutor_id )

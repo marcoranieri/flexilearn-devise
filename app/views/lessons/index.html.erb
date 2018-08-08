@@ -3,8 +3,11 @@
 
 <h1>Flexi Learn - Lessons</h1>
 <br>
+
 <% if current_tutor %>
-  <h3>Current user: <%= current_user.email %></h3>
+  <h3>Current Tutor: <%= current_tutor.email %></h3>
+<% elsif current_student %>
+  <h3>Current Student: <%= current_student.email %></h3>
 <% else %>
   <h4><i class="fas fa-user-slash"></i> User not Logged...</h4>
 <% end %>
