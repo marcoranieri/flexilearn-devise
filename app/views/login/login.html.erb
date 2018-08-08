@@ -1,43 +1,54 @@
-<h2>STUDENT | Sign up</h2>
+<div style="display: flex; justify-content: space-around;" >
 
-<%= simple_form_for(@student, as: :student, url: registration_path(:student)) do |f| %>
-  <%= f.error_notification %>
+  <div>
 
-  <div class="form-inputs">
-    <%= f.input :first_name, required: true, autofocus: true %>
-    <%= f.input :last_name, required: true, autofocus: true %>
-    <%= f.input :phone, required: true, autofocus: true %>
+    <h2>STUDENT | Sign up</h2>
 
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, required: true %>
+    <%= simple_form_for(@student, as: :student, url: registration_path(:student)) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= f.input :first_name, required: true, autofocus: true %>
+        <%= f.input :last_name, required: true, autofocus: true %>
+        <%= f.input :phone, required: true, autofocus: true %>
+
+        <%= f.input :email, required: true, autofocus: true %>
+        <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+        <%= f.input :password_confirmation, required: true %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Sign up" %>
+      </div>
+    <% end %>
+
+    <%#= render "students/shared/links" %>
+
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+  <div>
+
+    <h2>TUTOR | Sign up</h2>
+
+    <%= simple_form_for(@tutor, as: :tutor, url: registration_path(:tutor)) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= f.input :first_name, required: true, autofocus: true %>
+        <%= f.input :last_name, required: true, autofocus: true %>
+        <%= f.input :phone, required: true, autofocus: true %>
+
+        <%= f.input :email, required: true, autofocus: true %>
+        <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+        <%= f.input :password_confirmation, required: true %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Sign up" %>
+      </div>
+    <% end %>
+
+    <%#= render "tutors/shared/links" %>
   </div>
-<% end %>
 
-<%#= render "students/shared/links" %>
-
-<h2>TUTOR | Sign up</h2>
-
-<%= simple_form_for(@tutor, as: :tutor, url: registration_path(:tutor)) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :first_name, required: true, autofocus: true %>
-    <%= f.input :last_name, required: true, autofocus: true %>
-    <%= f.input :phone, required: true, autofocus: true %>
-
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, required: true %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%#= render "tutors/shared/links" %>
+</div>
