@@ -1,4 +1,6 @@
 class SubjectsController < ApplicationController
+  before_action :find_subject, only: [ :show ]
+
   def index
     @subjects = Subject.all
   end
@@ -8,18 +10,29 @@ class SubjectsController < ApplicationController
   end
 
   def create
-    @subject = Subject.new(subject_params)
-    if @subject.save
-      redirect_to subject_path(@subject)
+    if current_tutor
+
+      @subject = Subject.new(subject_params)
+      @subject.tutor = current_tutor
+
+      if @subject.save
+        redirect_to subjects_path
+      else
+        render :new
+      end
+
     else
-      render :new
+        redirect_to subjects_path
     end
+  end
+
+  def show
   end
 
   private
 
-  def set_tutor
-    @tutor = Tutor.find(params[:tutor_id])
+  def find_subject
+    @subject = Subject.find(params[:id])
   end
 
   def subject_params

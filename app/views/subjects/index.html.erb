@@ -1,8 +1,15 @@
-<h1>Subjects#index</h1>
-<p>Find me in app/views/subjects/index.html.erb</p>
+<!-- Dynamic Head Title -->
+<% provide(:title, 'Subjects') %>
 
+<h1>Aviable Subject:</h1>
+
+<%= link_to "<< Back", lessons_path, class:"btn btn-primary"  %>
+
+<%= link_to "Create Subject", new_subject_path, class:"btn btn-success" %>
+
+<br><br>
 <ul>
   <% @subjects.each do | subject | %>
-    <li><%= subject.name %></li>
+    <li><%= link_to subject.name, subject_path(subject) %></li>
   <% end %>
 </ul>

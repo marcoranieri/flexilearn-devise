@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :students
   resources :lessons
+  resources :subjects
 
   #
   get '/signup' => 'pages#signup'
