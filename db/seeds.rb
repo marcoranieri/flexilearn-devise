@@ -5,15 +5,20 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-puts "Creating subjects"
-20.times do
-  Subject.create(name: Faker::Educator.course)
-end
 
 puts "Creating users"
 50.times do
   Tutor.create(email: Faker::Internet.unique.email, password: '1234567', first_name: Faker::Name.unique.first_name, last_name: Faker::Name.unique.last_name, phone: Faker::PhoneNumber.cell_phone, bio: Faker::RickAndMorty.quote, birthdate: Faker::Date.birthday(25, 65))
   Student.create(email: Faker::Internet.unique.email, password: '1234567', first_name: Faker::Name.unique.first_name, last_name: Faker::Name.unique.last_name, phone: Faker::PhoneNumber.cell_phone, bio: Faker::RickAndMorty.quote, birthdate: Faker::Date.birthday(12, 30))
+end
+
+puts "Creating subjects"
+20.times do
+  tut = Tutor.find(rand(Tutor.first.id..Tutor.last.id))
+  sub = Subject.new(name: Faker::Educator.course, description: Faker::Lorem.paragraph)
+  sub.tutor_id = tut.id
+
+  sub.save
 end
 
 puts "Finally creating the lessons"

@@ -1,7 +1,10 @@
 <!-- Dynamic Head Title -->
 <% provide(:title, 'New Review') %>
 
-<h1 class="text-center">Post Review for <%= @tutor.last_name %> <%= @tutor.first_name %></h1>
+<h1 class="text-center">
+  Post Review for <%= @tutor.last_name %> <%= @tutor.first_name %> <br>
+  <%= link_to "<< Back", tutor_path(@tutor), class:"btn btn-success" %>
+</h1>
 
 <div class="container">
   <div class="row">
@@ -14,7 +17,6 @@
         <br>
         <%= f.submit "Post Review", class:"btn btn-primary" %>
       <% end %>
-
     </div>
   </div>
 </div>

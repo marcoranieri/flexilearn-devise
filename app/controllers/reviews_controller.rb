@@ -10,8 +10,11 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     # we need `tutor_id` to associate review with corresponding restaurant
     @review.tutor = @tutor
-    @review.save
-    redirect_to tutor_path(@tutor)
+    if @review.save
+      redirect_to tutor_path(@tutor)
+    else
+      render :new
+    end
   end
 
   private
