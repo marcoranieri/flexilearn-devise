@@ -13,9 +13,7 @@
   <h3>Current Student: <%= current_student.email %></h3>
   <h3>Name: <%= current_student.name if current_student.name %></h3>
 
-  <%= link_to "Edit profile", edit_student_registration_path %> |
-
-  <div><%= image_tag(current_student.image, size: "60") if current_student.image  %></div>
+  <div><%= image_tag current_student.image + "?type=large" if current_student.image  %></div>
 
 <% else %>
 
