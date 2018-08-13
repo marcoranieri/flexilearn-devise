@@ -1,4 +1,5 @@
 class CallbacksController < Devise::OmniauthCallbacksController
+# Manage the response (callback) from Facebook Auth
 
   def facebook
     @user = Student.from_omniauth(request.env["omniauth.auth"])
