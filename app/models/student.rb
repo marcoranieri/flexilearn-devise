@@ -4,6 +4,9 @@ class Student < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
+  # Cloudinary
+  mount_uploader :photo, PhotoUploader
+
   has_many :lessons
   has_many :tutors, through: :lessons
 

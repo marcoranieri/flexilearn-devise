@@ -11,10 +11,22 @@ gem 'pundit'
 #https://onebitcode.com/criando-autenticacao-com-o-facebook-em-10-minutos-devise-omniauth/
 gem 'omniauth'
 gem 'omniauth-facebook'
-#Security
+#Security --> Ignoring config/application.yml
 gem 'figaro'
+
 #IMG Hosting
 gem 'cloudinary', '~> 1.9', '>= 1.9.1'
+# https://cloudinary.com/documentation/image_transformations#transformations_reference
+#<%= cl_image_tag("THE_IMAGE_ID_FROM_LIBRARY",
+#     width: 400, height: 300, crop: :fill) %>
+#<!-- for face detection -->
+#<%= cl_image_tag("IMAGE_WITH_FACE_ID",
+#      width: 150, height: 150, crop: :thumb, gravity: :face) %>
+#Crop modes: scale, fit, fill, limit, pad, crop.
+
+# Send pic from Form to Cloudinary
+gem 'carrierwave', '~> 1.2', '>= 1.2.3'
+
 #Debug
 gem 'pry'
 gem 'better_errors'
