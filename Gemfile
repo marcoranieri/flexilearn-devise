@@ -7,6 +7,10 @@ ruby '2.5.0'
 gem 'devise'
 #Authorization
 gem 'pundit'
+#Login FACEBOOK
+#https://onebitcode.com/criando-autenticacao-com-o-facebook-em-10-minutos-devise-omniauth/
+gem 'omniauth'
+gem 'omniauth-facebook'
 #Debug
 gem 'pry'
 gem 'better_errors'
