@@ -4,6 +4,9 @@ class Tutor < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # Cloudinary
+  mount_uploader :photo, PhotoUploader
+
   has_many :reviews, dependent: :destroy
   has_many :subject, dependent: :destroy
   has_many :lessons

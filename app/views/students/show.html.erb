@@ -6,7 +6,13 @@
 
   <h2>STUDENT:</h2>
 
-  <img style="border-radius: 50%;" src="https://loremflickr.com/150/150/boy,girl/all" alt="Profile Pic">
+  <% if @student.photo.present? %>
+    <%= cl_image_tag @student.photo, height: 300, width: 400, crop: :fill %>
+  <% elsif %>
+    <div><%= image_tag current_student.image + "?type=large" if current_student.image  %></div>
+  <% else %>
+    <img style="border-radius: 50%;" src="https://loremflickr.com/150/150/boy,girl/all" alt="Profile Pic">
+  <% end %>
 
   <h2><%= @student.last_name %> <%= @student.first_name %></h2>
   <h3>@Email: <%= @student.email %></h3>
