@@ -1,0 +1,11 @@
+<!-- Dynamic Head Title -->
+<% provide(:title, 'Last Order') %>
+
+<h1>Order</h1>
+<ul>
+  <li>Status: <%= @order.state %></li>
+  <li>Item: <%= @order.name %></li>
+  <li>Amount: <%= humanized_money_with_symbol(@order.amount) %></li>
+<ul>
+
+<%= link_to "My Orders", orders_path, class:"btn btn-primary" %>

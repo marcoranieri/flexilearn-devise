@@ -8,7 +8,6 @@ class CreateLessons < ActiveRecord::Migration[5.2]
       t.time :time
       t.string :location
       t.integer :status
-      t.decimal :price
       t.text :notes
 
       t.timestamps

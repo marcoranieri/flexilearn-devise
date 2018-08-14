@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   resources :lessons
   resources :subjects
 
-  #
+  # Stripe
+  resources :orders, only: [:index, :show, :create] do
+    resources :payments, only: [:new, :create]
+  end
+
+  # SignUp for both Student/Tutor
   get '/signup' => 'pages#signup'
 end

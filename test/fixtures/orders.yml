@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  state: MyString
+  name: MyString
+  amount: 
+  payment: 
+  student: one
+
+two:
+  state: MyString
+  name: MyString
+  amount: 
+  payment: 
+  student: two

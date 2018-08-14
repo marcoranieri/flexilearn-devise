@@ -27,6 +27,11 @@ gem 'cloudinary', '~> 1.9', '>= 1.9.1'
 # Send pic from Form to Cloudinary
 gem 'carrierwave', '~> 1.2', '>= 1.2.3'
 
+# Currency
+gem 'money-rails', '~> 1.11'
+#Payment
+gem 'stripe', '~> 3.21'
+
 #Debug
 gem 'pry'
 gem 'better_errors'
