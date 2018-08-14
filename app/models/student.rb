@@ -9,6 +9,7 @@ class Student < ApplicationRecord
 
   has_many :lessons
   has_many :tutors, through: :lessons
+  has_many :orders
 
   # validates :password, presence: true
   # validates :email, presence: true, uniqueness: true

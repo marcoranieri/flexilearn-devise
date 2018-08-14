@@ -11,7 +11,12 @@
 <% elsif current_student %>
 
   <h3>Current Student: <%= current_student.email %></h3>
-  <h3>Name: <%= current_student.name if current_student.name %></h3>
+
+  <% if current_student.name %>
+    <h3>Name: <%= current_student.name %></h3>
+  <% else %>
+    <h3>Name: <%= current_student.last_name %> <%= current_student.first_name %></h3>
+  <% end %>
 
   <div><%= image_tag current_student.image + "?type=large" if current_student.image  %></div>
 
@@ -26,12 +31,16 @@
 <%= link_to "Go to STUDENTS", students_path, class:"btn btn-primary" %>
 <%= link_to "Go to TUTORS", tutors_path, class:"btn btn-primary" %>
 <%= link_to "Go to SUBJECTS", subjects_path, class:"btn btn-primary" %>
-
-
+<% if current_student %>
+  <% if current_student.orders != nil %>
+    <%= link_to "Go to MY ORDERS", orders_path, class:"btn btn-secondary" %>
+  <% end %>
+<% end %>
 
 <br>
 <% @lessons.each do |lesson| %>
   <br>
-  |→ <%= link_to lesson.subject.name, lesson_path(lesson) %>
+  |→ <%= link_to lesson.subject.name, lesson_path(lesson) %> <br>
+  <p>Amount: <%= humanized_money_with_symbol(lesson.price) %></p>
   <br>
 <% end %>

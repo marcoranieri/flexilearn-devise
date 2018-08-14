@@ -1,0 +1,16 @@
+<!-- Dynamic Head Title -->
+<% provide(:title, 'My Orders') %>
+
+<h3>Email:<%= current_student.email %></h3>
+<h1>Your Orders:</h1>
+
+<ul>
+  <% @orders.each do | order | %>
+    <li>
+      Lesson: <%= order.name %> <br>
+      Amount: <%= humanized_money_with_symbol(order.amount) %> <br>
+      State: <%= order.state %><br>
+      Tutor: <%= link_to order.lesson.tutor.last_name, tutor_path(order.lesson.tutor) %> <br><br>
+    </li>
+  <% end %>
+</ul>

@@ -6,6 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+puts "Deleting Seeds..."
+Lesson.destroy_all
+Subject.destroy_all
+Tutor.destroy_all
+Student.destroy_all
+
 puts "Creating users"
 50.times do
   Tutor.create(email: Faker::Internet.unique.email, password: '1234567', first_name: Faker::Name.unique.first_name, last_name: Faker::Name.unique.last_name, phone: Faker::PhoneNumber.cell_phone, bio: Faker::RickAndMorty.quote, birthdate: Faker::Date.birthday(25, 65))
@@ -27,7 +33,7 @@ puts "Finally creating the lessons"
   sub = Subject.find(rand(Subject.first.id..Subject.last.id))
   tut = Tutor.find(rand(Tutor.first.id..Tutor.last.id))
   stu = Student.find(rand(Student.first.id..Student.last.id))
-  less = Lesson.new(date: Faker::Date.forward(300), time: Time.now , location: Faker::Address.full_address, status: rand(0..2), price: rand(20..80), notes: Faker::StarWars.quote)
+  less = Lesson.new(date: Faker::Date.forward(300), time: Time.now , location: Faker::Address.full_address, status: rand(0..2), price_cents: rand(2000..8000), notes: Faker::StarWars.quote)
   less.subject = sub
   less.tutor = tut
   less.student = stu

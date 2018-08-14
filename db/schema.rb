@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_13_015702) do
+ActiveRecord::Schema.define(version: 2018_08_13_204116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,13 +23,26 @@ ActiveRecord::Schema.define(version: 2018_08_13_015702) do
     t.time "time"
     t.string "location"
     t.integer "status"
-    t.decimal "price"
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "price_cents", default: 0, null: false
     t.index ["student_id"], name: "index_lessons_on_student_id"
     t.index ["subject_id"], name: "index_lessons_on_subject_id"
     t.index ["tutor_id"], name: "index_lessons_on_tutor_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "state"
+    t.string "name"
+    t.integer "amount_cents", default: 0, null: false
+    t.jsonb "payment"
+    t.bigint "student_id"
+    t.bigint "lesson_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lesson_id"], name: "index_orders_on_lesson_id"
+    t.index ["student_id"], name: "index_orders_on_student_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -121,6 +134,8 @@ ActiveRecord::Schema.define(version: 2018_08_13_015702) do
   add_foreign_key "lessons", "students"
   add_foreign_key "lessons", "subjects"
   add_foreign_key "lessons", "tutors"
+  add_foreign_key "orders", "lessons"
+  add_foreign_key "orders", "students"
   add_foreign_key "reviews", "tutors"
   add_foreign_key "subjects", "tutors"
 end
