@@ -32,7 +32,7 @@
 <%= link_to "Go to TUTORS", tutors_path, class:"btn btn-primary" %>
 <%= link_to "Go to CATEGORIES", categories_path, class:"btn btn-primary" %>
 <% if current_student %>
-  <% if current_student.orders != nil %>
+  <% if current_student.orders.count > 0 %>
     <%= link_to "Go to MY ORDERS", orders_path, class:"btn btn-secondary" %>
   <% end %>
 <% end %>
