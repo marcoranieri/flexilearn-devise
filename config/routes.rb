@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'pages/login'
+  #get 'pages/login'
   devise_for :students, :controllers => { :omniauth_callbacks => "callbacks" }
   devise_for :tutors
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -22,4 +22,7 @@ Rails.application.routes.draw do
 
   # SignUp for both Student/Tutor
   get '/signup' => 'pages#signup'
+
+  # LogIn for both Student/Tutor
+  get '/login' => 'pages#login'
 end
