@@ -9,7 +9,7 @@
   <% if @student.photo.present? %>
     <%= cl_image_tag @student.photo, height: 300, width: 400, crop: :fill %>
   <% elsif %>
-    <div><%= image_tag current_student.image + "?type=large" if current_student.image  %></div>
+    <div><%= image_tag current_student.image_fb + "?type=large" if current_student.image_fb  %></div>
   <% else %>
     <img style="border-radius: 50%;" src="https://loremflickr.com/150/150/boy,girl/all" alt="Profile Pic">
   <% end %>
