@@ -7,8 +7,8 @@
 
   <% if @tutor.photo.present? %>
     <%= cl_image_tag @tutor.photo.url(:bright_face) %>
-  <!-- <%# elsif @tutor.image.present? %> Facebook IMAGE -->
-    <!-- <div><%#= image_tag current_tutor.image + "?type=large" if current_tutor.image  %></div> -->
+  <% elsif @tutor.image_fb.present? %>
+    <div><%= image_tag current_tutor.image_fb + "?type=large" if current_tutor.image_fb  %></div>
   <% else %>
     <img style="border-radius: 50%;" src="https://loremflickr.com/150/150/boy,girl/all" alt="Profile Pic">
   <% end %>
