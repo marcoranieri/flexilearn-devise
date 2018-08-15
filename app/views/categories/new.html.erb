@@ -1,0 +1,24 @@
+<!-- Dynamic Head Title -->
+<% provide(:title, 'New Category') %>
+
+<h1 class="text-center">
+  Create Category<br>
+  <%= link_to "<< Back", categories_path, class:"btn btn-success" %>
+</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+      <%= simple_form_for @category,
+        :url => url_for(:action => 'create', :controller => 'categories'),
+        :method => 'post' do |f| %>
+        <%= f.input :name, placeholder: "Category title here", autofocus: true %>
+        <%= f.input :description, placeholder: "Insert description here!" %>
+        <br>
+        <%= f.submit "Create Category", class:"btn btn-primary" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

@@ -30,7 +30,7 @@
 <!-- NAVIGATION index -->
 <%= link_to "Go to STUDENTS", students_path, class:"btn btn-primary" %>
 <%= link_to "Go to TUTORS", tutors_path, class:"btn btn-primary" %>
-<%= link_to "Go to SUBJECTS", subjects_path, class:"btn btn-primary" %>
+<%= link_to "Go to CATEGORIES", categories_path, class:"btn btn-primary" %>
 <% if current_student %>
   <% if current_student.orders != nil %>
     <%= link_to "Go to MY ORDERS", orders_path, class:"btn btn-secondary" %>
@@ -40,7 +40,7 @@
 <br>
 <% @lessons.each do |lesson| %>
   <br>
-  |→ <%= link_to lesson.subject.name, lesson_path(lesson) %> <br>
+  |→ <%= link_to lesson.category.name, lesson_path(lesson) %> <br>
   <p>Amount: <%= humanized_money_with_symbol(lesson.price) %></p>
   <br>
 <% end %>

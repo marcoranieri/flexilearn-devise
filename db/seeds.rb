@@ -8,7 +8,7 @@
 
 puts "Deleting Seeds..."
 Lesson.destroy_all
-Subject.destroy_all
+Category.destroy_all
 Tutor.destroy_all
 Student.destroy_all
 
@@ -18,23 +18,26 @@ puts "Creating users"
   Student.create(email: Faker::Internet.unique.email, password: '1234567', first_name: Faker::Name.unique.first_name, last_name: Faker::Name.unique.last_name, phone: Faker::PhoneNumber.cell_phone, bio: Faker::RickAndMorty.quote, birthdate: Faker::Date.birthday(12, 30))
 end
 
-puts "Creating subjects"
+puts "Creating categories"
+
+FIXED_CAT = %w(Mathematics History Science Health Art Music Speech Chemistry Physics Biology Languages Computer Business Journalism Photography Economics Sociology Culinary Lifeskills)
+
 20.times do
   tut = Tutor.find(rand(Tutor.first.id..Tutor.last.id))
-  sub = Subject.new(name: Faker::Educator.course, description: Faker::Lorem.paragraph)
-  sub.tutor_id = tut.id
+  cat = Category.new(name: FIXED_CAT.sample, description: Faker::Lorem.paragraph)
+  cat.tutor_id = tut.id
 
-  sub.save
+  cat.save
 end
 
 puts "Finally creating the lessons"
 100.times do
 
-  sub = Subject.find(rand(Subject.first.id..Subject.last.id))
+  cat = Category.find(rand(Category.first.id..Category.last.id))
   tut = Tutor.find(rand(Tutor.first.id..Tutor.last.id))
   stu = Student.find(rand(Student.first.id..Student.last.id))
   less = Lesson.new(date: Faker::Date.forward(300), time: Time.now , location: Faker::Address.full_address, status: rand(0..2), price_cents: rand(2000..8000), notes: Faker::StarWars.quote)
-  less.subject = sub
+  less.category = cat
   less.tutor = tut
   less.student = stu
 
