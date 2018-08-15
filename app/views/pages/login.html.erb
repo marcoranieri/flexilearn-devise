@@ -1,2 +1,31 @@
-<h1>Pages#login</h1>
-<p>Find me in app/views/pages/login.html.erb</p>
+<!-- Dynamic Head Title -->
+<% provide(:title, 'LogIn') %>
+pages
+<div class="col-md-offset-1 col-md-4">
+  <h2>Student Login</h2>
+  <%= simple_form_for(@student, as: :student, url: session_path(:student)) do |f| %>
+    <div class="form-inputs">
+      <%= f.input :email, required: false, autofocus: true %>
+      <%= f.input :password, required: false %>
+      <%= f.input :remember_me, as: :boolean if Devise.mappings[:student].rememberable? %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Log in", id: 'student_submit' %>
+    </div>
+  <% end %>
+</div>
+<div class="col-md-offset-2 col-md-4">
+  <h2>Tutor Login</h2>
+  <%= simple_form_for(@tutor, as: :tutor, url: session_path(:tutor)) do |f| %>
+    <div class="form-inputs">
+      <%= f.input :email, required: false, autofocus: true %>
+      <%= f.input :password, required: false %>
+      <%= f.input :remember_me, as: :boolean if Devise.mappings[:tutor].rememberable? %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Log in", id: 'tutor_submit' %>
+    </div>
+  <% end %>
+</div>
