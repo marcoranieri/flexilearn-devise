@@ -10,15 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_13_204116) do
+ActiveRecord::Schema.define(version: 2018_08_15_194948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "description"
+    t.decimal "price"
+    t.bigint "tutor_id"
+    t.index ["tutor_id"], name: "index_categories_on_tutor_id"
+  end
+
   create_table "lessons", force: :cascade do |t|
     t.bigint "student_id"
     t.bigint "tutor_id"
-    t.bigint "subject_id"
     t.date "date"
     t.time "time"
     t.string "location"
@@ -27,8 +36,9 @@ ActiveRecord::Schema.define(version: 2018_08_13_204116) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "price_cents", default: 0, null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_lessons_on_category_id"
     t.index ["student_id"], name: "index_lessons_on_student_id"
-    t.index ["subject_id"], name: "index_lessons_on_subject_id"
     t.index ["tutor_id"], name: "index_lessons_on_tutor_id"
   end
 
@@ -87,16 +97,6 @@ ActiveRecord::Schema.define(version: 2018_08_13_204116) do
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
 
-  create_table "subjects", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "description"
-    t.decimal "price"
-    t.bigint "tutor_id"
-    t.index ["tutor_id"], name: "index_subjects_on_tutor_id"
-  end
-
   create_table "tutors", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -131,11 +131,11 @@ ActiveRecord::Schema.define(version: 2018_08_13_204116) do
     t.index ["reset_password_token"], name: "index_tutors_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "categories", "tutors"
+  add_foreign_key "lessons", "categories"
   add_foreign_key "lessons", "students"
-  add_foreign_key "lessons", "subjects"
   add_foreign_key "lessons", "tutors"
   add_foreign_key "orders", "lessons"
   add_foreign_key "orders", "students"
   add_foreign_key "reviews", "tutors"
-  add_foreign_key "subjects", "tutors"
 end

@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
 
   def create
     order  = Order.create!(
-      name: @lesson.subject.name,
+      name: @lesson.category.name,
        amount: @lesson.price,
        lesson: @lesson,
        student: current_student,

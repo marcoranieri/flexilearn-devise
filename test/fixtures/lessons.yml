@@ -3,7 +3,7 @@
 one:
   student: one
   tutor: one
-  subject: one
+  category: one
   data: 2018-08-06
   time: 2018-08-06 19:11:01
   location: MyString
@@ -14,7 +14,7 @@ one:
 two:
   student: two
   tutor: two
-  subject: two
+  category: two
   data: 2018-08-06
   time: 2018-08-06 19:11:01
   location: MyString

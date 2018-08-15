@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :students
   resources :lessons
-  resources :subjects
+  resources :categories
 
   # Stripe
   resources :orders, only: [:index, :show, :create] do

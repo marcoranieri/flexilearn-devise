@@ -3,7 +3,6 @@ class CreateLessons < ActiveRecord::Migration[5.2]
     create_table :lessons do |t|
       t.references :student, foreign_key: true
       t.references :tutor, foreign_key: true
-      t.references :subject, foreign_key: true
       t.date :date
       t.time :time
       t.string :location
