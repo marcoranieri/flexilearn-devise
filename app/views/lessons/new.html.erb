@@ -1,2 +1,32 @@
-<h1>Lessons#new</h1>
-<p>Find me in app/views/lessons/new.html.erb</p>
+<!-- Dynamic Head Title -->
+<% provide(:title, 'New Lesson') %>
+
+<h1 class="text-center">
+  Create Lesson<br>
+  <%= link_to "<< Back", lessons_path, class:"btn btn-success" %>
+  <%= link_to ":back", :back %>
+</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+      <%= simple_form_for @lesson,
+        :url => url_for(:action => 'create', :controller => 'lessons'),
+        :method => 'post' do |f| %>
+        <%= f.label :category %>
+        <%= f.collection_select(:category_id, Category.all, :id, :name, prompt: true) %>
+        <%#= f.collection_select(:post, :category_id, Category.all, :id, :name, prompt: true) %>
+        <%= f.input :title, placeholder: "Insert title here!", autofocus: true %>
+        <%= f.input :request, placeholder: "Explain your request!" %>
+        <%= f.input :notes, placeholder: "Add notes here!" %>
+        <%= f.input :location, placeholder: "Where do you wanna meet?" %>
+        <%= f.input :date, as: :date, html5: true %>
+        <%= f.input :time, as: :time, minute_step: 15, html5: true %>
+        <br>
+        <%= f.submit "Create Lesson", class:"btn btn-primary" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

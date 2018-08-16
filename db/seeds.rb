@@ -28,7 +28,7 @@ puts "Finally creating the lessons"
   cat = Category.find(rand(Category.first.id..Category.last.id))
   tut = Tutor.find(rand(Tutor.first.id..Tutor.last.id))
   stu = Student.find(rand(Student.first.id..Student.last.id))
-  less = Lesson.new(date: Faker::Date.forward(300), time: Time.now , location: Faker::Address.full_address, status: rand(0..2), price_cents: rand(2000..8000), notes: Faker::StarWars.quote)
+  less = Lesson.new(title: "Need help with #{Faker::BossaNova.song}", request: Faker::Lorem.paragraph, date: Faker::Date.forward(300), time: Time.now , location: Faker::Address.full_address, status: rand(0..2), price_cents: rand(2000..8000), notes: Faker::StarWars.quote)
   less.category = cat
   less.tutor = tut
   less.student = stu
