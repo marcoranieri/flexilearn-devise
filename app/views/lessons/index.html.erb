@@ -26,7 +26,8 @@
 
 <% end %>
 <br>
-
+<%= link_to "Request a LESSON", new_lesson_path, class:"btn btn-success" %>
+<br>
 <!-- NAVIGATION index -->
 <%= link_to "Go to STUDENTS", students_path, class:"btn btn-primary" %>
 <%= link_to "Go to TUTORS", tutors_path, class:"btn btn-primary" %>
@@ -40,7 +41,7 @@
 <br>
 <% @lessons.each do |lesson| %>
   <br>
-  |→ <%= link_to lesson.category.name, lesson_path(lesson) %> <br>
+  → <%= link_to lesson.title, lesson_path(lesson) %>
+  | Category : <%= link_to lesson.category.name, lesson_path(lesson) %>
   <p>Amount: <%= humanized_money_with_symbol(lesson.price) %></p>
-  <br>
 <% end %>

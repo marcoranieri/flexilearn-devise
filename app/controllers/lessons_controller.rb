@@ -19,7 +19,7 @@ class LessonsController < ApplicationController
     @lesson.student = current_student
 
     respond_to do | format |
-      if @lesson.save
+      if @lesson.save!
         format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
         format.json { render :show, status: :created, location: @lesson }
       else
@@ -59,6 +59,6 @@ class LessonsController < ApplicationController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:id, :student_id, :category_id, :tutor_id, :date, :time, :location, :status, :notes, :price_cents )
+    params.require(:lesson).permit(:id, :student_id, :category_id, :tutor_id, :date, :title, :request, :time, :location, :status, :notes, :price_cents )
   end
 end

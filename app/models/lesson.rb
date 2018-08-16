@@ -1,6 +1,6 @@
 class Lesson < ApplicationRecord
   belongs_to :student
-  belongs_to :tutor
+  belongs_to :tutor, optional: true
   belongs_to :category
 
   # validates :tutor, presence: :true
