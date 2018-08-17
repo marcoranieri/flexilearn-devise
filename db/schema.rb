@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2018_08_15_220613) do
     t.string "location"
     t.integer "status", default: 0, null: false
     t.text "notes"
+    t.text "tutor_notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "price_cents", default: 0, null: false

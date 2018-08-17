@@ -1,30 +1,25 @@
 <!-- Dynamic Head Title -->
 <% provide(:title, 'Lessons') %>
 
-<h1>Flexi Learn - Lessons</h1>
-<br>
+<h1>Flexi Learn - My Lessons</h1>
 
 <% if current_tutor %>
-
-  <h3>Current Tutor: <%= current_tutor.email %></h3>
-
+  <h4>Current Tutor: <%= current_tutor.email %></h4>
 <% elsif current_student %>
-
-  <h3>Current Student: <%= current_student.email %></h3>
+  <h4>Current Student: <%= current_student.email %></h4>
 
   <% if current_student.name %>
-    <h3>Name: <%= current_student.name %></h3>
+    <h4>Name: <%= current_student.name %></h4>
   <% else %>
-    <h3>Name: <%= current_student.last_name %> <%= current_student.first_name %></h3>
+    <h4>Name: <%= current_student.last_name %> <%= current_student.first_name %></h4>
   <% end %>
 
   <div><%= image_tag current_student.image_fb + "?type=large" if current_student.image_fb  %></div>
 
 <% else %>
-
   <h4><i class="fas fa-user-slash"></i> User not Logged...</h4>
-
 <% end %>
+
 <br>
 <%= link_to "Request a LESSON", new_lesson_path, class:"btn btn-success" %>
 <br>

@@ -1,2 +1,75 @@
-<h1>Lessons#edit</h1>
-<p>Find me in app/views/lessons/edit.html.erb</p>
+<!-- Dynamic Head Title -->
+<% provide(:title, 'Edit Lesson') %>
+<% if current_student.nil? %>
+  <h1 class="text-center">
+    Edit Lesson (as Tutor)<br>
+    <%= link_to "<< Back", lessons_path, class:"btn btn-success" %>
+    <%= link_to ":back", :back %>
+  </h1>
+
+  <div class="text-center">
+    <p><strong>Title:</strong> <%= @lesson.title  %></p>
+    <p><strong>Category:</strong> <%= @lesson.category.name  %></p>
+    <p><strong>Request:</strong> <%= @lesson.request  %></p>
+    <p><strong>Notes:</strong> <%= @lesson.notes  %></p>
+    <p><strong>Location:</strong> <%= @lesson.location  %></p>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+        <%= simple_form_for @lesson,
+          :url => url_for(:action => 'update', :controller => 'lessons'),
+          :method => 'patch' do |f| %>
+
+          <%= f.input :price_cents, placeholder: "Insert (£)price here!", autofocus: true %>
+          <%= f.input :tutor_notes, placeholder: "Tutor notes..." %>
+          <%= f.input :date, as: :date, html5: true %>
+          <%= f.input :time, as: :time, html5: true %>
+
+          <%#= f.label :tutor_id %>
+          <%#= f.check_box :tutor_id, checked_value: current_tutor.id %>
+          <br>
+          <!-- Passing STATUS value -->
+          <%= f.hidden_field :status, value: "scheduled" %>
+          <%= f.hidden_field :tutor_id, value: current_tutor.id %>
+          <%= f.submit "Update Lesson", class:"btn btn-primary" %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+
+<% else %>
+
+  <h1 class="text-center">
+    Edit Lesson (as Student)<br>
+    <%= link_to "<< Back", lessons_path, class:"btn btn-success" %>
+    <%= link_to ":back", :back %>
+  </h1>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+        <%= simple_form_for @lesson,
+          :url => url_for(:action => 'update', :controller => 'lessons'),
+          :method => 'patch' do |f| %>
+          <%= f.label :category %>
+          <%= f.collection_select(:category_id, Category.all, :id, :name, prompt: true) %>
+          <%= f.input :title, placeholder: "Insert title here!", autofocus: true %>
+          <%= f.input :request, placeholder: "Explain your request!" %>
+          <%= f.input :notes, placeholder: "Add notes here!" %>
+          <%= f.input :location, placeholder: "Where do you wanna meet?" %>
+          <%= f.input :date, as: :date, html5: true %>
+          <%= f.input :time, as: :time, minute_step: 15, html5: true %>
+          <br>
+          <%= f.submit "Update Lesson", class:"btn btn-primary" %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+
+<% end %>

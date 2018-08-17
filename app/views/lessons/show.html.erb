@@ -24,25 +24,36 @@
   <% if @lesson.status == "requested" %>
     <% color = "darkorange" %>
   <% elsif @lesson.status == "scheduled" %>
-    <% color = "darkgreen" %>
+    <% color = "green" %>
   <% elsif @lesson.status == "canceled" %>
     <% color = "red" %>
   <% end %>
   <p>Status: <span style="color:<%= color %>;"><%= @lesson.status %></span></p>
 
-  <% if @lesson.price != 0 %>
+  <p><strong>Request: </strong><%= @lesson.request %></p>
+  <p><strong>Notes: </strong><%= @lesson.notes %></p> <br>
+
+  <% if @lesson.price.fractional != 0 %>
     <p><strong>Amount: <%= humanized_money_with_symbol(@lesson.price) %></strong></p>
   <% end %>
 
-  <p><strong>Request: </strong><%= @lesson.request %></p>
-  <p><strong>Notes: </strong><%= @lesson.notes %></p> <br>
+
+  <% unless @lesson.tutor_notes.nil? %>
+    <p style="border:1px solid darkgrey; padding:10px;">
+      <strong>Tutor notes: </strong><%= @lesson.tutor_notes %>
+    </p>
+  <% end %>
+  <br>
 
   <img src="https://loremflickr.com/200/300/work,book,library/all" alt="Lesson Pic">
   <br>
   <br>
-  <%= form_tag orders_path do %>
-    <%= hidden_field_tag 'lesson_id', @lesson.id %>
-    <%= submit_tag 'Purchase', class: 'btn btn-primary' %>
+
+  <% unless @lesson.tutor.nil?%>
+    <%= form_tag orders_path do %>
+      <%= hidden_field_tag 'lesson_id', @lesson.id %>
+      <%= submit_tag 'Purchase', class: 'btn btn-primary' %>
+    <% end %>
   <% end %>
 
   <br>
