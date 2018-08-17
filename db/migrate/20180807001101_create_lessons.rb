@@ -10,6 +10,7 @@ class CreateLessons < ActiveRecord::Migration[5.2]
       t.string :location
       t.integer :status, default: 0, null: false
       t.text :notes
+      t.text :tutor_notes
 
       t.timestamps
     end

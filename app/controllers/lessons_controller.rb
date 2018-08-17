@@ -4,7 +4,7 @@ class LessonsController < ApplicationController
   before_action :find_lesson, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @lessons = Lesson.all
+    current_student ? @lessons = Lesson.where(student: current_student) : @lessons = Lesson.where(tutor: current_tutor) if current_tutor
   end
 
   def show
@@ -34,8 +34,8 @@ class LessonsController < ApplicationController
 
   def update
     respond_to do | format |
-      if @lesson.save
-        format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
+      if @lesson.update(lesson_params)
+        format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
         format.json { render :show, status: :ok, location: @lesson }
       else
         format.html { render :edit }
@@ -59,6 +59,6 @@ class LessonsController < ApplicationController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:id, :student_id, :category_id, :tutor_id, :date, :title, :request, :time, :location, :status, :notes, :price_cents )
+    params.require(:lesson).permit(:id, :student_id, :category_id, :tutor_id, :date, :title, :request, :time, :location, :status, :notes, :tutor_notes, :price_cents )
   end
 end
