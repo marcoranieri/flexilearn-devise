@@ -4,19 +4,30 @@ class LessonsController < ApplicationController
   before_action :find_lesson, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    current_student ? @lessons = Lesson.where(student: current_student) : @lessons = Lesson.where(tutor: current_tutor) if current_tutor
+    # current_student ? @lessons = policy_scope(Lesson).where(student: current_student) : @lessons = policy_scope(Lesson).where(tutor: current_tutor) if current_tutor
+    if current_user.is_a? Student
+      @lessons = policy_scope(Lesson).where(student: current_user).order(created_at: :desc)
+    else
+      @lessons = policy_scope(Lesson).where(tutor: current_user).order(created_at: :desc)
+    end
+      # @lessons = policy_scope(Lesson).where(tutor: current_tutor) if current_tutor
+      # @lessons = policy_scope(Lesson).order(created_at: :desc)
+      authorize @lessons
   end
 
   def show
+    @q = "<i class='fas fa-question'></i>".html_safe
   end
 
   def new
     @lesson = Lesson.new
+    authorize @lesson
   end
 
   def create
     @lesson = Lesson.new(lesson_params)
     @lesson.student = current_student
+    authorize @lesson
 
     respond_to do | format |
       if @lesson.save!
@@ -56,9 +67,10 @@ class LessonsController < ApplicationController
 
   def find_lesson
     @lesson = Lesson.find(params[:id])
+    authorize @lesson # Auth before_action :show, :edit, :update, :destroy
   end
 
   def lesson_params
-    params.require(:lesson).permit(:id, :student_id, :category_id, :tutor_id, :date, :title, :request, :time, :location, :status, :notes, :tutor_notes, :price_cents )
+    params.require(:lesson).permit(:id, :student_id, :category_id, :tutor_id, :date, :title, :request, :time, :location, :status, :notes, :tutor_notes, :photo, :price_cents )
   end
 end

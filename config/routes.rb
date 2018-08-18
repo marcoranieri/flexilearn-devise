@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   devise_for :tutors
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root to: "lessons#index"
 
   resources :tutors do
     resources :reviews, only: [:new, :create]
@@ -22,7 +21,10 @@ Rails.application.routes.draw do
 
   # SignUp for both Student/Tutor
   get '/signup' => 'pages#signup'
-
   # LogIn for both Student/Tutor
   get '/login' => 'pages#login'
+  # Index.ALL
+  get '/all' => 'pages#all'
+
+  root to: "pages#all"
 end

@@ -9,6 +9,8 @@ class Lesson < ApplicationRecord
 
   enum status: [ :requested, :scheduled, :canceled ]
 
+  # Carriervawe
+  mount_uploader :photo, PhotoUploader
   # MoneyRails Gem
   monetize :price_cents
 end

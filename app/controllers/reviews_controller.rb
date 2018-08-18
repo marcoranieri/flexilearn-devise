@@ -8,8 +8,8 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    # we need `tutor_id` to associate review with corresponding restaurant
     @review.tutor = @tutor
+
     if @review.save
       redirect_to tutor_path(@tutor)
     else

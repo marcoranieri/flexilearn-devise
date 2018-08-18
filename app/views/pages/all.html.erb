@@ -1,0 +1,29 @@
+<!-- Dynamic Head Title -->
+<% provide(:title, 'All Lessons') %>
+
+<h1>All Lessons in Flexi Learn</h1>
+
+<!-- N A V I G A T I O N /////////////////////////////////////////////////// -->
+<!-- @u = current_user | in PAGES#ALL for refactoring -->
+<% if @u.is_a?(Student) && @u.created_at || @u.is_a?(Tutor)  %>
+  <%= link_to "My Lessons", lessons_path, class:"btn btn-primary" %>
+<% end %>
+
+<% if @u.is_a?(Student) && @u.created_at  %>
+  <%= link_to "Request a LESSON", new_lesson_path, class:"btn btn-success" %>
+<% end %>
+
+<br>
+<!-- L E S S O N S ///////////////////////////////////////////////////////// -->
+<% if @lessons.present? %>
+  <% @lessons.each do |lesson| %>
+    <br>
+    - <strong><%= link_to lesson.title, lesson_path(lesson) %></strong>
+    → Category : <%= link_to lesson.category.name, lesson_path(lesson) %>
+      <!-- Amount: <%= humanized_money_with_symbol(lesson.price) %> | -->
+    <% if lesson.student == current_student %>
+      | <%= link_to "Edit", edit_lesson_path(lesson), style:"color:darkorange;" %>
+      | <%= link_to 'Delete', lesson_path(lesson), data: { confirm: 'Are you sure?' }, method: :delete, style:"color:red;" %>
+    <% end %>
+  <% end %>
+<% end %>

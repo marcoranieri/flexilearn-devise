@@ -1,6 +1,9 @@
 <!-- Dynamic Head Title -->
 <% provide(:title, 'Edit Lesson') %>
+
 <% if current_student.nil? %>
+
+<!--  T U T O R - Edit Form //////////////////////////////////////////////// -->
   <h1 class="text-center">
     Edit Lesson (as Tutor)<br>
     <%= link_to "<< Back", lessons_path, class:"btn btn-success" %>
@@ -23,8 +26,9 @@
           :url => url_for(:action => 'update', :controller => 'lessons'),
           :method => 'patch' do |f| %>
 
-          <%= f.input :price_cents, placeholder: "Insert (£)price here!", autofocus: true %>
-          <%= f.input :tutor_notes, placeholder: "Tutor notes..." %>
+          <%= f.input :tutor_notes, placeholder:
+            "Hi #{@lesson.student.name}, I think I can help you with this request! Here my skills:\n\b- Degrees\n\b- Job experiences\n\b- ...\n\bSee you in #{@lesson.location} at #{@lesson.time.strftime("%I:%M%p")} of #{@lesson.date} !", autofocus: true %>
+          <%= f.input :price, label: "Price £" %>
           <%= f.input :date, as: :date, html5: true %>
           <%= f.input :time, as: :time, html5: true %>
 
@@ -43,6 +47,7 @@
 
 <% else %>
 
+<!--  S T U D E N T - Edit Form //////////////////////////////////////////// -->
   <h1 class="text-center">
     Edit Lesson (as Student)<br>
     <%= link_to "<< Back", lessons_path, class:"btn btn-success" %>
