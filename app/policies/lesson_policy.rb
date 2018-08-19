@@ -22,10 +22,17 @@ class LessonPolicy < ApplicationPolicy
   def update?
     # Only Student can create a Lesson
     return user == record.student if user.is_a? Student
-    record.tutor.nil? if user.is_a? Tutor
+
+    if user.is_a? Tutor || record.tutor == user
+      true
+    elsif user.is_a? Tutor
+      record.tutor.nil?
+    end
   end
 
   def destroy?
-    user.is_a? Student
+    user.is_a?(Student) &&
+    user.created_at &&
+    record.student == user
   end
 end

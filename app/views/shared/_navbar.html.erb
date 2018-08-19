@@ -4,24 +4,44 @@
   <%= image_tag "flexilearn-logo", height: 50 %>
   <% end %>
 
-  <!-- Right Navigation -->
+  <!-- Right-side Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
     <% if student_signed_in? || tutor_signed_in? %>
 
-      <!-- Links when logged in -->
-      <%= link_to destroy_student_session_path, method: :delete do %>
-        <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+<!-- Links when Logged In ----------------------------------------------------->
+      <%= link_to student_path(current_student), style:"padding:0 10%" do %>
+        <i class="far fa-user-circle" style="font-size:3em"></i>
+      <% end %>
+      <br>
+      <%= link_to destroy_student_session_path, style:"padding:0 10%",
+         method: :delete do %>
+        <i class="fas fa-sign-out-alt" style="font-size:3em"></i>
       <% end %>
 
-      <%= link_to "Host", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Trips", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%#= link_to "Host", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%#= link_to "Trips", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%#= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
 
-      <!-- Avatar with dropdown menu -->
+      <!-- AVATAR with dropdown menu --->
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <%= image_tag "http://kitt.lewagon.com/placeholder/users/marcoranieri", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+
+          <% if current_user.is_a? Student %><!-- S T U D E N T --->
+            <%#= image_tag "http://kitt.lewagon.com/placeholder/users/marcoranieri", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <div class="avatar dropdown-toggle", id="navbar-wagon-menu",
+            data-toggle="dropdown">
+              <i class='fas fa-user-graduate'></i>
+            </div>
+
+          <% else %><!-- T U T O R --->
+            <%#= image_tag "http://kitt.lewagon.com/placeholder/users/marcoranieri", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <div class="avatar dropdown-toggle", id="navbar-wagon-menu",
+            data-toggle="dropdown">
+              <i class='fas fa-chalkboard-teacher'></i>
+            </div>
+          <% end %>
+
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to "#" do %>
@@ -35,14 +55,15 @@
             </li>
             <li>
               <%= link_to destroy_student_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                <i class="fas fa-sign-out-alt"></i>
               <% end %>
             </li>
           </ul>
         </div>
       </div>
+
+<!-- Sign in / Login link (when Logged Out)------------------------------------>
     <% else %>
-      <!-- Login link (when logged out) -->
       <%= link_to "SIGN UP", signup_path %> |
       <%= link_to "LOG IN", login_path %>
 
@@ -53,10 +74,13 @@
     <% end %>
   </div>
 
-  <!-- Dropdown list appearing on mobile only -->
+<!-- Dropdown list appearing on MOBILE only ----------------------------------->
   <div class="navbar-wagon-item hidden-md hidden-lg">
     <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+      <% icon_menu = 'fas fa-user-graduate dropdown-toggle' if current_student %>
+      <% icon_menu = 'fas fa-chalkboard-teacher dropdown-toggle' if current_tutor %>
+      <% icon_menu = 'fa fa-bars dropdown-toggle' if current_user.nil? %>
+      <i class="<%= icon_menu %>"" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <li><a href="#">Some mobile link</a></li>
         <li><a href="#">Other one</a></li>

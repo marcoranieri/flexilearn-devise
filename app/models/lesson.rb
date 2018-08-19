@@ -7,7 +7,7 @@ class Lesson < ApplicationRecord
   # validates :student, presence: :true
   # validates :category, presence: :true
 
-  enum status: [ :requested, :scheduled, :canceled ]
+  enum status: [ :requested, :scheduled, :completed, :canceled ]
 
   # Carriervawe
   mount_uploader :photo, PhotoUploader

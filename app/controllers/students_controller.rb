@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   # skip_before_action :authenticate_student!, only: :home
-  before_action :find_student, only: [ :show ]
+  before_action :find_student, only: [ :show, :edit, :update ]
 
   def index
     @students = Student.all
@@ -28,5 +28,6 @@ class StudentsController < ApplicationController
 
   def find_student
     @student = Student.find(params[:id])
+    authorize @student
   end
 end

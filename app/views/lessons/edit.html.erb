@@ -3,12 +3,8 @@
 
 <% if current_student.nil? %>
 
-<!--  T U T O R - Edit Form //////////////////////////////////////////////// -->
-  <h1 class="text-center">
-    Edit Lesson (as Tutor)<br>
-    <%= link_to "<< Back", lessons_path, class:"btn btn-success" %>
-    <%= link_to ":back", :back %>
-  </h1>
+<!--  T U T O R - Edit Form --------------------------------------------------->
+  <h1 class="text-center">Edit Lesson (as Tutor)<br></h1>
 
   <div class="text-center">
     <p><strong>Title:</strong> <%= @lesson.title  %></p>
@@ -26,15 +22,17 @@
           :url => url_for(:action => 'update', :controller => 'lessons'),
           :method => 'patch' do |f| %>
 
-          <%= f.input :tutor_notes, placeholder:
-            "Hi #{@lesson.student.name}, I think I can help you with this request! Here my skills:\n\b- Degrees\n\b- Job experiences\n\b- ...\n\bSee you in #{@lesson.location} at #{@lesson.time.strftime("%I:%M%p")} of #{@lesson.date} !", autofocus: true %>
           <%= f.input :price, label: "Price £" %>
           <%= f.input :date, as: :date, html5: true %>
           <%= f.input :time, as: :time, html5: true %>
-
-          <%#= f.label :tutor_id %>
-          <%#= f.check_box :tutor_id, checked_value: current_tutor.id %>
+          <%= f.input :tutor_notes, placeholder:
+            "Hi #{@lesson.student.name}, I think I can help you with this request!
+            \n\bHere my skills:\n\b- Degrees\n\b- Job experiences\n\b- ...
+            \n\bSee you in #{@lesson.location} at #{@lesson.time.strftime("%I:%M%p")}
+             of #{@lesson.date} !",
+             input_html: { :style=> 'width: 100%;', :rows => 8 }, autofocus: true %>
           <br>
+
           <!-- Passing STATUS value -->
           <%= f.hidden_field :status, value: "scheduled" %>
           <%= f.hidden_field :tutor_id, value: current_tutor.id %>
@@ -47,7 +45,7 @@
 
 <% else %>
 
-<!--  S T U D E N T - Edit Form //////////////////////////////////////////// -->
+<!--  S T U D E N T - Edit Form ----------------------------------------------->
   <h1 class="text-center">
     Edit Lesson (as Student)<br>
     <%= link_to "<< Back", lessons_path, class:"btn btn-success" %>
@@ -63,9 +61,12 @@
           :method => 'patch' do |f| %>
           <%= f.label :category %>
           <%= f.collection_select(:category_id, Category.all, :id, :name, prompt: true) %>
-          <%= f.input :title, placeholder: "Insert title here!", autofocus: true %>
-          <%= f.input :request, placeholder: "Explain your request!" %>
-          <%= f.input :notes, placeholder: "Add notes here!" %>
+          <%= f.input :title, placeholder: "Insert title here!", autofocus: true,
+              input_html: { :style=> 'width: 100%;', :rows => 2 } %>
+          <%= f.input :request, placeholder: "Explain your request!",
+              input_html: { :style=> 'width: 100%;', :rows => 8 } %>
+          <%= f.input :notes, placeholder: "Add notes here!",
+              input_html: { :style=> 'width: 100%;', :rows => 5 } %>
           <%= f.input :location, placeholder: "Where do you wanna meet?" %>
           <%= f.input :date, as: :date, html5: true %>
           <%= f.input :time, as: :time, minute_step: 15, html5: true %>

@@ -8,13 +8,16 @@ class ApplicationController < ActionController::Base
   # Now I can use it in views
   helper_method :current_user
 
-  # Devise
+  # Adding Bootstrap Flash types
+  add_flash_types :info, :success, :warning, :danger
+
+  # D E V I S E
   # before_action :authenticate_user!
   ## before_action :authenticate_student!, except: :index
   ## before_action :authenticate_tutor!, except: :index
 
+  # P U N D I T
   include Pundit
-
   # Pundit: white-list approach.
   after_action :verify_authorized, except: :index, unless: :skip_pundit?
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
@@ -30,10 +33,10 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone, :email, :photo, :password, :password_confirmation, :remember_me])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone, :email, :photo, :password, :pro, :password_confirmation, :remember_me])
 
     # For additional in app/views/devise/registrations/edit.html.erb
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :phone, :email, :photo, :password, :password_confirmation, :remember_me])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :phone, :pro, :email, :photo, :password, :password_confirmation, :remember_me])
   end
 
   private
@@ -48,7 +51,7 @@ class ApplicationController < ActionController::Base
     elsif current_tutor
       current_tutor
     else
-      Student.new # Not-LoggedIn User (pundit)
+      Student.new # Not-LoggedIn User (Pundit)
     end
   end
 

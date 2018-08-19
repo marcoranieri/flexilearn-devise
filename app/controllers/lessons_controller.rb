@@ -4,19 +4,16 @@ class LessonsController < ApplicationController
   before_action :find_lesson, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    # current_student ? @lessons = policy_scope(Lesson).where(student: current_student) : @lessons = policy_scope(Lesson).where(tutor: current_tutor) if current_tutor
+
     if current_user.is_a? Student
       @lessons = policy_scope(Lesson).where(student: current_user).order(created_at: :desc)
     else
       @lessons = policy_scope(Lesson).where(tutor: current_user).order(created_at: :desc)
     end
-      # @lessons = policy_scope(Lesson).where(tutor: current_tutor) if current_tutor
-      # @lessons = policy_scope(Lesson).order(created_at: :desc)
       authorize @lessons
   end
 
   def show
-    @q = "<i class='fas fa-question'></i>".html_safe
   end
 
   def new
@@ -31,7 +28,7 @@ class LessonsController < ApplicationController
 
     respond_to do | format |
       if @lesson.save!
-        format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
+        format.html { redirect_to @lesson, info: 'Lesson was successfully created.' }
         format.json { render :show, status: :created, location: @lesson }
       else
         format.html { render :new }
@@ -58,7 +55,7 @@ class LessonsController < ApplicationController
   def destroy
     @lesson.destroy
     respond_to do | format |
-      format.html { redirect_to lessons_url, notice: 'Lesson was successfully destroyed.' }
+      format.html { redirect_to lessons_url, alert: 'Lesson was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -71,6 +68,6 @@ class LessonsController < ApplicationController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:id, :student_id, :category_id, :tutor_id, :date, :title, :request, :time, :location, :status, :notes, :tutor_notes, :photo, :price_cents )
+    params.require(:lesson).permit(:id, :student_id, :category_id, :tutor_id, :date, :title, :request, :time, :location, :status, :notes, :tutor_notes, :photo, :price_cents, :price )
   end
 end

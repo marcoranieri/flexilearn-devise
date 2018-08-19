@@ -59,7 +59,7 @@ puts "Finally creating the lessons (with and without Tutor)"
   stu = Student.find(rand(Student.first.id..Student.last.id))
 
   less = Lesson.new(
-    title: "Need help with #{Faker::BossaNova.song}",
+    title: "#{['Need help with ','Someone can explain ','Please helps with '].sample} #{Faker::BossaNova.song}",
     request: Faker::Lorem.paragraph,
     date: Faker::Date.forward(300),
     time: Time.now ,
@@ -82,7 +82,7 @@ end
   stu = Student.find(rand(Student.first.id..Student.last.id))
 
   less = Lesson.new(
-    title: "Need help with #{Faker::BossaNova.song}",
+    title: "#{['Need help with ','Someone can explain ','Please helps with '].sample} #{Faker::BossaNova.song}",
     request: Faker::Lorem.paragraph,
     date: Faker::Date.forward(300),
     time: Time.now ,
