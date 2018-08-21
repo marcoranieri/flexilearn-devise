@@ -5,7 +5,7 @@
 
   <h2>
     <strong>STUDENT:</strong><br>
-    <%= @student.last_name + @student.first_name if @student.last_name %>
+    <%= (@student.last_name+@student.first_name) if @student.last_name %>
     <%= @student.name if @student.name %><!-- Facebook name -->
   </h2>
 

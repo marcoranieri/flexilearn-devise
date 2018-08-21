@@ -51,7 +51,7 @@
   <% if current_student.image_fb  %>  <!--  Facebook IMG -->
     <div><%= image_tag current_student.image_fb + "?type=small"  %></div>
   <% else %> <!-- Cloudinary IMG  -->
-    <div><%= cl_image_tag @student.photo.url(:bright_face) %></div>
+    <div><%= cl_image_tag current_student.photo.url(:bright_face) %></div>
   <% end %>
 
 <% else %> <!-- Not Logged In -->

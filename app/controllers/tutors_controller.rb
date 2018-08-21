@@ -28,5 +28,6 @@ class TutorsController < ApplicationController
 
   def find_tutor
     @tutor = Tutor.find(params[:id])
+    authorize @tutor
   end
 end
