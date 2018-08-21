@@ -45,8 +45,8 @@
   </p>
 
 <!-- Request & Notes ---------------------------------------------------------->
-  <p><strong>Request: </strong><%= @lesson.request %></p>
-  <p><strong>Notes: </strong><%= @lesson.notes %></p>
+  <p style="width: 80%;"><strong>Request: </strong><%= @lesson.request %></p>
+  <p style="width: 80%;"><strong>Notes: </strong><%= @lesson.notes %></p>
 
 <!-- Price -------------------------------------------------------------------->
   <% if @lesson.price.fractional > 0 %>
@@ -83,7 +83,12 @@
 
   <!-- TUTOR Btn to CONFIRM the lesson ( Lesson#EDIT ) -->
   <% if current_user.is_a?(Tutor) && @lesson.status == "requested" %>
-    <%= link_to "I'm interested",edit_lesson_path(@lesson),class:"btn btn-success"%>
+    <%= link_to "I'm interested",edit_lesson_path(@lesson),class:"btn btn-primary"%>
+  <% end %>
+
+  <!-- STUDENT Btn to EDIT ( Lesson#EDIT ) -->
+  <% if current_user.is_a?(Student) && @lesson.student == current_student %>
+    <%= link_to "Edit",edit_lesson_path(@lesson),class:"btn btn-primary"%>
   <% end %>
 
 </div>

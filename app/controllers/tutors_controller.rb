@@ -1,6 +1,6 @@
 class TutorsController < ApplicationController
   # skip_before_action :authenticate_tutor!, only: :home
-  before_action :find_tutor, only: [ :show ]
+  before_action :find_tutor, only: [ :show, :edit, :update ]
 
   def index
     @tutors = Tutor.all

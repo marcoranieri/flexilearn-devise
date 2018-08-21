@@ -6,7 +6,7 @@
 <!-- N A V I G A T I O N ------------------------------------------------------>
 <%= link_to "All Lessons", all_path, class:"btn btn-primary" %>
 <%= link_to "Request a LESSON", new_lesson_path,
-    class:"btn btn-success" if current_user.is_a? Student  %>
+    class:"btn btn-successs" if current_user.is_a? Student  %>
 
 <!-- O R D E R S -------------------------------------------------------------->
 <% if current_student && current_student.orders.count > 0 %>

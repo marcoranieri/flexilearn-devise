@@ -3,7 +3,7 @@
 
 <div style="display: flex; justify-content: space-around;" >
 
-  <div><!-- S T U D E N T  Log in  -------------------------------------------->
+  <div><!-- S T U D E N T  Sign Up  -------------------------------------------->
 
     <h2>Sign up as a <strong>Student</strong></h2>
 
@@ -19,7 +19,8 @@
         <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
         <%= f.input :password_confirmation, required: true %>
 
-        <%= f.input :photo %>
+        <%= f.label :photo %>
+        <%= f.input :photo, hint: "Please, only you in the photo" %>
         <%= f.input :photo_cache, as: :hidden %>
       </div>
 
@@ -32,7 +33,7 @@
 
   </div>
 
-  <div><!-- T U T O R  Log in  ------------------------------------------------>
+  <div><!-- T U T O R  Sign Up  ------------------------------------------------>
 
     <h2>Sign up as a <strong>Tutor</strong></h2>
 
@@ -48,7 +49,7 @@
         <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
         <%= f.input :password_confirmation, required: true %>
 
-        <%= f.input :photo %>
+        <%= f.input :photo, hint: "Please, only you in the photo" %>
         <%= f.input :photo_cache, as: :hidden %>
       </div>
 

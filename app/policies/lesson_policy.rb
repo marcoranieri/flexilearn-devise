@@ -20,7 +20,7 @@ class LessonPolicy < ApplicationPolicy
   end
 
   def update?
-    # Only Student can create a Lesson
+    # Only Student can update a Lesson
     return user == record.student if user.is_a? Student
 
     if user.is_a? Tutor || record.tutor == user
