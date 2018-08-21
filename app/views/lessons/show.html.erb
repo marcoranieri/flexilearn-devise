@@ -18,7 +18,7 @@
     <% if @lesson.student.name.present? %> <!-- Facebook Name -->
       <%= link_to @lesson.student.name, student_path(@lesson.student) %>
     <% else %>
-      <%= link_to @lesson.student.last_name, student_path(@lesson.student) %>
+      <%= link_to @lesson.student.last_name.capitalize, student_path(@lesson.student) %>
     <% end %>
   </h3>
 
@@ -27,7 +27,7 @@
     <i class="fas fa-chalkboard-teacher"></i>
     <strong>Tutor:</strong><br>
     <% if @lesson.tutor.present? %>
-      <%= link_to @lesson.tutor.last_name, tutor_path(@lesson.tutor) %>
+      <%= link_to @lesson.tutor.last_name.capitalize, tutor_path(@lesson.tutor) %>
     <% else %>
       <i class='fas fa-question'></i>
     <% end %>

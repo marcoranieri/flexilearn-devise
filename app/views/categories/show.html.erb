@@ -6,6 +6,6 @@
 
 <h2><%= @category.name %></h2>
 <p><%= @category.description %></p>
-<!-- <p>Created by <i class="fas fa-chalkboard-teacher"></i> <%#= link_to @category.tutor.last_name, tutor_path(@category.tutor) %></p> -->
+<!-- <p>Created by <i class="fas fa-chalkboard-teacher"></i> <%#= link_to @category.tutor.last_name.capitalize, tutor_path(@category.tutor) %></p> -->
 
 <%= link_to "All Categories", categories_path, class:"btn btn-primary"  %>

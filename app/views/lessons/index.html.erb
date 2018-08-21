@@ -25,7 +25,7 @@
   <% if current_tutor.name %> <!-- Facebook name  -->
     <h4>Name: <%= current_tutor.name %></h4>
   <% else %> <!-- Last_name + First_name  -->
-    <h4>Name: <%= current_tutor.last_name %> <%= current_tutor.first_name %></h4>
+    <h4>Name: <%= current_tutor.last_name.capitalize %> <%= current_tutor.first_name.capitalize %></h4>
   <% end %>
 
   <!-- Image-->
@@ -44,7 +44,7 @@
   <% if current_student.name %> <!-- Facebook name  -->
     <h4>Name: <%= current_student.name %></h4>
   <% else %> <!-- Last_name + First_name  -->
-    <h4>Name: <%= current_student.last_name %> <%= current_student.first_name %></h4>
+    <h4>Name: <%= current_student.last_name.capitalize %> <%= current_student.first_name.capitalize %></h4>
   <% end %>
 
   <!-- Image-->
@@ -83,7 +83,7 @@
       <% else %>
 
         <% if current_user.is_a? Student %>
-          Tutor: <%= link_to lesson.tutor.last_name, tutor_path(lesson.tutor) %>
+          Tutor: <%= link_to lesson.tutor.last_name.capitalize, tutor_path(lesson.tutor) %>
         <% else %>
           Student: <%= link_to lesson.student.name, tutor_path(lesson.student) %>
         <% end %>

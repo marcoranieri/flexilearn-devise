@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 2018_08_18_053817) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
-    t.decimal "price"
     t.bigint "tutor_id"
     t.index ["tutor_id"], name: "index_categories_on_tutor_id"
   end

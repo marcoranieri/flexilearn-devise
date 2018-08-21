@@ -7,7 +7,7 @@
 <%= link_to "<< Back", lessons_path, class:"btn btn-primary"  %> <br> <br>
 
 <% @students.each do |student| %>
-  <li> <%= link_to student.last_name, student_path(student)  %> <br>
+  <li> <%= link_to student.last_name.capitalize, student_path(student)  %> <br>
   @Email: <%= student.email %> </li>
   <br> <br>
 <% end %>

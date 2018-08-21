@@ -9,7 +9,7 @@
 <ul>
   <% @tutors.each do |tutor| %>
 
-    <li><%= link_to tutor.last_name, tutor_path(tutor)  %> <br>
+    <li><%= link_to tutor.last_name.capitalize, tutor_path(tutor)  %> <br>
     @Email: <%= tutor.email %></li>
 
   <% end %>

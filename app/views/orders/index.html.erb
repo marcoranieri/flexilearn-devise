@@ -10,7 +10,7 @@
       Lesson: <%= order.name %> <br>
       Amount: <%= humanized_money_with_symbol(order.amount) %> <br>
       State: <%= order.state %><br>
-      Tutor: <%= link_to order.lesson.tutor.last_name, tutor_path(order.lesson.tutor) %> <br><br>
+      Tutor: <%= link_to order.lesson.tutor.last_name.capitalize, tutor_path(order.lesson.tutor) %> <br><br>
     </li>
   <% end %>
 </ul>

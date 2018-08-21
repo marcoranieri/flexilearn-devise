@@ -5,8 +5,11 @@
 
   <h2>
     <strong>STUDENT:</strong><br>
-    <%= (@student.last_name+@student.first_name) if @student.last_name %>
-    <%= @student.name if @student.name %><!-- Facebook name -->
+      <% if @student.last_name  %>
+        <%= @student.last_name.capitalize %> <%= @student.first_name.capitalize %>
+      <% elsif @student.name %><!-- Facebook name -->
+        <%= @student.name %>
+      <% end  %>
   </h2>
 
   <!-- Cloudinary -->

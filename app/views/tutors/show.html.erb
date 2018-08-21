@@ -13,7 +13,7 @@
     <img style="border-radius: 50%;" src="https://loremflickr.com/150/150/boy,girl/all" alt="Profile Pic">
   <% end %>
 
-  <h1><%= @tutor.last_name %> <%= @tutor.first_name %></h1>
+  <h1><%= @tutor.last_name.capitalize %> <%= @tutor.first_name.capitalize %></h1>
   <p><strong>@Email: <%= @tutor.email %></strong></p>
   <p>Phone: <%= @tutor.phone %></p>
   <p><strong>Bio:</strong> <%= @tutor.bio %></p>
@@ -42,8 +42,6 @@
     <% end %>
 
   </div>
-
-  <%= link_to "<< Back", tutors_path, class:"btn btn-primary" %>
 
   <%= link_to "Add Review", new_tutor_review_path(@tutor), class:"btn btn-success" %>
 
