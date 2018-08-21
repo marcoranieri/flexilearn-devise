@@ -65,7 +65,7 @@
     <p>
 
       → <strong><%= link_to lesson.title, lesson_path(lesson) %></strong>
-      | <%= link_to "Edit", edit_lesson_path(lesson), style:"color:darkorange;" %>
+      | <%= link_to "Edit", edit_lesson_path(lesson),style:"color:darkorange;"%>
 
       <!-- Student DELETE - method: :delete -->
       <% if current_user.is_a? Student %>
@@ -74,7 +74,7 @@
       <% end %>
 
       <br>
-      Category : <%= link_to lesson.category.name, category_path(lesson.category)%>
+      Category: <%= link_to lesson.category.name,category_path(lesson.category)%>
       <br>
 
       <!-- AMOUNT setting -->
@@ -82,13 +82,25 @@
         <em>Looking for a tutor...</em>
       <% else %>
 
-        <% if current_user.is_a? Student %>
-          Tutor:
-          <%= link_to lesson.tutor.last_name.capitalize, tutor_path(lesson.tutor)%>
-        <% else %>
-          Student: <%= link_to lesson.student.name, tutor_path(lesson.student)%>
+        <% if current_user.is_a? Student %><!-- Tutor name -------------------->
+          <% if lesson.tutor.name %><!-- Facebook name -->
+            Tutor: <%= link_to lesson.tutor.name, tutor_path(lesson.tutor)%>
+          <% else %>
+            Tutor: <%= link_to lesson.tutor.last_name.capitalize,
+              tutor_path(lesson.tutor)%>
+          <% end %>
+
+        <% else %><!-- Student name ------------------------------------------->
+          <% if lesson.student.name %><!-- Facebook name -->
+            Student: <%= link_to lesson.student.name,student_path(lesson.student)%>
+          <% else %>
+            Student: <%= link_to lesson.student.last_name.capitalize,
+              student_path(lesson.student)%>
+          <% end %>
+
         <% end %>
         <br>
+
         Amount: <%= humanized_money_with_symbol(lesson.price) %>
       <% end %>
 
