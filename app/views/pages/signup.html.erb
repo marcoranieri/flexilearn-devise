@@ -3,9 +3,9 @@
 
 <div style="display: flex; justify-content: space-around;" >
 
-  <div>
+  <div><!-- S T U D E N T  Log in  -------------------------------------------->
 
-    <h2>STUDENT | Sign up</h2>
+    <h2>Sign up as a <strong>Student</strong></h2>
 
     <%= simple_form_for(@student, as: :student, url: registration_path(:student)) do |f| %>
       <%= f.error_notification %>
@@ -32,9 +32,9 @@
 
   </div>
 
-  <div>
+  <div><!-- T U T O R  Log in  ------------------------------------------------>
 
-    <h2>TUTOR | Sign up</h2>
+    <h2>Sign up as a <strong>Tutor</strong></h2>
 
     <%= simple_form_for(@tutor, as: :tutor, url: registration_path(:tutor)) do |f| %>
       <%= f.error_notification %>

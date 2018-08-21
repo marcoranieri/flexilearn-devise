@@ -47,7 +47,8 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'rails-ujs', '~> 0.1.0'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'sass-rails', '>= 3.2'
-gem 'font-awesome-sass', '~> 4.4.0'
+# gem 'font-awesome-sass', '~> 4.4.0'
+gem 'font-awesome-sass', '~> 5.2'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker

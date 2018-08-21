@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
+    authorize @categories
   end
 
   def new
@@ -27,6 +28,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    authorize @category
   end
 
   private

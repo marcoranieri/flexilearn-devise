@@ -1,42 +1,120 @@
 <!-- Dynamic Head Title -->
-<% provide(:title, 'Lessons') %>
+<% provide(:title, 'My Lessons') %>
 
-<h1>Flexi Learn - My Lessons</h1>
+<h1>My Lessons</h1>
 
-<% if current_tutor %>
+<!-- N A V I G A T I O N ------------------------------------------------------>
+<%= link_to "All Lessons", all_path, class:"btn btn-primary" %>
+<%= link_to "Request a LESSON", new_lesson_path,
+    class:"btn btn-success" if current_user.is_a? Student  %>
+
+<!-- O R D E R S -------------------------------------------------------------->
+<% if current_student && current_student.orders.count > 0 %>
+  <%= link_to "My Orders", orders_path, class:"btn btn-secondary" %>
+<% else %>
+  <div class="btn btn-danger">No Orders..</div>
+<% end %>
+
+<!-- T U T O R ---------------------------------------------------------------->
+<% if current_user.is_a? Tutor %>
+
+  <!-- Email -->
   <h4>Current Tutor: <%= current_tutor.email %></h4>
+
+  <!-- Name -->
+  <% if current_tutor.name %> <!-- Facebook name  -->
+    <h4>Name: <%= current_tutor.name %></h4>
+  <% else %> <!-- Last_name + First_name  -->
+    <h4>Name: <%= current_tutor.last_name %> <%= current_tutor.first_name %></h4>
+  <% end %>
+
+  <!-- Image-->
+  <% if current_tutor.image_fb  %> <!--  Facebook IMG -->
+    <div><%= image_tag current_tutor.image_fb + "?type=small"  %></div>
+  <% else %> <!-- Cloudinary IMG  -->
+    <div><%= cl_image_tag current_tutor.photo.url(:bright_face) %></div>
+  <% end %>
+
+<!-- S T U D E N T ------------------------------------------------------------>
 <% elsif current_student %>
+  <!-- Email -->
   <h4>Current Student: <%= current_student.email %></h4>
 
-  <% if current_student.name %>
+  <!-- Name -->
+  <% if current_student.name %> <!-- Facebook name  -->
     <h4>Name: <%= current_student.name %></h4>
-  <% else %>
+  <% else %> <!-- Last_name + First_name  -->
     <h4>Name: <%= current_student.last_name %> <%= current_student.first_name %></h4>
   <% end %>
 
-  <div><%= image_tag current_student.image_fb + "?type=large" if current_student.image_fb  %></div>
-
-<% else %>
-  <h4><i class="fas fa-user-slash"></i> User not Logged...</h4>
-<% end %>
-
-<br>
-<%= link_to "Request a LESSON", new_lesson_path, class:"btn btn-success" %>
-<br>
-<!-- NAVIGATION index -->
-<%= link_to "Go to STUDENTS", students_path, class:"btn btn-primary" %>
-<%= link_to "Go to TUTORS", tutors_path, class:"btn btn-primary" %>
-<%= link_to "Go to CATEGORIES", categories_path, class:"btn btn-primary" %>
-<% if current_student %>
-  <% if current_student.orders.count > 0 %>
-    <%= link_to "Go to MY ORDERS", orders_path, class:"btn btn-secondary" %>
+  <!-- Image-->
+  <% if current_student.image_fb  %>  <!--  Facebook IMG -->
+    <div><%= image_tag current_student.image_fb + "?type=small"  %></div>
+  <% else %> <!-- Cloudinary IMG  -->
+    <div><%= cl_image_tag current_student.photo.url(:bright_face) %></div>
   <% end %>
+
+<% else %> <!-- Not Logged In -->
+  <h4><i class="fas fa-user-slash"></i> Not Logged In...</h4>
 <% end %>
 
-<br>
-<% @lessons.each do |lesson| %>
-  <br>
-  → <%= link_to lesson.title, lesson_path(lesson) %>
-  | Category : <%= link_to lesson.category.name, lesson_path(lesson) %>
-  <p>Amount: <%= humanized_money_with_symbol(lesson.price) %></p>
+<!-- L E S S O N S ------------------------------------------------------------>
+<% if @lessons.present? %>
+
+  <% @lessons.each do |lesson| %>
+    <p>
+
+      → <strong><%= link_to lesson.title, lesson_path(lesson) %></strong>
+      | <%= link_to "Edit", edit_lesson_path(lesson), style:"color:darkorange;" %>
+
+      <!-- Student DELETE - method: :delete -->
+      <% if current_user.is_a? Student %>
+        | <%= link_to 'Delete',lesson_path(lesson),data:{confirm:'Are you sure?'},
+            method: :delete, style:"color:red;" %>
+      <% end %>
+
+      <br>
+      Category : <%= link_to lesson.category.name, category_path(lesson.category) %>
+      <br>
+
+      <!-- AMOUNT setting -->
+      <% if lesson.price.zero? %>
+        <em>Looking for a tutor...</em>
+      <% else %>
+
+        <% if current_user.is_a? Student %>
+          Tutor: <%= link_to lesson.tutor.last_name, tutor_path(lesson.tutor) %>
+        <% else %>
+          Student: <%= link_to lesson.student.name, tutor_path(lesson.student) %>
+        <% end %>
+        <br>
+        Amount: <%= humanized_money_with_symbol(lesson.price) %>
+      <% end %>
+
+
+      <!-- Tutor DELETE ( updating attributes - NOT deleting ) -->
+      <% if current_user.is_a? Tutor %>
+        <%= form_for lesson do |f| %>
+          <%= f.hidden_field :status, value: "requested" %>
+          <%= f.hidden_field :tutor_id, value: nil %>
+          <%= f.hidden_field :tutor_notes, value: nil %>
+          <%= f.hidden_field :price, value: 0 %>
+          <%= f.submit "Delete",
+            style:"color:red; padding:0; border:none; display:inline;" %>
+        <% end %>
+      <% end %>
+
+    </p>
+  <% end %>
+
+<% else %><br> <!-- IF NO LESSON ---------------------------------------------->
+
+  <% if current_user.is_a? Student %> <!-- Student Hint -->
+    <p><%= "Simply create your lesson by clicking the button above!" %></p>
+
+  <% else%> <!-- Tutor Hint -->
+    <p><%= "No lessons yet..." %></p>
+  <% end %>
+
 <% end %>
+

@@ -1,24 +1,35 @@
 <!-- Dynamic Head Title -->
 <% provide(:title, 'Student') %>
 
-<p>Students#show</p>
 <div class="text-center">
 
-  <h2>STUDENT:</h2>
+  <h2>
+    <strong>STUDENT:</strong><br>
+    <%= (@student.last_name+@student.first_name) if @student.last_name %>
+    <%= @student.name if @student.name %><!-- Facebook name -->
+  </h2>
 
+  <!-- Cloudinary -->
   <% if @student.photo.present? %>
-    <%= cl_image_tag @student.photo, height: 300, width: 400, crop: :fill %>
-  <% elsif %>
-    <div><%= image_tag current_student.image_fb + "?type=large" if current_student.image_fb  %></div>
+    <%= cl_image_tag @student.photo.url(:bright_face) %>
+
+  <!-- Facebook -->
+  <% elsif @student.image_fb.present? %>
+    <div style="border-radius: 50%">
+    <%= image_tag @student.image_fb + "?type=large",style:"border-radius:50%" %>
+    </div>
+
+  <!-- Loremflickr -->
   <% else %>
     <img style="border-radius: 50%;" src="https://loremflickr.com/150/150/boy,girl/all" alt="Profile Pic">
   <% end %>
 
-  <h2><%= @student.last_name %> <%= @student.first_name %></h2>
-  <h3>@Email: <%= @student.email %></h3>
+  <p><strong>@Email:</strong><br><%= @student.email %></p>
 
-  <p>Bio: <%= @student.bio %></p>
+  <% if @student.birthdate %>
+    <p><strong>Birthdate:</strong><br><%= @student.birthdate %></p>
+  <% end %>
 
-  <%= link_to "<< Back", students_path, class:"btn btn-primary"  %>
+  <p><strong>Bio:</strong><br><%= @student.bio %></p>
 
 </div>

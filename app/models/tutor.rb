@@ -8,7 +8,7 @@ class Tutor < ApplicationRecord
   mount_uploader :photo, PhotoUploader
 
   has_many :reviews, dependent: :destroy
-  has_many :categories, dependent: :destroy
+  has_many :categories, through: :lessons
   has_many :lessons
   has_many :students, through: :lessons
 

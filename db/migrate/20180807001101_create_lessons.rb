@@ -11,6 +11,7 @@ class CreateLessons < ActiveRecord::Migration[5.2]
       t.integer :status, default: 0, null: false
       t.text :notes
       t.text :tutor_notes
+      t.boolean :private, default: false
 
       t.timestamps
     end

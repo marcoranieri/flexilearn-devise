@@ -6,58 +6,86 @@
   <h3>Category: <strong><%= @lesson.category.name %></strong></h3>
 
   <p>
-    <strong>Location:</strong> <%= @lesson.location %> |
-    <strong>Date:</strong> <%= @lesson.date %> |
-    <strong>Time:</strong> <%= @lesson.time.strftime("at %I:%M%p") %>
+    <strong>Location:</strong> <%= @lesson.location %> <br>
+    <strong>Date:</strong> <%= @lesson.date %> <br>
+    <strong>Time:</strong> <%= @lesson.time.strftime("%I:%M%p") %>
   </p>
 
-  <div>
-
-    <h3><i class="fas fa-chalkboard-teacher"></i>
-      <strong>Tutor:</strong> <%= @lesson.tutor != nil ? (link_to @lesson.tutor.last_name, tutor_path(@lesson.tutor)) : "?" %> |
+<!-- S T U D E N T Name ------------------------------------------------------->
+  <h3>
     <i class="fas fa-user-graduate"></i>
-      <strong>Student:</strong> <%= link_to @lesson.student.last_name, student_path(@lesson.student) %>
-    </h3>
+    <strong>Student:</strong><br>
+    <% if @lesson.student.name.present? %> <!-- Facebook Name -->
+      <%= link_to @lesson.student.name, student_path(@lesson.student) %>
+    <% else %>
+      <%= link_to @lesson.student.last_name, student_path(@lesson.student) %>
+    <% end %>
+  </h3>
 
-  </div>
+<!-- T U T O R Name ----------------------------------------------------------->
+  <h3>
+    <i class="fas fa-chalkboard-teacher"></i>
+    <strong>Tutor:</strong><br>
+    <% if @lesson.tutor.present? %>
+      <%= link_to @lesson.tutor.last_name, tutor_path(@lesson.tutor) %>
+    <% else %>
+      <i class='fas fa-question'></i>
+    <% end %>
+  </h3>
 
-  <% if @lesson.status == "requested" %>
-    <% color = "darkorange" %>
-  <% elsif @lesson.status == "scheduled" %>
-    <% color = "green" %>
-  <% elsif @lesson.status == "canceled" %>
-    <% color = "red" %>
-  <% end %>
-  <p>Status: <span style="color:<%= color %>;"><%= @lesson.status %></span></p>
+<!-- Status ------------------------------------------------------------------->
+  <% color = "darkorange" if @lesson.status == "requested" %>
+  <% color = "cadetblue"  if @lesson.status == "completed" %>
+  <% color = "green"      if @lesson.status == "scheduled" %>
+  <% color = "red"        if @lesson.status == "canceled"  %>
 
+  <p>
+    <strong>Status: </strong>
+    <span style="color:<%= color %>;"><%= @lesson.status %></span>
+  </p>
+
+<!-- Request & Notes ---------------------------------------------------------->
   <p><strong>Request: </strong><%= @lesson.request %></p>
-  <p><strong>Notes: </strong><%= @lesson.notes %></p> <br>
+  <p><strong>Notes: </strong><%= @lesson.notes %></p>
 
-  <% if @lesson.price.fractional != 0 %>
-    <p><strong>Amount: <%= humanized_money_with_symbol(@lesson.price) %></strong></p>
+<!-- Price -------------------------------------------------------------------->
+  <% if @lesson.price.fractional > 0 %>
+    <p><strong>
+        Amount: <%= humanized_money_with_symbol(@lesson.price) %>
+    </strong></p>
   <% end %>
 
-
-  <% unless @lesson.tutor_notes.nil? %>
-    <p style="border:1px solid darkgrey; padding:10px;">
-      <strong>Tutor notes: </strong><%= @lesson.tutor_notes %>
+<!-- Tutor Notes -------------------------------------------------------------->
+  <% if @lesson.tutor_notes.present? %>
+    <p style="border:2px solid darkgrey;padding:10%;margin:0 4%">
+      <strong>Tutor notes: </strong>
+      <em><%= @lesson.tutor_notes %></em>
     </p>
   <% end %>
+
+<!-- Photo -------------------------------------------------------------------->
+  <% if @lesson.photo.present? %>
+    <%= cl_image_tag @lesson.photo, height: 300, width: 400, crop: :fill %>
+  <% else %>
+    <img src="https://loremflickr.com/200/300/job,book,library/all" alt="LessonPic">
+  <% end %>
   <br>
 
-  <img src="https://loremflickr.com/200/300/work,book,library/all" alt="Lesson Pic">
-  <br>
-  <br>
-
-  <% unless @lesson.tutor.nil?%>
+<!-- P U R C H A S E - STRIPE Btn --------------------------------------------->
+  <% if current_user.is_a?(Student) && @lesson.tutor.present? &&
+      @lesson.student == current_user %>
     <%= form_tag orders_path do %>
       <%= hidden_field_tag 'lesson_id', @lesson.id %>
       <%= submit_tag 'Purchase', class: 'btn btn-primary' %>
     <% end %>
   <% end %>
-
   <br>
-  <%= link_to "<< Back", lessons_path, class:"btn btn-primary " %>
+
+  <!-- TUTOR Btn to CONFIRM the lesson ( Lesson#EDIT ) -->
+  <% if current_user.is_a?(Tutor) && @lesson.status == "requested" %>
+    <%= link_to "I'm interested", edit_lesson_path(@lesson), class:"btn btn-success" %>
+  <% end %>
+
 </div>
 <br>
 <br>
