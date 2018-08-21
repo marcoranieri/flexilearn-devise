@@ -3,13 +3,16 @@
 * ------------------------------------- */
 
 .alert {
+  padding: 5px 0;
   margin: 0;
   text-align: center;
   color: white;
 }
 .alert-info {
-  background: $green;
+  background: $blue;
+  opacity: .9;
 }
 .alert-warning {
   background: $red;
+  opacity: .9;
 }

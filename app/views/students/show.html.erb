@@ -12,27 +12,42 @@
       <% end  %>
   </h2>
 
-  <!-- Cloudinary -->
+  <!-- Cloudinary ------------------------------------------------------------->
   <% if @student.photo.present? %>
     <%= cl_image_tag @student.photo.url(:bright_face) %>
 
-  <!-- Facebook -->
+  <!-- Facebook --------------------------------------------------------------->
   <% elsif @student.image_fb.present? %>
     <div style="border-radius: 50%">
-    <%= image_tag @student.image_fb + "?type=large",style:"border-radius:50%" %>
+      <%= image_tag @student.image_fb + "?type=large",style:"border-radius:50%"%>
     </div>
 
-  <!-- Loremflickr -->
+  <!-- Loremflickr ------------------------------------------------------------>
   <% else %>
-    <img style="border-radius: 50%;" src="https://loremflickr.com/150/150/boy,girl/all" alt="Profile Pic">
+    <img style="border-radius: 50%;"
+         src="https://loremflickr.com/150/150/boy,girl/all" alt="Profile Pic">
   <% end %>
 
-  <p><strong>@Email:</strong><br><%= @student.email %></p>
+  <p><strong>@Email:</strong><br><%= @student.email %></p><!-- @Email --------->
 
-  <% if @student.birthdate %>
+  <% if @student.birthdate %><!-- Birthdate ----------------------------------->
     <p><strong>Birthdate:</strong><br><%= @student.birthdate %></p>
   <% end %>
 
-  <p><strong>Bio:</strong><br><%= @student.bio %></p>
+  <p><strong>Bio:</strong><br><!-- Bio ---------------------------------------->
+    <% if @student.bio.present? %>
+      <div style="width:80%;margin:0 auto;">
+        <p><%= @student.bio %></p>
+      </div>
+    <% else %>
+      <p><em>
+        Please <strong>edit</strong> your profile and add some info about yourself
+      </em></p>
+    <% end %>
+  </p>
 
+  <!-- STUDENT - EDIT btn ----------------------------------------------------->
+  <% if current_user.is_a?(Student) && @student == current_student %>
+    <%= link_to "Edit",edit_student_registration_path,class:"btn btn-primary"%>
+  <% end %>
 </div>

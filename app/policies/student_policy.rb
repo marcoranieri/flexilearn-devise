@@ -8,5 +8,4 @@ class StudentPolicy < ApplicationPolicy
   def show?
     user
   end
-
 end
