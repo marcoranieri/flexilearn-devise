@@ -26,9 +26,12 @@
 <body>
   <%= render 'shared/navbar' %>
   <%= render 'shared/flashes' %>
-  <%= yield %>
 
-  <!-- Turbolinks works better with async -->
+  <div class="container-fluid">
+    <%= yield %>
+  </div>
+
+  <!-- Turbolinks works better with ASYNC -->
   <%= javascript_include_tag 'application', async: true  %>
   <%#= javascript_pack_tag 'application' %>
 </body>
