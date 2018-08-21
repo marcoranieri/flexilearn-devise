@@ -74,7 +74,7 @@
       <% end %>
 
       <br>
-      Category : <%= link_to lesson.category.name, category_path(lesson.category) %>
+      Category : <%= link_to lesson.category.name, category_path(lesson.category)%>
       <br>
 
       <!-- AMOUNT setting -->
@@ -83,9 +83,10 @@
       <% else %>
 
         <% if current_user.is_a? Student %>
-          Tutor: <%= link_to lesson.tutor.last_name.capitalize, tutor_path(lesson.tutor) %>
+          Tutor:
+          <%= link_to lesson.tutor.last_name.capitalize, tutor_path(lesson.tutor)%>
         <% else %>
-          Student: <%= link_to lesson.student.name, tutor_path(lesson.student) %>
+          Student: <%= link_to lesson.student.name, tutor_path(lesson.student)%>
         <% end %>
         <br>
         Amount: <%= humanized_money_with_symbol(lesson.price) %>

@@ -83,7 +83,7 @@
 
   <!-- TUTOR Btn to CONFIRM the lesson ( Lesson#EDIT ) -->
   <% if current_user.is_a?(Tutor) && @lesson.status == "requested" %>
-    <%= link_to "I'm interested", edit_lesson_path(@lesson), class:"btn btn-success" %>
+    <%= link_to "I'm interested",edit_lesson_path(@lesson),class:"btn btn-success"%>
   <% end %>
 
 </div>

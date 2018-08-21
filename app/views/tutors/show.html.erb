@@ -5,11 +5,13 @@
 
   <h2>TUTOR:</h2>
 
-  <% if @tutor.photo.present? %>
+  <% if @tutor.photo.present? %><!-- Cloudinary IMG -->
     <%= cl_image_tag @tutor.photo.url(:bright_face) %>
-  <% elsif @tutor.image_fb.present? %>
-    <div><%= image_tag current_tutor.image_fb + "?type=large" if current_tutor.image_fb  %></div>
-  <% else %>
+  <% elsif @tutor.image_fb.present? %><!-- Facebook IMG -->
+    <div>
+      <%= image_tag current_tutor.image_fb+"?type=large" if current_tutor.image_fb%>
+    </div>
+  <% else %><!-- Flickr IMG -->
     <img style="border-radius: 50%;" src="https://loremflickr.com/150/150/boy,girl/all" alt="Profile Pic">
   <% end %>
 
@@ -19,7 +21,10 @@
   <p><strong>Bio:</strong> <%= @tutor.bio %></p>
 
   <br>
-  <h3 style="border-top: 2px solid darkgray; width: 70%; margin: 0 auto;padding-top: 20px;">Reviews:</h3>
+<!-- REVIEWS ------------------------------------------------------------------>
+  <h3 style="border-top:2px solid darkgray;width:70%;margin:0 auto;padding-top:20px;">
+    Reviews:
+  </h3>
 
   <div style="display: flex; width: 100%;">
 
