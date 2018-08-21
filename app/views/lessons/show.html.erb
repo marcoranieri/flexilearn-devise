@@ -2,13 +2,13 @@
 <% provide(:title, 'Lesson') %>
 
 <div class="text-center">
-  <h2>Title: <strong><%= @lesson.title %></strong></h2>
-  <h3>Category: <strong><%= @lesson.category.name %></strong></h3>
+  <h2>Title:<strong><br><%= @lesson.title %></strong></h2>
+  <h3>Category:<strong><br><%= @lesson.category.name %></strong></h3>
 
   <p>
-    <strong>Location:</strong> <%= @lesson.location %> <br>
-    <strong>Date:</strong> <%= @lesson.date %> <br>
-    <strong>Time:</strong> <%= @lesson.time.strftime("%I:%M%p") %>
+    <strong>Location:</strong><br><%= @lesson.location %> <br>
+    <strong>Date:</strong><br><%= @lesson.date %> <br>
+    <strong>Time:</strong><br><%= @lesson.time.strftime("%I:%M%p") %>
   </p>
 
 <!-- S T U D E N T Name ------------------------------------------------------->
@@ -45,8 +45,12 @@
   </p>
 
 <!-- Request & Notes ---------------------------------------------------------->
-  <p style="width: 80%;"><strong>Request: </strong><%= @lesson.request %></p>
-  <p style="width: 80%;"><strong>Notes: </strong><%= @lesson.notes %></p>
+  <p style="width: 80%;margin:0 auto;word-wrap: break-word;">
+    <strong>Request:</strong><br><%= @lesson.request %>
+  </p>
+  <p style="width: 80%;margin:0 auto;word-wrap: break-word;">
+    <strong>Notes:</strong><br><%= @lesson.notes %>
+  </p>
 
 <!-- Price -------------------------------------------------------------------->
   <% if @lesson.price.fractional > 0 %>
@@ -58,10 +62,11 @@
 <!-- Tutor Notes -------------------------------------------------------------->
   <% if @lesson.tutor_notes.present? %>
     <p style="border:2px solid darkgrey;padding:10%;margin:0 4%">
-      <strong>Tutor notes: </strong>
+      <strong>Tutor notes:</strong><br>
       <em><%= @lesson.tutor_notes %></em>
     </p>
   <% end %>
+  <br>
 
 <!-- Photo -------------------------------------------------------------------->
   <% if @lesson.photo.present? %>
