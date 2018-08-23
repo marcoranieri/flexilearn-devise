@@ -7,11 +7,15 @@
   <h1 class="text-center">Edit Lesson (as Tutor)<br></h1>
 
   <div class="text-center">
-    <p><strong>Title:</strong> <%= @lesson.title  %></p>
-    <p><strong>Category:</strong> <%= @lesson.category.name  %></p>
-    <p><strong>Request:</strong> <%= @lesson.request  %></p>
-    <p><strong>Notes:</strong> <%= @lesson.notes  %></p>
-    <p><strong>Location:</strong> <%= @lesson.location  %></p>
+    <h3><strong>Title:</strong> <%= @lesson.title  %></h3>
+    <h4><strong>Category:</strong> <%= @lesson.category.name  %></h4>
+    <p style="width: 80%;margin:0 auto;word-wrap: break-word;">
+      <strong>Request:</strong><br><%= @lesson.request %>
+    </p>
+    <p style="width: 80%;margin:0 auto;word-wrap: break-word;">
+      <strong>Notes:</strong><br><%= @lesson.notes  %>
+    </p>
+    <p><strong>Location:</strong><br><%= @lesson.location %></p>
   </div>
 
   <div class="container">
@@ -26,10 +30,7 @@
           <%= f.input :date, as: :date, html5: true %>
           <%= f.input :time, as: :time, html5: true %>
           <%= f.input :tutor_notes, placeholder:
-            "Hi #{@lesson.student.name}, I think I can help you with this request!
-            \n\bHere my skills:\n\b- Degrees\n\b- Job experiences\n\b- ...
-            \n\bSee you in #{@lesson.location} at #{@lesson.time.strftime("%I:%M%p")}
-             of #{@lesson.date} !",
+            "Hi #{@lesson.student.name}, I think I can help you with this request!\nHere my skills:\n- Degrees\n- Job experiences\n- ...\n\nSee you in #{@lesson.location} at #{@lesson.time.strftime("%I:%M%p")} of #{@lesson.date} !",
              input_html: { :style=> 'width: 100%;', :rows => 8 }, autofocus: true %>
           <br>
 

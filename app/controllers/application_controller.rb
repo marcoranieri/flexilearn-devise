@@ -39,6 +39,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :phone, :bio, :birthdate, :pro, :email, :photo, :password, :password_confirmation, :remember_me])
   end
 
+  # def find_reviewer(review)
+  #   Student.find()
+  # end
+
   private
 
   def skip_pundit?

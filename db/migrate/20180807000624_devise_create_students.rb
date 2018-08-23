@@ -32,6 +32,8 @@ class DeviseCreateStudents < ActiveRecord::Migration[5.2]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
+      t.integer :mytutor_ids, default: [], array: true
+
 
       t.timestamps null: false
     end

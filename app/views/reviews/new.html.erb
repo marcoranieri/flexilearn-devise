@@ -2,8 +2,10 @@
 <% provide(:title, 'New Review') %>
 
 <h1 class="text-center">
-  Post Review for <%= @tutor.last_name.capitalize %> <%= @tutor.first_name.capitalize %> <br>
-  <%= link_to "<<Back", tutor_path(@tutor), class:"btn btn-primary" %>
+  Post Review for<br>
+  <strong>
+    <%= @tutor.last_name.capitalize %> <%= @tutor.first_name.capitalize %>
+  </strong>
 </h1>
 
 <div class="container">
@@ -11,12 +13,19 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
       <%= simple_form_for [@tutor, @review] do |f| %>
-        <%= f.input :title, placeholder: "Ex: Great experience..." %>
-        <%= f.input :content, placeholder: "Insert content here!" %>
-        <%=   f.collection_radio_buttons :rating,
+
+        <%= f.input :title, placeholder: "Ex: Great experience...",
+            input_html: { :style=> 'width: 100%;'} %>
+
+        <%= f.input :content, placeholder: "Insert content here!",
+            input_html: { :style=> 'width: 100%;', :rows => 8 } %>
+
+        <%= f.label :rating %>
+        <%= f.collection_radio_buttons :rating,
           [[1, '1'] ,[2, '2'],[3, '3'],[4, '4'],[5, '5']], :first, :last %>
 
         <br>
+        <%= f.hidden_field :reviewer_id, value: current_student.id.to_i %>
         <%= f.submit "Post Review", class:"btn btn-primary" %>
       <% end %>
 

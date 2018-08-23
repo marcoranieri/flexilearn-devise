@@ -12,23 +12,24 @@
 
 <!-- Links when Logged In ----------------------------------------------------->
     <% if current_user.is_a? Student %>
-        <!-- STUDENT show/logout ---------------------------------------------->
-        <%= link_to student_path(current_student), style:"padding:0 10%" do %>
-          <i class="fas fa-user-graduate" style="font-size:3em"></i>
-        <% end %>
-        <%= link_to destroy_student_session_path, style:"padding:0 10%",
-           method: :delete do %>
-          <i class="fas fa-sign-out-alt" style="font-size:3em"></i>
-        <% end %>
-        <% else %><!-- TUTOR show/logout -------------------------------------->
-          <%= link_to tutor_path(current_tutor), style:"padding:0 10%" do %>
-            <i class="fas fa-chalkboard-teacher" style="font-size:3em"></i>
-          <% end %>
-          <%= link_to destroy_tutor_session_path, style:"padding:0 10%",
-           method: :delete do %>
-          <i class="fas fa-sign-out-alt" style="font-size:3em"></i>
-        <% end %>
+      <!-- STUDENT show/logout ---------------------------------------------->
+      <%= link_to student_path(current_student), style:"padding:0 10%" do %>
+        <i class="fas fa-user-graduate" style="font-size:3em;opacity:.7"></i>
       <% end %>
+      <%= link_to destroy_student_session_path, style:"padding:0 10%",
+         method: :delete do %>
+        <i class="fas fa-sign-out-alt" style="font-size:3em;opacity:.7"></i>
+      <% end %>
+
+    <% else %><!-- TUTOR show/logout -------------------------------------->
+      <%= link_to tutor_path(current_tutor), style:"padding:0 10%" do %>
+        <i class="fas fa-chalkboard-teacher" style="font-size:3em;opacity:.7"></i>
+      <% end %>
+      <%= link_to destroy_tutor_session_path, style:"padding:0 10%",
+       method: :delete do %>
+        <i class="fas fa-sign-out-alt" style="font-size:3em;opacity:.7"></i>
+      <% end %>
+    <% end %>
 
       <br>
       <!-- LeWagon Link -->

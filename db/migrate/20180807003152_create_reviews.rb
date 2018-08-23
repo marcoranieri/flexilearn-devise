@@ -5,7 +5,8 @@ class CreateReviews < ActiveRecord::Migration[5.2]
       t.string :title
       t.text :content
       t.integer :rating
-
+      #t.integer :reviewer_ids, default: [], array: true
+      t.integer :reviewer_id
       t.timestamps
     end
   end
