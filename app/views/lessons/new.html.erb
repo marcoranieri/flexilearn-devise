@@ -14,10 +14,10 @@
       <%= simple_form_for @lesson,
         :url => url_for(:action => 'create', :controller => 'lessons'),
         :method => 'post' do |f| %>
-        <%= f.label :category %>
-        <%= f.collection_select(:category_id, Category.all, :id, :name, prompt: true) %>
         <%= f.input :title, placeholder: "Insert title here!", autofocus: true,
             input_html: { :style=> 'width: 100%;', :rows => 2 } %>
+        <%= f.label :category %>
+        <%= f.collection_select(:category_id, Category.all, :id, :name, prompt: true) %>
         <%= f.input :request, placeholder: "Explain your request!",
             input_html: { :style=> 'width: 100%;', :rows => 8 } %>
         <%= f.input :notes, placeholder: "Add notes here!",

@@ -53,15 +53,22 @@
 
   <br>
 <!-- REVIEWS ------------------------------------------------------------------>
-  <% if @tutor.reviews.present? %>
-    <hr class="style18">
-    <h3>Reviews:</h3>
-    <div style="display: flex; width: 100%;">s
+  <%=link_to "Add Review",new_tutor_review_path(@tutor),class:"btn btn-primary"%>
 
+  <% if @tutor.reviews.present? %>
+    <h3>Reviews:</h3>
+
+    <div class="row">
       <% @tutor.reviews.each do | review | %>
-        <div class="text-center" style="padding: 40px; width: 50%;">
+        <div class="col-sm-6">
+          <hr class="style18">
+
+          <!-- Img STUDENT - Link to reviewer's profile ----------------------->
+          <%= link_to (cl_image_tag review.find_reviewer(review.reviewer_id).
+              photo.url(:bright_face_small)),
+              student_path(review.find_reviewer(review.reviewer_id)) %>
+
           <p><strong><%= review.title %></strong></p>
-          <p><small><%= review.content %></small></p>
 
           <% blank_stars = 5 - review.rating.to_i %><!-- Stars ---------------->
           <% review.rating.to_i.times do  %>
@@ -70,14 +77,15 @@
           <% blank_stars.times do %>
             <i class="far fa-star blankstars"></i>
           <% end %>
+
+          <p><small><%= review.content %></small></p>
+
         </div>
       <% end %>
+    </div><!-- /row -->
 
-    </div>
-  <% else %>
+  <% else %><!-- No reviews --------------------------------------------------->
     <p><em>No reviews yet...</em></p>
   <% end %>
-
-  <%= link_to "Add Review", new_tutor_review_path(@tutor),class:"btn btn-primary"%>
 
 </div>

@@ -4,11 +4,11 @@
 <div class="text-center">
   <h2>Title:<strong><br><%= @lesson.title %></strong></h2>
   <h3>Category:<strong><br><%= @lesson.category.name %></strong></h3>
-
-  <p>
-    <strong>Location:</strong><br><%= @lesson.location %> <br>
-    <strong>Date:</strong><br><%= @lesson.date %> <br>
-    <strong>Time:</strong><br><%= @lesson.time.strftime("%I:%M%p") %>
+  <br>
+  <p><strong>Location:</strong><br><%= @lesson.location %></p>
+  <p style="display:flex;align-items:center;justify-content: center;" class="text-center">
+    <strong>Date:</strong><%= @lesson.date %> | |
+    <strong>Time:</strong><%= @lesson.time.strftime("%I:%M%p") %>
   </p>
 
 <!-- S T U D E N T Name ------------------------------------------------------->
@@ -18,7 +18,8 @@
     <% if @lesson.student.name.present? %> <!-- Facebook Name -->
       <%= link_to @lesson.student.name, student_path(@lesson.student) %>
     <% else %>
-      <%= link_to @lesson.student.last_name.capitalize, student_path(@lesson.student) %>
+      <%= link_to @lesson.student.first_name.capitalize + " " +
+          @lesson.student.last_name.capitalize, student_path(@lesson.student) %>
     <% end %>
   </h3>
 
@@ -27,7 +28,8 @@
     <i class="fas fa-chalkboard-teacher"></i>
     <strong>Tutor:</strong><br>
     <% if @lesson.tutor.present? %>
-      <%= link_to @lesson.tutor.last_name.capitalize, tutor_path(@lesson.tutor) %>
+      <%= link_to @lesson.tutor.first_name.capitalize+" "+
+          @lesson.tutor.last_name.capitalize, tutor_path(@lesson.tutor) %>
     <% else %>
       <i class='fas fa-question'></i>
     <% end %>

@@ -98,11 +98,12 @@ end
 end
 
 # R E V I E W  /////////////////////////////////////////////////////////////////
-200.times do
+100.times do
   r = Review.new(
     title: Faker::Lorem.sentence,
     content: Faker::Community.quotes,
-    rating: rand(1..5)
+    rating: rand(1..5),
+    reviewer_id: rand(Student.first.id..Student.last.id)
   )
 
   tut = Tutor.find(rand(Tutor.first.id..Tutor.last.id))

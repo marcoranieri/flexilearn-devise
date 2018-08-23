@@ -6,7 +6,7 @@
 <!-- N A V I G A T I O N ------------------------------------------------------>
 <%= link_to "All Lessons", all_path, class:"btn btn-primary" %>
 <%= link_to "Request a LESSON", new_lesson_path,
-    class:"btn btn-successs" if current_user.is_a? Student  %>
+    class:"btn btn-success" if current_user.is_a? Student  %>
 
 <!-- O R D E R S -------------------------------------------------------------->
 <% if current_student && current_student.orders.count > 0 %>
@@ -67,7 +67,7 @@
       → <strong><%= link_to lesson.title, lesson_path(lesson) %></strong>
       | <%= link_to "Edit", edit_lesson_path(lesson),style:"color:darkorange;"%>
 
-      <!-- Student DELETE - method: :delete -->
+      <!-- Student DELETE - method: :delete ----------------------------------->
       <% if current_user.is_a? Student %>
         | <%= link_to 'Delete',lesson_path(lesson),data:{confirm:'Are you sure?'},
             method: :delete, style:"color:red;" %>
@@ -77,7 +77,7 @@
       Category: <%= link_to lesson.category.name,category_path(lesson.category)%>
       <br>
 
-      <!-- AMOUNT setting -->
+      <!-- AMOUNT setting ----------------------------------------------------->
       <% if lesson.price.zero? %>
         <em>Looking for a tutor...</em>
       <% else %>
@@ -105,15 +105,15 @@
       <% end %>
 
 
-      <!-- Tutor DELETE ( updating attributes - NOT deleting ) -->
+      <!-- Tutor DELETE ( updating attributes - NOT deleting ) ---------------->
       <% if current_user.is_a? Tutor %>
         <%= form_for lesson do |f| %>
           <%= f.hidden_field :status, value: "requested" %>
           <%= f.hidden_field :tutor_id, value: nil %>
           <%= f.hidden_field :tutor_notes, value: nil %>
           <%= f.hidden_field :price, value: 0 %>
-          <%= f.submit "Delete",
-            style:"color:red; padding:0; border:none; display:inline;" %>
+          <%= f.submit "Delete", data:{confirm:'Are you sure?'},
+            class:"btn btn-link", style:"color:red; padding:0;" %>
         <% end %>
       <% end %>
 

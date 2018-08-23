@@ -12,6 +12,8 @@ class CreateLessons < ActiveRecord::Migration[5.2]
       t.text :notes
       t.text :tutor_notes
       t.boolean :private, default: false
+      t.integer :mycategory_ids, default: [], array: true
+
 
       t.timestamps
     end
