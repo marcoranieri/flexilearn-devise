@@ -36,10 +36,7 @@ puts "Creating categories"
 FIXED_CAT = %w(Mathematics History Science Health Art Music Speech Chemistry Physics Biology Languages Computer Business Journalism Photography Economics Sociology Culinary Lifeskills)
 
 FIXED_CAT.each do | category |
-  tut = Tutor.find(rand(Tutor.first.id..Tutor.last.id))
   cat = Category.new(name: category, description: Faker::Lorem.paragraph)
-  cat.tutor_id = tut.id
-
   cat.save
 end
 # 20.times do

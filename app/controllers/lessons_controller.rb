@@ -4,7 +4,6 @@ class LessonsController < ApplicationController
   before_action :find_lesson, only: [ :show, :edit, :update, :destroy ]
 
   def index
-
     if current_user.is_a? Student
       @lessons = policy_scope(Lesson).where(student: current_user).order(created_at: :desc)
     else
