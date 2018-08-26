@@ -19,4 +19,10 @@ class Tutor < ApplicationRecord
   # validates :last_name, presence: true
 
   enum status: [ :available, :unavailable ]
+
+end # /class Tutor ------------------------------------------------------------>
+
+
+def find_tutor(tutor_id)
+  Tutor.find(tutor_id)
 end

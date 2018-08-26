@@ -13,4 +13,15 @@ class Lesson < ApplicationRecord
   mount_uploader :photo, PhotoUploader
   # MoneyRails Gem
   monetize :price_cents
+
+  # Adding to favourite when a tutor click CONFIRM btn
+  def add_tutor_to_favourite(student, lesson_id)
+    # |= Appending Unique value
+    student.mytutor_ids |= [lesson_id]
+    student.save!
+  end
+end
+
+def find_lesson(lesson_id)
+  Lesson.find_by_id(lesson_id)
 end
