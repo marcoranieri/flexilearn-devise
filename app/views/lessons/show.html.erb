@@ -5,10 +5,20 @@
   <h2>Title:<strong><br><%= @lesson.title %></strong></h2>
   <h3>Category:<strong><br><%= @lesson.category.name %></strong></h3>
   <br>
-  <p><strong>Location:</strong><br><%= @lesson.location %></p>
-  <p style="display:flex;align-items:center;justify-content: center;" class="text-center">
-    <strong>Date:</strong><%= @lesson.date %> | |
-    <strong>Time:</strong><%= @lesson.time.strftime("%I:%M%p") %>
+  <!-- Location + GoogleMAPS Link --------------------------------------------->
+  <div class="goto-maps">
+    <%= link_to "https://www.google.com/maps/dir/?api=1&
+           destination=#{URI::encode(@lesson.location)}", target: "_blank" do %>
+      <p><strong>Location:</strong><br><%= @lesson.location %></p>
+      <!-- <p><i class="fas fa-street-view"></i></p> -->
+      <%= image_tag "google-maps.svg", width:40; %>
+    <% end %>
+  </div>
+  <!-- Date + Time ------------------------------------------------------------>
+  <p style="display:flex;align-items:center;justify-content:center;"
+     class="text-center">
+    <strong>Date:</strong><big><%= @lesson.date %></big> | |
+    <strong>Time:</strong><big><%= @lesson.time.strftime("%I:%M%p") %></big>
   </p>
 
 <!-- S T U D E N T Name ------------------------------------------------------->
@@ -63,7 +73,7 @@
 
 <!-- Tutor Notes -------------------------------------------------------------->
   <% if @lesson.tutor_notes.present? %>
-    <p style="border:2px solid darkgrey;padding:10%;margin:0 4%">
+    <p style="border:2px solid darkgrey;padding:10%;margin:0 auto;word-wrap: break-word;width: 80%">
       <strong>Tutor notes:</strong><br>
       <em><%= @lesson.tutor_notes %></em>
     </p>
@@ -91,6 +101,8 @@
   <!-- TUTOR Btn to CONFIRM the lesson ( Lesson#EDIT ) -->
   <% if current_user.is_a?(Tutor) && @lesson.status == "requested" %>
     <%= link_to "I'm interested",edit_lesson_path(@lesson),class:"btn btn-primary"%>
+  <% elsif current_user.is_a?(Tutor) && @lesson.status == "scheduled" %>
+    <% @lesson.add_tutor_to_favourite(@lesson.student, @lesson.id) %>
   <% end %>
 
   <!-- STUDENT Btn to EDIT ( Lesson#EDIT ) -->
