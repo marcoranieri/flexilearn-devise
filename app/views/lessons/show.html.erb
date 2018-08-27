@@ -17,10 +17,11 @@
   </div>
 
   <!-- Date + Time ------------------------------------------------------------>
-  <p style="display:flex;align-items:center;justify-content:center;"
-     class="text-center">
-    <strong>Date:</strong><big><%= @lesson.date.strftime("%a, %e %b %Y") %></big> | |
-    <strong>Time:</strong><big><%= @lesson.time.strftime("%I:%M%p") %></big>
+  <p>
+    <strong>Date: </strong><big><%= @lesson.date.strftime("%a, %e %b %Y") %></big>
+  </p>
+  <p>
+    <strong>Time: </strong><big><%= @lesson.time.strftime("%I:%M%p") %></big>
   </p>
 
 <!-- S T U D E N T Name ------------------------------------------------------->
@@ -75,7 +76,8 @@
 
 <!-- Tutor Notes -------------------------------------------------------------->
   <% if @lesson.tutor_notes.present? %>
-    <p style="border:2px solid darkgrey;padding:10%;margin:0 auto;word-wrap: break-word;width: 80%">
+    <p style="border:2px solid darkgrey;padding:10%;margin:0 auto;
+              word-wrap:break-word;width: 80%">
       <strong>Tutor notes:</strong><br>
       <em><%= @lesson.tutor_notes %></em>
     </p>
