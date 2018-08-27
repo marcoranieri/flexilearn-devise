@@ -32,6 +32,9 @@ class Student < ApplicationRecord
   end
 # ///////////////////////////////////////////////////////
 
+end # /class Student ---------------------------------------------------------->
+
+
+def find_student(student_id)
+  Student.find(student_id)
 end
-
-

@@ -6,10 +6,10 @@ class TutorPolicy < ApplicationPolicy
   end
 
   def show?
-    user
+    user.id == record.id
   end
 
   def create?
-    user
+    user == record.id
   end
 end

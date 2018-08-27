@@ -6,6 +6,6 @@ class StudentPolicy < ApplicationPolicy
   end
 
   def show?
-    user
+    user.id == record.id
   end
 end
