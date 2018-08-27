@@ -22,7 +22,8 @@
             input_html: { :style=> 'width: 100%;', :rows => 8 } %>
         <%= f.input :notes, placeholder: "Add notes here!",
             input_html: { :style=> 'width: 100%;', :rows => 5 } %>
-        <%= f.input :location, placeholder: "Where do you wanna meet?" %>
+        <%= f.input :location, placeholder: "Where do you wanna meet?",
+            input_html: { :style=> 'width: 100%;' } %>
         <%= f.input :date, as: :date, html5: true,
             input_html: { value: Date.today.strftime('%Y-%m-%d').to_s } %>
         <%= f.input :time, as: :time, html5: true,
