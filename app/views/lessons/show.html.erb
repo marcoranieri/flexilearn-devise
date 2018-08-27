@@ -5,19 +5,21 @@
   <h2>Title:<strong><br><%= @lesson.title %></strong></h2>
   <h3>Category:<strong><br><%= @lesson.category.name %></strong></h3>
   <br>
+
   <!-- Location + GoogleMAPS Link --------------------------------------------->
+  <p><strong>Location:</strong><br><%= @lesson.location %></p>
   <div class="goto-maps">
-    <%= link_to "https://www.google.com/maps/dir/?api=1&
-           destination=#{URI::encode(@lesson.location)}", target: "_blank" do %>
-      <p><strong>Location:</strong><br><%= @lesson.location %></p>
+    <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{URI::encode(
+        @lesson.location)}", target: "_blank" do %>
       <!-- <p><i class="fas fa-street-view"></i></p> -->
       <%= image_tag "google-maps.svg", width:40; %>
     <% end %>
   </div>
+
   <!-- Date + Time ------------------------------------------------------------>
   <p style="display:flex;align-items:center;justify-content:center;"
      class="text-center">
-    <strong>Date:</strong><big><%= @lesson.date %></big> | |
+    <strong>Date:</strong><big><%= @lesson.date.strftime("%a, %e %b %Y") %></big> | |
     <strong>Time:</strong><big><%= @lesson.time.strftime("%I:%M%p") %></big>
   </p>
 
@@ -47,8 +49,8 @@
 
 <!-- Status ------------------------------------------------------------------->
   <% color = "darkorange" if @lesson.status == "requested" %>
-  <% color = "cadetblue"  if @lesson.status == "completed" %>
-  <% color = "green"      if @lesson.status == "scheduled" %>
+  <% color = "cadetblue"  if @lesson.status == "scheduled" %>
+  <% color = "green"      if @lesson.status == "completed" %>
   <% color = "red"        if @lesson.status == "canceled"  %>
 
   <p>
