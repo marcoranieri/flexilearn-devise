@@ -48,7 +48,7 @@
 
   <!-- STUDENT - EDIT btn ----------------------------------------------------->
   <% if current_user.is_a?(Student) && @student == current_student %>
-    <%= link_to "Edit",edit_student_registration_path,class:"btn btn-primary"%>
+    <%= link_to "Edit",edit_student_registration_path, class:"btn btn-primary"%>
   <% end %>
 
   <br>
