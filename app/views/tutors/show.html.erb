@@ -72,10 +72,12 @@
 
           <% blank_stars = 5 - review.rating.to_i %><!-- Stars ---------------->
           <% review.rating.to_i.times do  %>
-            <i style="color:gold;" class="fas fa-star filledstars"></i>
+            <!-- <i style="color:gold;" class="fas fa-star filledstars"></i> -->
+            <i style="color:#94b5ef" class="fas fa-circle"></i>
           <% end %>
           <% blank_stars.times do %>
-            <i class="far fa-star blankstars"></i>
+            <!-- <i class="far fa-star blankstars"></i> -->
+            <i style="color:#94b5ef" class="far fa-circle"></i>
           <% end %>
 
           <p><small><%= review.content %></small></p>
