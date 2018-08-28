@@ -10,12 +10,12 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # end
 
   version :bright_face do
-    cloudinary_transformation effect: "brightness:20", radius: "max",
-      width: 150, height: 150, crop: :thumb, gravity: :face
+    cloudinary_transformation effect: "improve:outdoor", radius: "max",
+      width: 150, height: 150, crop: :thumb, gravity: :face, quality: "auto"
   end
   version :bright_face_small do
-    cloudinary_transformation effect: "brightness:20", radius: "max",
-      width: 75, height: 75, crop: :thumb, gravity: :face
+    cloudinary_transformation effect: "improve:outdoor", radius: "max",
+      width: 75, height: 75, crop: :thumb, gravity: :face, quality: "auto"
   end
   # <!-- app/views/articles/show.html.erb -->
   # <%= image_tag @article.photo.url(:bright_face) %>
