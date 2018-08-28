@@ -55,28 +55,32 @@
   <br>
 
 <!-- FAVOURITE Tutor ---------------------------------------------------------->
-  <% @student.mytutor_ids.each do |lesson_id| %>
+  <% if current_tutor == @tutor %>
+    <% @student.mytutor_ids.each do |lesson_id| %>
 
-    <!-- Delete tutor_id from favourite IF lesson_id.NIL? --------------------->
-    <% if find_lesson(lesson_id).nil? %>
-      <% @student.mytutor_ids.delete(lesson_id) %>
-      <% @student.save! %>
-      <% next %>
+      <!-- Delete tutor_id from favourite IF lesson was deleted --------------->
+      <% if find_lesson(lesson_id).nil? %>
+        <% @student.mytutor_ids.delete(lesson_id) %>
+        <% @student.save! %>
+        <% next %>
+      <% end %>
+
+      <div style="display:flex;justify-content:space-around;
+                  padding: 5%;border-top:2px solid darkgrey;">
+
+        <div><!-- tutor Img --------------------------------------------------->
+          <%= link_to (cl_image_tag(find_lesson(lesson_id).tutor.photo.
+              url(:bright_face_small))),tutor_path(find_lesson(lesson_id).tutor)%>
+        </div>
+
+        <div><!-- lesson Title & Date ----------------------------------------->
+          <p><strong><%= find_lesson(lesson_id).title %></strong></p>
+          <p><%= find_lesson(lesson_id).date %></p>
+        </div>
+
+      </div>
+
     <% end %>
-
-    <div style="display:flex;justify-content:space-around;
-                padding: 5%;border-top:2px solid darkgrey;">
-      <div><!-- tutor Img---------------------------------------------------->
-        <%= link_to (cl_image_tag(find_lesson(lesson_id).tutor.photo.
-            url(:bright_face_small))),tutor_path(find_lesson(lesson_id).tutor)%>
-      </div>
-
-      <div><!-- lesson Title & Date ----------------------------------------->
-        <p><strong><%= find_lesson(lesson_id).title %></strong></p>
-        <p><%= find_lesson(lesson_id).date %></p>
-      </div>
-    </div>
-
   <% end %>
 
 </div>

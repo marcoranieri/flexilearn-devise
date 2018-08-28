@@ -92,25 +92,34 @@
 
   <br>
   <br>
- <!-- FAVOURITE Student ------------------------------------------------------->
-  <% @tutor.mystudent_ids.each do |lesson_id| %>
-     <!-- Delete tutor_id from favourite IF lesson_id.NIL? --------------------->
-    <% if find_lesson(lesson_id).nil? %>
-      <% @tutor.mystudent_ids.delete(lesson_id) %>
-      <% @tutor.save! %>
-      <% next %>
-    <% end %>
-     <div style="display:flex;justify-content:space-around;
-                padding: 5%;border-top:2px solid darkgrey;">
-      <div><!-- student Img---------------------------------------------------->
-        <%= link_to (cl_image_tag(find_lesson(lesson_id).student.photo.
-          url(:bright_face_small))),student_path(find_lesson(lesson_id).student)%>
+
+<!-- FAVOURITE Student -------------------------------------------------------->
+  <% if current_tutor == @tutor %>
+    <% @tutor.mystudent_ids.each do |lesson_id| %>
+
+      <!-- Delete student_id from favourite IF lesson was deleted ------------->
+      <% if find_lesson(lesson_id).nil? %>
+        <% @tutor.mystudent_ids.delete(lesson_id) %>
+        <% @tutor.save! %>
+        <% next %>
+      <% end %>
+
+      <div style="display:flex;justify-content:space-around;
+                  padding: 5%;border-top:2px solid darkgrey;">
+
+        <div><!-- student Img ------------------------------------------------->
+          <%= link_to (cl_image_tag(find_lesson(lesson_id).student.photo.
+            url(:bright_face_small))),student_path(find_lesson(lesson_id).student)%>
+        </div>
+
+        <div><!-- lesson Title & Date ----------------------------------------->
+          <p><strong><%= find_lesson(lesson_id).title %></strong></p>
+          <p><%= find_lesson(lesson_id).date %></p>
+        </div>
+
       </div>
-      <div><!-- lesson Title & Date ------------------------------------------->
-        <p><strong><%= find_lesson(lesson_id).title %></strong></p>
-        <p><%= find_lesson(lesson_id).date %></p>
-      </div>
-    </div>
+
+     <% end %>
    <% end %>
 
 </div>
