@@ -2,9 +2,16 @@
 <% provide(:title, 'Lesson') %>
 
 <div class="text-center">
+  <p style="opacity:.6"><!-- Created at --------------------------------------->
+    <em><small>
+      Created on <%= @lesson.created_at.strftime("%e %b %Y") %>
+    </small></em>
+  </p>
+
   <h2>Title:<strong><br><%= @lesson.title %></strong></h2>
   <h3>Category:<strong><br><%= @lesson.category.name %></strong></h3>
   <br>
+
 
   <!-- Location + GoogleMAPS Link --------------------------------------------->
   <p><strong>Location:</strong><br><%= @lesson.location %></p>
