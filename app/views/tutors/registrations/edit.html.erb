@@ -12,6 +12,7 @@
     <%= f.input :birthdate, as: :date, html5: true %>
     <%= f.input :bio, placeholder: "Tell us something about you!",
             input_html: { :style=> 'width: 100%;', :rows => 8 } %>
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
     <%= f.input :photo, hint: "Please, only you in the photo" %>
     <%= f.input :photo_cache, as: :hidden %>
 
