@@ -36,19 +36,9 @@ puts "Creating categories"
 FIXED_CAT = %w(Mathematics History Science Health Art Music Speech Chemistry Physics Biology Languages Computer Business Journalism Photography Economics Sociology Culinary Lifeskills)
 
 FIXED_CAT.each do | category |
-  tut = Tutor.find(rand(Tutor.first.id..Tutor.last.id))
-  cat = Category.new(name: category, description: Faker::Lorem.paragraph)
-  cat.tutor_id = tut.id
-
-  cat.save
+  cat = Category.create(name: category, description: Faker::Lorem.paragraph)
 end
-# 20.times do
-#   tut = Tutor.find(rand(Tutor.first.id..Tutor.last.id))
-#   cat = Category.new(name: FIXED_CAT.sample, description: Faker::Lorem.paragraph)
-#   cat.tutor_id = tut.id
 
-#   cat.save
-# end
 
 # L E S S O N //////////////////////////////////////////////////////////////////
 puts "Finally creating the lessons (with and without Tutor)"
