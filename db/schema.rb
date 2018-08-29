@@ -17,8 +17,6 @@ ActiveRecord::Schema.define(version: 2018_08_29_122912) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.integer "mytutor_ids", default: [], array: true
-    t.integer "mystudent_ids", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
@@ -45,7 +43,6 @@ ActiveRecord::Schema.define(version: 2018_08_29_122912) do
     t.text "notes"
     t.text "tutor_notes"
     t.boolean "private", default: false
-    t.integer "mycategory_ids", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "price_cents", default: 0, null: false
@@ -91,7 +88,6 @@ ActiveRecord::Schema.define(version: 2018_08_29_122912) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.integer "mytutor_ids", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "first_name"
@@ -124,7 +120,6 @@ ActiveRecord::Schema.define(version: 2018_08_29_122912) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.integer "mystudent_ids", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "first_name"
