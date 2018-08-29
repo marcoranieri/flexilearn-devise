@@ -41,7 +41,9 @@
       </div>
     <% else %>
       <p><em>
-        Please <strong>edit</strong> your profile and add some info about yourself
+        You did not provide any description yet.<br>
+        Please <strong>tell us about yourself</strong>!
+        <!-- Please <strong>edit</strong> your profile and add some info about yourself -->
       </em></p>
     <% end %>
   </p>
@@ -54,28 +56,29 @@
   <br>
   <br>
 
-<!-- FAVOURITE Tutor ---------------------------------------------------------->
-  <% if current_tutor == @tutor %>
-    <% @student.mytutor_ids.each do |lesson_id| %>
+<!-- FAVOURITE Tutors --------------------------------------------------------->
+  <% if current_user.is_a?(Student) && @student == current_student %>
+    <% @student.lessons.each do |lesson| %>
 
-      <!-- Delete tutor_id from favourite IF lesson was deleted --------------->
-      <% if find_lesson(lesson_id).nil? %>
-        <% @student.mytutor_ids.delete(lesson_id) %>
-        <% @student.save! %>
-        <% next %>
-      <% end %>
-
-      <div style="display:flex;justify-content:space-around;
-                  padding: 5%;border-top:2px solid darkgrey;">
+      <hr class="style18">
+      <div style="display:flex;justify-content:space-around;padding: 5%;">
 
         <div><!-- tutor Img --------------------------------------------------->
-          <%= link_to (cl_image_tag(find_lesson(lesson_id).tutor.photo.
-              url(:bright_face_small))),tutor_path(find_lesson(lesson_id).tutor)%>
+          <%= link_to (cl_image_tag(lesson.tutor.photo.url(:bright_face_small))),tutor_path(lesson.tutor)%>
         </div>
 
-        <div><!-- lesson Title & Date ----------------------------------------->
-          <p><strong><%= find_lesson(lesson_id).title %></strong></p>
-          <p><%= find_lesson(lesson_id).date %></p>
+        <div><!-- lesson Title ------------------------------------------------>
+          <p><strong><%= lesson.title %></strong></p>
+        </div>
+
+        <div><!-- lesson Date + Status ---------------------------------------->
+          <p><%= lesson.date %></p>
+
+          <% color = "darkorange" if lesson.status == "requested" %>
+          <% color = "cadetblue"  if lesson.status == "scheduled" %>
+          <% color = "green"      if lesson.status == "completed" %>
+          <% color = "red"        if lesson.status == "canceled"  %>
+          <p><span style="color:<%= color %>;"><%= lesson.status %></span></p>
         </div>
 
       </div>
