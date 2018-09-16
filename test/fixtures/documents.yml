@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  institute: MyString
+  description: MyText
+  qualification: MyString
+  achieved: 2018-09-01
+  lvl: 1
+  document_type: 1
+  document_number: MyString
+  years_of_experience: 1
+  nationality: MyString
+  tutor: one
+
+two:
+  name: MyString
+  institute: MyString
+  description: MyText
+  qualification: MyString
+  achieved: 2018-09-01
+  lvl: 1
+  document_type: 1
+  document_number: MyString
+  years_of_experience: 1
+  nationality: MyString
+  tutor: two

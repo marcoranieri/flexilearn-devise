@@ -10,8 +10,13 @@ class Tutor < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :categories, through: :lessons
   has_many :lessons
+  has_many :documents
   has_many :students, through: :lessons
+
   has_and_belongs_to_many :categories
+
+  has_one :identity
+
   # validates :password, presence: true
   # validates :email, presence: true, uniqueness: true
   # validates :phone, presence: true, uniqueness: true

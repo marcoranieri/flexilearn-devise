@@ -1,0 +1,31 @@
+<!-- Dynamic Head Title -->
+<% provide(:title, 'Identity') %>
+
+<br>
+<%= link_to "Edit Identity",edit_tutor_identity_path(@identity.tutor),
+    class:"btn btn-warning" %>
+
+<h2>
+  <% if @identity.document_type == "passport" %><!-- Passport ----------------->
+    <i class="fas fa-passport"></i>
+  <% else %><!-- National_ID -------------------------------------------------->
+    <i class="fas fa-id-card"></i>
+  <% end %><br>
+  <%= @identity.document_type.upcase %><br>
+  n° <%=@identity.document_number.upcase%>
+</h2>
+
+<p>Name: <%= @identity.name.upcase %></p>
+<p>Expired: <%= @identity.expired.strftime("%m %Y") %></p>
+<p>Nationality: <%= @identity.nationality.capitalize %></p>
+
+<br>
+
+<% if @identity.photo.present? %><!-- Photo ----------------------------------->
+  <%= cl_image_tag @identity.photo, style: 'height:auto;max-width:100%;',
+      effect: "improve:outdoor", quality: "auto" %>
+<% else %>
+  <img src="https://unichange.me/images/verification_docs/international_pass.png" alt="">
+<% end %>
+
+<br>

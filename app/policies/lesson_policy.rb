@@ -23,7 +23,7 @@ class LessonPolicy < ApplicationPolicy
     # Only Student can update a Lesson
     return user == record.student if user.is_a? Student
 
-    if user.is_a? Tutor || record.tutor == user
+    if user.is_a?(Tutor) && record.tutor == user
       true
     elsif user.is_a? Tutor
       record.tutor.nil?

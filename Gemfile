@@ -24,7 +24,7 @@ gem 'cloudinary', '~> 1.9', '>= 1.9.1'
 #      width: 150, height: 150, crop: :thumb, gravity: :face) %>
 #Crop modes: scale, fit, fill, limit, pad, crop.
 
-# Send pic from Form to Cloudinary
+# Send Pic from Form to Cloudinary
 gem 'carrierwave', '~> 1.2', '>= 1.2.3'
 
 # Currency
