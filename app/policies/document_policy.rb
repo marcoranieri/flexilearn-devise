@@ -1,4 +1,4 @@
-class TutorPolicy < ApplicationPolicy
+class DocumentPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -10,19 +10,19 @@ class TutorPolicy < ApplicationPolicy
   end
 
   def show?
-    user == record
+    user == record.tutor
   end
 
   def create?
-    user == record.id
+    true
   end
 
   def update?
-    user == record
+    user == record.tutor
   end
 
   def destroy?
-    record == user
+    record.tutor == user
   end
 
 end

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :tutors do
     resources :reviews, only: [:new, :create]
+    resources :documents
+    resources :identities
   end
 
   resources :students

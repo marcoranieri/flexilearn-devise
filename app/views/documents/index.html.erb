@@ -1,0 +1,49 @@
+<!-- Dynamic Head Title -->
+<% provide(:title, 'Documents') %>
+
+<div class="text-center">
+
+<% if @tutor.documents.present? %>
+
+  <% @tutor.documents.each do |document| %>
+
+<!-- TUTOR Q U A L I F I C A T I O N S ---------------------------------------->
+    <h2><i class="fas fa-award"></i> <%= document.name %></h2>
+    <h3>Qualification: <%= document.qualification %></h3>
+    <h4>Institute: <%= document.institute %></h3>
+    <p>Achieved <%= document.achieved.strftime("%Y") if document.achieved %></p>
+    <p>Years of experience: <%= document.years_of_experience %></p>
+
+    <% if document.photo.present? %><!-- Photo -------------------------------->
+      <%= cl_image_tag document.photo, style: 'height:auto;max-width:100%;',
+          effect: "improve:outdoor", quality: "auto" %>
+    <% else %>
+      <img src="https://loremflickr.com/200/300/certificate/all" alt="Degree">
+    <% end %>
+
+    <br><br>
+    <!-- Edit BTN ------------------------------------------------------------->
+    <%= link_to "Edit",edit_tutor_document_path(@tutor, document),
+        class:"btn btn-warning" %>
+
+    <!-- Delete BTN ----------------------------------------------------------->
+    <%= link_to tutor_document_path(@tutor, document), style:"padding:0 10%",
+        data:{confirm:'Are you sure?'}, method: :delete do %>
+      <i class="far fa-trash-alt" style="font-size:3em;opacity:.7"></i>
+    <% end %>
+
+    <hr class="style18">
+  <% end %>
+
+<!-- Add Documents BTN if NO Documents ---------------------------------------->
+  <% else %>
+    <br>
+    <%= link_to "Add Document", new_tutor_document_path(@tutor),
+        class:"btn btn-success" %>
+
+  <% end %>
+
+</div>
+
+<br>
+<br>

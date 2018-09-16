@@ -1,0 +1,40 @@
+<!-- Dynamic Head Title -->
+<% provide(:title, 'New Document') %>
+
+<h1 class="text-center">
+  <strong>
+    Create Document
+  </strong>
+</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+      <%= simple_form_for [@tutor, @document],
+        :url => url_for(:action => 'create', :controller => 'documents'),
+        :method => 'post' do |f| %>
+
+        <%= f.input :name, placeholder: "Insert name here", autofocus: true,
+            input_html: { :style=> 'width: 100%;', :rows => 2 } %>
+        <%= f.input :institute, placeholder: "Insert name here", autofocus: true,
+            input_html: { :style=> 'width: 100%;', :rows => 2 } %>
+        <%= f.input :qualification, placeholder: "Insert name here", autofocus: true, input_html: { :style=> 'width: 100%;', :rows => 2 } %>
+        <%= f.input :achieved, as: :date, html5: true, discard_day: true,
+            start_year: Date.today.year - 70, end_year: Date.today.year %>
+        <%= f.input :description, placeholder: "Desciption of the document",
+            input_html: { :style=> 'width: 100%;', :rows => 8 } %>
+        <%= f.input :years_of_experience %>
+        <%= f.input :photo %><%= f.input :photo_cache, as: :hidden %>
+
+        <br>
+        <%= f.submit "Create Document", class:"btn btn-primary" %>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+<br>
+<br>

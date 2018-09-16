@@ -1,0 +1,23 @@
+<!-- Dynamic Head Title -->
+<% provide(:title, 'Document') %>
+
+<div class="text-center">
+
+<!-- TUTOR Document ----------------------------------------------------------->
+  <h2>Name: <%= @document.name %></h2>
+  <h3>Institute: <%= @document.institute %></h3>
+  <h3>Qualification: <%= @document.qualification %></h3>
+  <p>Achieved: <%= @document.achieved %></p>
+  <p>Years of Exp: <%= @document.years_of_experience %></p>
+
+  <% if @document.photo.present? %><!-- Photo --------------------------------->
+    <%= cl_image_tag @document.photo, style: 'height:auto;max-width:100%;',
+        effect: "improve:outdoor", quality: "auto" %>
+  <% else %>
+    <img src="https://loremflickr.com/200/300/certificate/all" alt="Degree">
+  <% end %>
+  <br>
+
+</div>
+<br>
+<br>

@@ -5,7 +5,7 @@ Tutor.destroy_all
 Student.destroy_all
 
 # U S E R S - Student Tutor ////////////////////////////////////////////////////
-puts "Creating users"
+puts "Creating Users"
 20.times do
 
   Tutor.create(
@@ -31,7 +31,7 @@ puts "Creating users"
 end
 
 # C A T E G O R Y //////////////////////////////////////////////////////////////
-puts "Creating categories"
+puts "Creating Categories"
 
 FIXED_CAT = %w(Mathematics History Science Health Art Music Speech Chemistry Physics Biology Languages Computer Business Journalism Photography Economics Sociology Culinary Lifeskills)
 
@@ -41,7 +41,7 @@ end
 
 
 # L E S S O N //////////////////////////////////////////////////////////////////
-puts "Finally creating the lessons (with and without Tutor)"
+puts "Finally creating the Lessons (with and without Tutor)"
 
 10.times do # WITH TUTOR - status: :scheduled OR :canceled
   cat = Category.find(rand(Category.first.id..Category.last.id))
