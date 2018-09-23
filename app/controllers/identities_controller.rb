@@ -3,14 +3,6 @@ class IdentitiesController < ApplicationController
     before_action :find_identity, only: [ :show, :edit, :update, :destroy ]
 
   def index
-
-    # if current_user.is_a? Admin
-    #   @identities = policy_scope(Identity).where(student: current_user).order(created_at: :desc)
-    # else
-    #   @identities = policy_scope(Identity).where(tutor: current_user).order(created_at: :desc)
-    # end
-    #   authorize @identities
-
   end
 
   def show
@@ -28,7 +20,7 @@ class IdentitiesController < ApplicationController
 
     respond_to do | format |
       if @identity.save!
-        format.html { redirect_to tutor_identity_url, info: 'Identity was successfully created.' }
+        format.html { redirect_to @identity.tutor, info: 'Identity was successfully created.' }
         format.json { render :show, status: :created, location: @identity }
       else
         format.html { render :new }
@@ -43,7 +35,7 @@ class IdentitiesController < ApplicationController
   def update
     respond_to do | format |
       if @identity.update(identity_params)
-        format.html { redirect_to tutor_identity_url, notice: 'Identity was successfully updated.' }
+        format.html { redirect_to @identity.tutor, notice: 'Identity was successfully updated.' }
         format.json { render :show, status: :ok, location: @identity }
       else
         format.html { render :edit }

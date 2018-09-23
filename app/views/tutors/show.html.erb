@@ -12,18 +12,16 @@
       <% end  %>
   </h2>
 
-  <!-- Cloudinary ------------------------------------------------------------->
-  <% if @tutor.photo.present? %>
+  <!-- IMAGE ------------------------------------------------------------------>
+  <% if @tutor.photo.present? %><!-- Cloudinary ------------------------------->
     <%= cl_image_tag @tutor.photo.url(:bright_face) %>
 
-  <!-- Facebook --------------------------------------------------------------->
-  <% elsif @tutor.image_fb.present? %>
+  <% elsif @tutor.image_fb.present? %><!-- Facebook --------------------------->
     <div style="border-radius: 50%">
       <%= image_tag @tutor.image_fb + "?type=large",style:"border-radius:50%" %>
     </div>
 
-  <!-- Loremflickr ------------------------------------------------------------>
-  <% else %>
+  <% else %><!-- Loremflickr -------------------------------------------------->
     <img style="border-radius: 50%;"
          src="https://loremflickr.com/150/150/boy,girl/all" alt="Profile Pic">
   <% end %>
@@ -43,19 +41,43 @@
       <p><em>
         You did not provide any description yet.<br>
         Please <strong>tell us about yourself</strong>!
-        <!-- Please <strong>edit</strong> your profile and add some info about yourself -->
       </em></p>
     <% end %>
   </p>
 
-  <!-- STUDENT - EDIT btn ----------------------------------------------------->
+  <!-- TUTOR - EDIT btn ------------------------------------------------------->
   <% if current_user.is_a?(Tutor) && @tutor == current_tutor %>
     <%= link_to "Edit",edit_tutor_registration_path,class:"btn btn-warning"%>
   <% end %>
 
+<!-- IDENTITY ----------------------------------------------------------------->
+  <% if current_tutor == @tutor  %>
+
+    <% if @tutor.identity.present? %><!-- Show ID ----------------------------->
+      <%= link_to "Show Identity",tutor_identity_path(@tutor),
+          class:"btn btn-primary" %>
+
+    <% else %><!-- Add ID ----------------------------------------------------->
+      <%= link_to "Add Identity",new_tutor_identity_path(@tutor),
+          class:"btn btn-primary" %>
+    <% end %>
+
+  <% end %>
+
+<!-- DOCUMENTS ---------------------------------------------------------------->
+  <% if current_tutor == @tutor  %>
+
+    <%= link_to "Add Document", new_tutor_document_path(@tutor),
+        class:"btn btn-success" %>
+    <%= link_to "Show Documents", tutor_documents_path(@tutor),
+        class:"btn btn-success" if @tutor.documents.present? %>
+
+  <% end %>
+
+  <br>
   <br>
 <!-- REVIEWS ------------------------------------------------------------------>
-  <%=link_to "Add Review",new_tutor_review_path(@tutor),class:"btn btn-primary"%>
+  <%=link_to "Add Review",new_tutor_review_path(@tutor),class:"btn btn-success"%>
 
   <% if @tutor.reviews.present? %>
     <h3>Reviews:</h3>
@@ -89,25 +111,34 @@
     </div><!-- /row -->
 
   <% else %><!-- No reviews --------------------------------------------------->
-    <p><em>No reviews yet...</em></p>
+    <p style="opacity: .7"><em>No reviews yet...</em></p>
   <% end %>
 
   <br>
   <br>
 
 <!-- FAVOURITE Students ------------------------------------------------------->
-  <% if current_user.is_a?(Tutor) && @tutor == current_tutor %>
+  <% if current_user.is_a?(Tutor) && @tutor == current_tutor &&
+        @tutor.lessons %>
     <% @tutor.lessons.each do |lesson| %>
 
       <hr class="style18">
       <div style="display:flex; justify-content:space-around; padding:5%;">
 
         <div><!-- Link student Img -------------------------------------------->
-          <%= link_to (cl_image_tag(lesson.student.photo.url(:bright_face_small))),student_path(lesson.student)%>
+        <% if lesson.student.nil? %>
+          <i class="fas fa-user-graduate" style="font-size:3em;opacity:.3"></i>
+
+        <% else %>
+          <%= link_to (cl_image_tag(lesson.student.photo.url(:bright_face_small))),student_path(lesson.student) %>
+
+        <% end %>
         </div>
 
         <div><!-- lesson Title ------------------------------------------------>
-          <p><strong><%= lesson.title %></strong></p>
+          <p><strong>
+            <%= link_to lesson.title, lesson_path(lesson) %>
+          </strong></p>
         </div>
 
         <div><!-- lesson Date + Status ---------------------------------------->
@@ -123,30 +154,6 @@
       </div>
 
     <% end %>
-  <% end %>
-
-<!-- IDENTITY ----------------------------------------------------------------->
-  <% if current_tutor == @tutor  %>
-
-    <% if @tutor.identity.present? %><!-- Show ID ----------------------------->
-      <%= link_to "Show Identity",tutor_identity_path(@tutor),
-          class:"btn btn-primary" %>
-
-    <% else %><!-- Add ID ----------------------------------------------------->
-      <%= link_to "Add Identity",new_tutor_identity_path(@tutor),
-          class:"btn btn-primary" %>
-    <% end %>
-
-  <% end %>
-
-<!-- DOCUMENTS ---------------------------------------------------------------->
-  <% if current_tutor == @tutor  %>
-
-    <%= link_to "Add Document", new_tutor_document_path(@tutor),
-        class:"btn btn-success" %>
-    <%= link_to "Show Documents", tutor_documents_path(@tutor),
-        class:"btn btn-success" if @tutor.documents.present? %>
-
   <% end %>
 
 </div>

@@ -4,6 +4,27 @@ Category.destroy_all
 Tutor.destroy_all
 Student.destroy_all
 
+
+Tutor.create(
+  email: "tutor@test.com",
+  password: "tutor@test.com",
+  first_name: "Mario",
+  last_name: "Tutorelli",
+  phone: Faker::PhoneNumber.cell_phone,
+  bio: Faker::RickAndMorty.quote,
+  birthdate: Faker::Date.birthday(25, 65)
+)
+
+Student.create(
+  email: "student@test.com",
+  password: "student@test.com",
+  first_name: "Luca",
+  last_name: "Studentini",
+  phone: Faker::PhoneNumber.cell_phone,
+  bio: Faker::RickAndMorty.quote,
+  birthdate: Faker::Date.birthday(12, 30)
+)
+
 # U S E R S - Student Tutor ////////////////////////////////////////////////////
 puts "Creating Users"
 20.times do

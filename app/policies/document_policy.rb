@@ -5,10 +5,6 @@ class DocumentPolicy < ApplicationPolicy
     end
   end
 
-  def index?
-    true
-  end
-
   def show?
     user == record.tutor
   end
