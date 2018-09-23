@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
   before_action :find_student, only: [ :show, :edit, :update ]
 
   def index
-    @students = Student.all
+    @students = policy_scope(Student)
   end
 
   def show

@@ -11,7 +11,7 @@
 <!-- O R D E R S -------------------------------------------------------------->
 <% if current_student && current_student.orders.count > 0 %>
   <%= link_to "My Orders", orders_path, class:"btn btn-secondary" %>
-<% else %>
+<% elsif current_student && current_student.orders.count.zero?%>
   <div class="btn btn-danger">No Orders..</div>
 <% end %>
 
@@ -28,12 +28,12 @@
     <h4>Name: <%= current_tutor.last_name.capitalize %> <%= current_tutor.first_name.capitalize %></h4>
   <% end %>
 
-  <!-- Image-->
-  <% if current_tutor.image_fb  %> <!--  Facebook IMG -->
-    <div><%= image_tag current_tutor.image_fb + "?type=small"  %></div>
-  <% else %> <!-- Cloudinary IMG  -->
-    <div><%= cl_image_tag current_tutor.photo.url(:bright_face) %></div>
-  <% end %>
+<!-- Image-->
+<%# if current_tutor.image_fb  %> <!--  Facebook IMG -->
+  <!-- <div><%#= image_tag current_tutor.image_fb + "?type=small"  %></div> -->
+<%# else %> <!-- Cloudinary IMG  -->
+  <!-- <div><%#= cl_image_tag current_tutor.photo.url(:bright_face) %></div> -->
+<%# end %>
 
 <!-- S T U D E N T ------------------------------------------------------------>
 <% elsif current_student %>
@@ -91,6 +91,17 @@
           <% end %>
 
         <% else %><!-- Student name ------------------------------------------->
+
+          <!-- Image-->
+          <% if lesson.student.image_fb  %>  <!--  Facebook IMG -->
+            <div><%= image_tag lesson.student.image_fb + "?type=small"  %></div>
+
+          <% else %> <!-- Cloudinary IMG  -->
+            <div>
+              <%= link_to (cl_image_tag lesson.student.photo.url(:bright_face_small)),student_path(lesson.student)%>
+            </div>
+          <% end %>
+
           <% if lesson.student.name %><!-- Facebook name -->
             Student: <%= link_to lesson.student.name,student_path(lesson.student)%>
           <% else %>

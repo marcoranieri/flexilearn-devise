@@ -3,7 +3,7 @@ class TutorsController < ApplicationController
   before_action :find_tutor, only: [ :new, :show, :edit, :update ]
 
   def index
-    @tutors = Tutor.all
+    @tutors = policy_scope(Tutor)
   end
 
   def show

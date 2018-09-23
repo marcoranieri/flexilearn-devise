@@ -43,7 +43,6 @@
       <p><em>
         You did not provide any description yet.<br>
         Please <strong>tell us about yourself</strong>!
-        <!-- Please <strong>edit</strong> your profile and add some info about yourself -->
       </em></p>
     <% end %>
   </p>
@@ -57,22 +56,31 @@
   <br>
 
 <!-- FAVOURITE Tutors --------------------------------------------------------->
-  <% if current_user.is_a?(Student) && @student == current_student %>
+  <% if current_user.is_a?(Student) && @student == current_student &&
+        @student.lessons %>
     <% @student.lessons.each do |lesson| %>
 
       <hr class="style18">
       <div style="display:flex;justify-content:space-around;padding: 5%;">
 
-        <div><!-- tutor Img --------------------------------------------------->
-          <%= link_to (cl_image_tag(lesson.tutor.photo.url(:bright_face_small))),tutor_path(lesson.tutor)%>
+        <div><!-- Link Tutor Img ---------------------------------------------->
+        <% if lesson.tutor.nil? %>
+          <i class="fas fa-chalkboard-teacher" style="font-size:3em;opacity:.3"></i>
+
+        <% else %>
+          <%= link_to (cl_image_tag(lesson.tutor.photo.url(:bright_face_small))),tutor_path(lesson.tutor) %>
+
+        <% end %>
         </div>
 
-        <div><!-- lesson Title ------------------------------------------------>
-          <p><strong><%= lesson.title %></strong></p>
+        <div><!-- Lesson Title ------------------------------------------------>
+          <p><strong>
+            <%= link_to lesson.title, lesson_path(lesson) %>
+          </strong></p>
         </div>
 
-        <div><!-- lesson Date + Status ---------------------------------------->
-          <p><%= lesson.date %></p>
+        <div><!-- Lesson Date + Status ---------------------------------------->
+          <p><%= lesson.date.strftime("%a, %e %b %Y") %></p>
 
           <% color = "darkorange" if lesson.status == "requested" %>
           <% color = "cadetblue"  if lesson.status == "scheduled" %>

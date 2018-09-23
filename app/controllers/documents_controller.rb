@@ -4,13 +4,7 @@ class DocumentsController < ApplicationController
     before_action :set_tutor, only: [ :index, :show, :edit, :update, :destroy ]
 
   def index
-
     @documents = policy_scope(Document).where(" tutor_id = ?", params[:tutor_id])
-    # if current_user.is_a? Admin
-    #   @documents = policy_scope(Document).where(student: current_user).order(created_at: :desc)
-    # else
-    #   @documents = policy_scope(Document).where(tutor: current_user).order(created_at: :desc)
-    # end
   end
 
   def show
@@ -43,7 +37,7 @@ class DocumentsController < ApplicationController
   def update
     respond_to do | format |
       if @document.update(document_params)
-        format.html { redirect_to tutor_documents_url, notice: 'Document was successfully updated.' }
+        format.html { redirect_to @document.tutor, notice: 'Document was successfully updated.' }
         format.json { render :show, status: :ok, location: @document }
       else
         format.html { render :edit }
@@ -55,7 +49,7 @@ class DocumentsController < ApplicationController
   def destroy
     @document.destroy
     respond_to do | format |
-      format.html { redirect_to tutor_documents_url, alert: 'Document was successfully destroyed.' }
+      format.html { redirect_to @document.tutor, alert: 'Document was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

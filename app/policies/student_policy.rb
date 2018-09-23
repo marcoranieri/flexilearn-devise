@@ -6,6 +6,7 @@ class StudentPolicy < ApplicationPolicy
   end
 
   def show?
-    user.id == record.id
+    return true if user.id == record.id
+    return true if user.is_a?(Tutor) && user.lessons.find(student_id = record.id)
   end
 end
