@@ -32,6 +32,11 @@ gem 'money-rails', '~> 1.11'
 #Payment
 gem 'stripe', '~> 3.21'
 
+#Active ADMIN
+gem 'activeadmin', '~> 1.3', '>= 1.3.1'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'active_admin_theme'
+
 #Debug
 gem 'pry'
 gem 'better_errors'

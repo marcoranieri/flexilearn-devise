@@ -11,7 +11,7 @@ class TutorPolicy < ApplicationPolicy
 
   def show?
     return true if user.id == record.id
-    return true if user.is_a?(Tutor) && user.lessons.find(student_id = record.id)
+    return true if (user.lessons.pluck(:id) & record.lessons.pluck(:id)) != []
   end
 
   def create?
@@ -27,3 +27,7 @@ class TutorPolicy < ApplicationPolicy
   end
 
 end
+
+# ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+#          ▀█▄▀▄▀██████ ▀█▄▀▄▀████▀
+#            ▀█▄█▄███▀   ▀██▄█▄█▀﻿

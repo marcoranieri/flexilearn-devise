@@ -17,6 +17,10 @@ class Tutor < ApplicationRecord
 
   has_one :identity
 
+  # For use nested form in ActiveAdmin
+  accepts_nested_attributes_for :reviews
+  accepts_nested_attributes_for :lessons
+
   # validates :password, presence: true
   # validates :email, presence: true, uniqueness: true
   # validates :phone, presence: true, uniqueness: true
