@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  ActiveAdmin.routes(self)
   #get 'pages/login'
   devise_for :students, :controllers => { :omniauth_callbacks => "callbacks" }
   devise_for :tutors

@@ -1,10 +1,12 @@
 puts "* Deleting Seeds *"
 Lesson.destroy_all
 Category.destroy_all
+Document.destroy_all
+Identity.destroy_all
 Tutor.destroy_all
 Student.destroy_all
 
-
+puts "Tutor: tutor@test.com => A D M I N"
 Tutor.create(
   email: "tutor@test.com",
   password: "tutor@test.com",
@@ -12,7 +14,8 @@ Tutor.create(
   last_name: "Tutorelli",
   phone: Faker::PhoneNumber.cell_phone,
   bio: Faker::RickAndMorty.quote,
-  birthdate: Faker::Date.birthday(25, 65)
+  birthdate: Faker::Date.birthday(25, 65),
+  admin: true
 )
 
 Student.create(

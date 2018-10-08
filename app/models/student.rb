@@ -13,6 +13,9 @@ class Student < ApplicationRecord
   has_many :reviews, through: :tutors
   has_many :orders
 
+  # For use nested form for lessons in ActiveAdmin
+  accepts_nested_attributes_for :lessons
+
   # validates :password, presence: true
   # validates :email, presence: true, uniqueness: true
   # validates :phone, presence: true, uniqueness: true
