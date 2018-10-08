@@ -1,6 +1,9 @@
 ActiveAdmin.register Lesson do
 
-permit_params :title, :request, :date, :time, :location, :status, :notes, :tutor_notes, :private, :category, :photo
+permit_params :title, :request, :date, :time, :location, :status, :notes,
+              :tutor_notes, :private, :category, :photo
+
+actions :all, except: [:new]
 
 # Columns in INDEX table ------------------------------------------------------>
   index do
@@ -8,27 +11,29 @@ permit_params :title, :request, :date, :time, :location, :status, :notes, :tutor
     column :id
     column :student do |lesson|
       if lesson.student.present?
-        link_to lesson.student.last_name, admin_student_path(lesson.student)
+        link_to "#{lesson.student.first_name} #{lesson.student.last_name}",
+                admin_student_path(lesson.student)
       else
         status_tag('Empty')
       end
     end
     column :tutor do |lesson|
       if lesson.tutor.present?
-        link_to lesson.tutor.last_name, admin_tutor_path(lesson.tutor)
+        link_to "#{lesson.tutor.first_name} #{lesson.tutor.last_name}",
+                admin_tutor_path(lesson.tutor)
       else
         status_tag('Empty')
       end
     end
-    column :title
     column :category
+    column :title
     column :date
-    column :status
-    column :private
+    column :status do |l|
+      b l.status
+    end
+    column :price_cents
     column :created_at
     column :updated_at
-    column :price_cents
-    column :photo
     actions
   end
 
@@ -37,24 +42,29 @@ permit_params :title, :request, :date, :time, :location, :status, :notes, :tutor
     attributes_table do
     row :student do |lesson|
       if lesson.student.present?
-        link_to lesson.student.last_name, admin_student_path(lesson.student)
+        link_to "#{lesson.student.first_name} #{lesson.student.last_name}",
+                admin_student_path(lesson.student)
       else
         status_tag('Empty')
       end
     end
     row :tutor do |lesson|
       if lesson.tutor.present?
-        link_to lesson.tutor.last_name, admin_tutor_path(lesson.tutor)
+        link_to "#{lesson.tutor.first_name} #{lesson.tutor.last_name}",
+                admin_tutor_path(lesson.tutor)
       else
         status_tag('Empty')
       end
     end
+      row :status do |l|
+        b l.status.capitalize
+      end
       row :title
+      row :category
       row :request
       row :date
       row :time
       row :location
-      row :status
       row :notes
       row :tutor_notes
       row :photo
@@ -130,7 +140,7 @@ permit_params :title, :request, :date, :time, :location, :status, :notes, :tutor
   filter :request
   filter :date
   filter :location
-  filter :status
+  filter :status, label: 'STATUS: 0 (request), 1 (scheduled), 2 (completed), 3 (canceled)'
   filter :created_at
   filter :updated_at
   filter :price_cents

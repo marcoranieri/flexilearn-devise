@@ -17,3 +17,6 @@
 //   .status_tag { background: #6090DB; }
 
 @import "wigu/active_admin_theme";
+
+ul {list-style: none;margin-left:-1%;border-left:1px dashed darkgrey}
+// li {font-size: 1.1em}

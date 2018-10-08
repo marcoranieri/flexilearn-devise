@@ -1,6 +1,6 @@
 ActiveAdmin.register Tutor do
 
-  permit_params :admin, :first_name, :last_name, :email, :phone
+  permit_params :admin, :first_name, :last_name, :email, :phone, :bio
 
 # Columns in INDEX table  ----------------------------------------------------->
   index do
@@ -14,6 +14,9 @@ ActiveAdmin.register Tutor do
     column :sign_in_count
     column :last_sign_in_at
     column :phone
+    column :reviews do |tutor|
+      tutor.reviews.count
+    end
     column :admin
     actions
   end
@@ -22,10 +25,20 @@ ActiveAdmin.register Tutor do
   show do |event|
     attributes_table do
       row :id
+      row :identity
       row :first_name
       row :last_name
       row :email
       row :name
+      row :categories do |t|
+        if t.categories.present?
+          t.categories.map do |c|
+            link_to c.name, admin_category_path(c)
+          end
+        else
+          status_tag('Empty')
+        end
+      end
       row :sign_in_count
       row :last_sign_in_at
       row :phone
@@ -33,11 +46,46 @@ ActiveAdmin.register Tutor do
       row :admin
       row :created_at
       row :updated_at
+
+      row :documents do |tutor|
+        if tutor.documents.present?
+          b "This tutor has in total #{tutor.documents.count} document(s)"
+          ul do
+            tutor.documents.map do |document|
+              li h4 b link_to("#{document.name}",
+                              admin_tutor_document_path(tutor.id,document))
+              li "Institute: #{document.institute}"
+              li "Qualification: #{document.qualification}"
+              li b em small ""
+              li "- - - - - - - - - - - - - § - - - - - - - - - - - - - -"
+            end
+          end
+        else
+          status_tag('Empty')
+        end
+      end
+
+      row :reviews do |tutor|
+        if tutor.reviews.present?
+          b "This tutor has in total #{tutor.reviews.count} review(s)"
+          ul do
+            tutor.reviews.map do |review|
+              li h4 b link_to("#{review.title}",
+                              admin_tutor_review_path(tutor.id,review))
+              li "#{review.content}"
+              li b em small "#{Student.find(review.reviewer_id).first_name}
+                             #{Student.find(review.reviewer_id).last_name} |
+                             Rating: #{review.rating} / 5"
+              li "- - - - - - - - - - - - - § - - - - - - - - - - - - - -"
+            end
+          end
+        else
+          status_tag('Empty')
+        end
+      end
     end
     active_admin_comments
   end
-
-
 
 # Form Field #NEW  ------------------------------------------------------------>
   form do |f|
@@ -52,7 +100,6 @@ ActiveAdmin.register Tutor do
       f.input :photo
     end
 # Form Field ADMIN ------------------------------------------------------------>
-
     f.inputs "Admin" do
       f.input :admin
     end
@@ -95,4 +142,5 @@ ActiveAdmin.register Tutor do
   filter :created_at
   filter :last_sign_in_at
   filter :sign_in_count
+  filter :admin
 end

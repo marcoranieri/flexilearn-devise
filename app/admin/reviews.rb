@@ -1,6 +1,7 @@
 ActiveAdmin.register Review do
 
-permit_params :title, :content, :rating
+  belongs_to :tutor
+  permit_params :title, :content, :rating
 
 # Columns in INDEX table ------------------------------------------------------>
   index do
@@ -8,7 +9,6 @@ permit_params :title, :content, :rating
     column :id
     column :title
     column :content
-
     column :rating
     column :tutor do |review|
       if review.tutor.present?
@@ -19,7 +19,8 @@ permit_params :title, :content, :rating
     end
     column :reviewer do |review|
       if review.reviewer_id.present?
-        link_to Student.find(review.reviewer_id).last_name, admin_student_path(Student.find(review.reviewer_id))
+        link_to Student.find(review.reviewer_id).last_name,
+                admin_student_path(Student.find(review.reviewer_id))
       else
         status_tag('Empty')
       end
@@ -39,14 +40,17 @@ permit_params :title, :content, :rating
       row :updated_at
       row :tutor do |review|
         if review.tutor.present?
-          link_to review.tutor.last_name, admin_tutor_path(review.tutor)
+          link_to("#{review.tutor.first_name} #{review.tutor.last_name}",
+                  admin_tutor_path(review.tutor))
         else
           status_tag('Empty')
         end
       end
       row :reviewer do |review|
         if review.reviewer_id.present?
-          link_to Student.find(review.reviewer_id).last_name, admin_student_path(Student.find(review.reviewer_id))
+          link_to("#{Student.find(review.reviewer_id).first_name}
+                   #{Student.find(review.reviewer_id).last_name}",
+                  admin_student_path(Student.find(review.reviewer_id)))
         else
           status_tag('Empty')
         end
@@ -67,7 +71,7 @@ permit_params :title, :content, :rating
   end
 
   preserve_default_filters! # DEAFAULT filters too
-  filter :tutor_id , as: :select, collection: Tutor.all.map(&:last_name)
+  # filter :tutor_id , as: :select, collection: Tutor.all.map(&:last_name)
   # filter :tutor, label: "marcoTutotor", collection: -> {
   #   Tutor.all.map { |dev| dev.last_name }.sort
   # }
