@@ -20,13 +20,10 @@
         <%= f.input :expired, as: :date, html5: true, discard_day: true,
             order: [:month, :year], start_year: Date.today.year,
             end_year: Date.today.year + 25 %>
-        <%= f.input :nationality, placeholder: "Insert Nationality",
-            input_html: { style: 'width: 100%;' } %>
+        <%= f.input :nationality, as: :country,
+                    input_html: { :style=> 'width: 100%;' } %>
         <%= f.input :photo %><%= f.input :photo_cache, as: :hidden %>
 
-        <!-- ADMIN ------------------------------------------------------------>
-        <%#= f.input :notes, placeholder: "Admin's notes",
-            input_html: { :style=> 'width: 100%;', :rows => 5 } %>
         <br>
         <%= f.submit "Add Document", class:"btn btn-primary" %>
 

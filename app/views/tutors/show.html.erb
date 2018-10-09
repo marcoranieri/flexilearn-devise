@@ -45,10 +45,12 @@
     <% end %>
   </p>
 
-  <!-- TUTOR - EDIT btn ------------------------------------------------------->
+  <!-- EDIT btn - Profile TUTOR ----------------------------------------------->
   <% if current_user.is_a?(Tutor) && @tutor == current_tutor %>
     <%= link_to "Edit",edit_tutor_registration_path,class:"btn btn-warning"%>
   <% end %>
+  <br>
+  <br>
 
 <!-- IDENTITY ----------------------------------------------------------------->
   <% if current_tutor == @tutor  %>
@@ -63,6 +65,8 @@
     <% end %>
 
   <% end %>
+  <br>
+  <br>
 
 <!-- DOCUMENTS ---------------------------------------------------------------->
   <% if current_tutor == @tutor  %>

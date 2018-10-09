@@ -22,7 +22,7 @@
             input_html: { :style=> 'width: 100%;' } %>
         <%= f.input :expired, as: :date, html5: true,
             input_html: { value: 5.years.from_now.strftime('%Y-%m-%d').to_s } %>
-        <%= f.input :nationality, placeholder: "Insert Nationality",
+  <%= f.input :nationality, as: :country,
             input_html: { :style=> 'width: 100%;' } %>
         <%= f.input :photo %><%= f.input :photo_cache, as: :hidden %>
 
