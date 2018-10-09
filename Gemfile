@@ -37,6 +37,8 @@ gem 'activeadmin', '~> 1.3', '>= 1.3.1'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'active_admin_theme'
 
+#Nationality
+gem 'country_select', '~> 3.1', '>= 3.1.1'
 #Debug
 gem 'pry'
 gem 'better_errors'
