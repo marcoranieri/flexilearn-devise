@@ -40,7 +40,7 @@
         <p><%= @student.bio %></p>
       </div>
     <% else %>
-      <p><em>
+      <p style="opacity: .7"><em>
         You did not provide any description yet.<br>
         Please <strong>tell us about yourself</strong>!
       </em></p>
@@ -61,7 +61,7 @@
     <% @student.lessons.each do |lesson| %>
 
       <hr class="style18">
-      <div style="display:flex;justify-content:space-around;padding: 5%;">
+      <div style="display:flex;justify-content:space-between;padding: 5%;">
 
         <div><!-- Link Tutor Img ---------------------------------------------->
         <% if lesson.tutor.nil? %>

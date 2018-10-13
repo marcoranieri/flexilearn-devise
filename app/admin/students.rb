@@ -15,7 +15,7 @@ ActiveAdmin.register Student do
     column :last_sign_in_at
     column :phone
     column :reviews do |student|
-      Review.all.select{|r| r.reviewer_id == student.id}.count
+      Review.all.select{|r| r.student.id == student.id}.count
     end
     actions
   end
@@ -36,15 +36,16 @@ ActiveAdmin.register Student do
       row :created_at
       row :updated_at
       row :reviews do |student|
-        student_reviews = Review.all.select{|r| r.reviewer_id == student.id}
+        student_reviews = Review.all.select{|r| r.student.id == student.id}
         if student_reviews.present?
           b "This student wrote in total #{student_reviews.count} review(s)"
           ul do
             student_reviews.map do |review|
+
               li h4 b link_to("#{review.title}", admin_tutor_review_path(review.tutor,review))
               li "#{review.content}"
-              li b em small "#{Tutor.find(review.tutor.id).first_name}
-                             #{Tutor.find(review.tutor.id).last_name} |
+              li b em small "#{review.tutor.first_name}
+                             #{review.tutor.last_name} |
                              Rating: #{review.rating} / 5"
               li "- - - - - - - - - - - - - § - - - - - - - - - - - - - -"
             end

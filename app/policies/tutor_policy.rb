@@ -15,7 +15,7 @@ class TutorPolicy < ApplicationPolicy
   end
 
   def create?
-    user == record.id
+    #user.lessons.pluck(:tutor_id).include?(record.id)
   end
 
   def update?

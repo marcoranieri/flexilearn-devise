@@ -9,6 +9,7 @@ class Student < ApplicationRecord
   mount_uploader :photo, PhotoUploader
 
   has_many :lessons
+  has_many :reviews
   has_many :tutors, through: :lessons
   has_many :reviews, through: :tutors
   has_many :orders

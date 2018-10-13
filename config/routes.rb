@@ -13,7 +13,10 @@ Rails.application.routes.draw do
     resources :identities
   end
 
-  resources :students
+  resources :students do
+    resources :reviews, only: [:new, :create]
+  end
+
   resources :lessons
   resources :categories
 

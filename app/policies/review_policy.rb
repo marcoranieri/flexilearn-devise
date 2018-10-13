@@ -5,6 +5,10 @@ class ReviewPolicy < ApplicationPolicy
     end
   end
 
+  def new?
+    user
+  end
+
   def create?
     user
   end

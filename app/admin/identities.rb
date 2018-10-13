@@ -3,7 +3,7 @@ ActiveAdmin.register Identity do
   permit_params :name, :document_type, :document_number, :expired, :nationality,
                 :notes, :photo
 
-actions :all, except: [:new]
+  actions :all, except: [:new]
 
 # Columns in INDEX table ------------------------------------------------------>
   index do
@@ -17,7 +17,6 @@ actions :all, except: [:new]
     column :document_number
     column :expired
     column :nationality
-    column :notes
     column :created_at
     column :updated_at
     actions
