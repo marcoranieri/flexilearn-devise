@@ -19,8 +19,8 @@ ActiveAdmin.register Review do
     end
     column :reviewer do |review|
       if review.reviewer_id.present?
-        link_to Student.find(review.reviewer_id).last_name,
-                admin_student_path(Student.find(review.reviewer_id))
+        link_to review.student.last_name,
+                admin_student_path(review.student)
       else
         status_tag('Empty')
       end
@@ -48,9 +48,9 @@ ActiveAdmin.register Review do
       end
       row :reviewer do |review|
         if review.reviewer_id.present?
-          link_to("#{Student.find(review.reviewer_id).first_name}
-                   #{Student.find(review.reviewer_id).last_name}",
-                  admin_student_path(Student.find(review.reviewer_id)))
+          link_to("#{review.student.first_name}
+                   #{review.student.last_name}",
+                  admin_student_path(review.student))
         else
           status_tag('Empty')
         end

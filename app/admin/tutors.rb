@@ -73,8 +73,8 @@ ActiveAdmin.register Tutor do
               li h4 b link_to("#{review.title}",
                               admin_tutor_review_path(tutor.id,review))
               li "#{review.content}"
-              li b em small "#{Student.find(review.reviewer_id).first_name}
-                             #{Student.find(review.reviewer_id).last_name} |
+              li b em small "#{review.student.first_name}
+                             #{review.student.last_name} |
                              Rating: #{review.rating} / 5"
               li "- - - - - - - - - - - - - § - - - - - - - - - - - - - -"
             end

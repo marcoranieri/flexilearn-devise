@@ -117,11 +117,13 @@ end
     title: Faker::Lorem.sentence,
     content: Faker::Community.quotes,
     rating: rand(1..5),
-    reviewer_id: rand(Student.first.id..Student.last.id)
   )
 
   tut = Tutor.find(rand(Tutor.first.id..Tutor.last.id))
   r.tutor = tut
+
+  stu = Student.find(rand(Student.first.id..Student.last.id))
+  r.student = stu
 
   r.save!
 end

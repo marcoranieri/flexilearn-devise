@@ -12,10 +12,12 @@ ActiveAdmin.register_page "Dashboard" do
 
     # Here is an example of a simple dashboard with columns and panels.
     #
-    columns do
-      column do
-        panel b "Recent TUTORS" do
+    columns :class => 'dashboard' do
+      column  :class => 'panel'do
+
+        panel b do
           ul do
+            h3 b "Most recent TUTORS:"
             Tutor.last(7).reverse.map do |tutor|
               li b link_to("#{tutor.first_name} #{tutor.last_name}",
                         admin_tutor_path(tutor))
@@ -25,8 +27,10 @@ ActiveAdmin.register_page "Dashboard" do
             end
           end
           end
-        panel b "Recent STUDENTS" do
+
+        panel b do
           ul do
+            h3 b "Most recent STUDENTS:"
             Student.last(7).reverse.map do |student|
               li b link_to("#{student.first_name} #{student.last_name}",
                         admin_student_path(student))
@@ -36,8 +40,10 @@ ActiveAdmin.register_page "Dashboard" do
             end
           end
           end
-        panel b "Recent LESSONS" do
+
+        panel b do
           ul do
+            h3 b "Most recent LESSONS:"
             Lesson.last(7).reverse.map do |lesson|
               li b link_to("#{lesson.category.name} - #{lesson.title}",
                         admin_lesson_path(lesson))
@@ -48,24 +54,26 @@ ActiveAdmin.register_page "Dashboard" do
               li em "Created at #{lesson.created_at.strftime("%e %b %Y")}"
               br
               end
+          end
         end
-      end
-        panel b "Recent REVIEWS" do
+
+        panel b do
           ul do
+            h3 b "Most recent REVIEWS:"
             Review.last(7).reverse.map do |review|
-              li b "Title: #{review.title}"
-              li b link_to("> Tutor: #{review.tutor.first_name} #{review.tutor.last_name}",
+              li b link_to("> TUTOR: #{review.tutor.first_name} #{review.tutor.last_name}",
                           admin_tutor_path(review.tutor))
-              li b link_to("> Student: #{Student.find(review.reviewer_id).first_name} #{Student.find(review.reviewer_id).last_name}",
-                          admin_student_path(Student.find(review.reviewer_id)))
+              li b link_to("> Student: #{review.student.first_name} #{review.student.last_name}",
+                          admin_student_path(review.student))
+              li b "Title: #{review.title}"
               li "Content: #{review.content}"
               li em "Rating: #{review.rating} / 5"
               li em "Created at: #{review.created_at.strftime("%e %b %Y")}"
               br
               end
+          end
         end
       end
-    end
 
     #   column do
     #     panel "Info" do

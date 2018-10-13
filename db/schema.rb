@@ -110,13 +110,14 @@ ActiveRecord::Schema.define(version: 2018_09_23_164429) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.bigint "tutor_id"
     t.string "title"
     t.text "content"
     t.integer "rating"
-    t.integer "reviewer_id"
+    t.bigint "tutor_id"
+    t.bigint "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_reviews_on_student_id"
     t.index ["tutor_id"], name: "index_reviews_on_tutor_id"
   end
 
@@ -198,5 +199,6 @@ ActiveRecord::Schema.define(version: 2018_09_23_164429) do
   add_foreign_key "lessons", "tutors"
   add_foreign_key "orders", "lessons"
   add_foreign_key "orders", "students"
+  add_foreign_key "reviews", "students"
   add_foreign_key "reviews", "tutors"
 end
