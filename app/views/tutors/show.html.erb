@@ -125,7 +125,7 @@
 <!-- FAVOURITE Students ------------------------------------------------------->
   <% if current_user.is_a?(Tutor) && @tutor == current_tutor &&
         @tutor.lessons %>
-    <% @tutor.lessons.each do |lesson| %>
+    <% @tutor.lessons.reverse.each do |lesson| %>
 
       <hr class="style18">
       <div style="display:flex; justify-content:space-between; padding:5%;">
