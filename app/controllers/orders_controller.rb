@@ -1,8 +1,14 @@
 class OrdersController < ApplicationController
   before_action :set_lesson, only: [:create, :show]
 
+
+
+skip_after_action :verify_authorized
+
+
+
   def index
-    @orders = current_student.orders
+    @orders = policy_scope(Order)
   end
 
   def create
