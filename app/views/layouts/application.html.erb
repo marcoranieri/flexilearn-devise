@@ -10,11 +10,17 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
   <!-- IMPORT BOOTSTRAP 4.1.0 -->
-  <!-- ( just for initial boost ;D )-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
+  <%= action_cable_meta_tag %>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_pack_tag 'application' %> <!-- Webpack -->
+
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application' %> <!-- Webpack -->
+
   <!-- Favicon -->
   <%= favicon_link_tag 'flexilearn-logo.png' %>
 
@@ -31,8 +37,8 @@
     <%= yield %>
   </div>
 
+
   <!-- Turbolinks works better with ASYNC -->
-  <%= javascript_include_tag 'application', async: true  %>
   <%#= javascript_pack_tag 'application' %>
 </body>
 </html>

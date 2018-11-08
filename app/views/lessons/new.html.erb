@@ -24,8 +24,8 @@
             input_html: { :style=> 'width: 100%;', :rows => 5 } %>
         <%= f.input :location, placeholder: "Where do you wanna meet him/her?",
             input_html: { :style=> 'width: 100%;' } %>
-        <%= f.input :date, as: :date, html5: true,
-            input_html: { value: Date.today.strftime('%Y-%m-%d').to_s } %>
+        <%= f.input :date, as: :string, html5: true,
+            input_html: { value: Date.today.strftime('%Y-%m-%d').to_s, class: "datepicker"} %>
         <%= f.input :time, as: :time, html5: true,
             input_html: { value: Time.now.strftime('%H:%M').to_s } %>
         <%= f.label "Private_lesson"  %><%= f.check_box :private %>
