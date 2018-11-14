@@ -15,6 +15,7 @@ gem 'omniauth-facebook'
 gem 'figaro'
 
 #IMG Hosting
+gem "rest-client", "2.0.1"
 gem 'cloudinary', '~> 1.9', '>= 1.9.1'
 # https://cloudinary.com/documentation/image_transformations#transformations_reference
 #<%= cl_image_tag("THE_IMAGE_ID_FROM_LIBRARY",
