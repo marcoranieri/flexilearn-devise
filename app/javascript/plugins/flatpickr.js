@@ -6,5 +6,9 @@ console.log("file is loaded")
 
 window.onload = function(e){
   console.log("window content is loaded")
-  flatpickr(".datepicker", {})
+
+  flatpickr(".datepicker", {
+    minDate: "today",
+    disableMobile: true
+  });
 }

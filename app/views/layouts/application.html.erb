@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <title>Flexi Learn | <%= yield(:title) %></title>
+
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+
+<!-- PWA iOs / Android -------------------------------------------------------->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Flexi Learn">
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+<!-- PWA iOs / Android -------------------------------------------------------->
 
   <!-- IMPORT Font Awesome - Open Sans-->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
@@ -14,7 +31,7 @@
 
   <%= action_cable_meta_tag %>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_pack_tag 'application' %> <!-- Webpack -->
 
 
