@@ -1,0 +1,20 @@
+// _footer.scss
+
+footer {
+  bottom:0;
+  left:0;
+  position: fixed;
+//  background: #eaeaea;
+  background: #fff;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  height: 8vh;
+  border-top: 2px solid darkgray;
+
+  p {
+    margin: 0 auto;
+  }
+}
