@@ -10,6 +10,7 @@ class LessonsController < ApplicationController
     else
       @lessons = policy_scope(Lesson).where(tutor: current_user).order(created_at: :desc)
     end
+
       authorize @lessons
   end
 

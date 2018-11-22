@@ -36,4 +36,13 @@ document.addEventListener("turbolinks:load", function() {
       container: document.querySelector('#search')
     });
   }
+
+  function clearNotice(){
+    $(".notice").animate({opacity:'0'}, 1500);
+  }
+
+  var ready = function() {
+     setTimeout(clearNotice, 1000);  //Flash fade
+  };
+
 })

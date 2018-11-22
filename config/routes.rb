@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
+
   #get 'pages/login'
   devise_for :students, :controllers => { :omniauth_callbacks => "callbacks" }
   devise_for :tutors
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
 
   resources :tutors do
     resources :reviews, only: [:new, :create]
@@ -32,5 +32,5 @@ Rails.application.routes.draw do
   # Index.ALL
   get '/all' => 'pages#all'
 
-  root to: "pages#all"
+  root to: "lessons#index"
 end
