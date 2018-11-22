@@ -39,6 +39,7 @@
   color: $flexi;
   min-height: 20vh;
   margin: -2% -4% !important;
+  padding:2%;
 }
 
 .info {
@@ -46,8 +47,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-//  font-size: .8em;
-  padding: 1%;
+  font-size: .8em;
+  padding: 2%;
   letter-spacing: 0 !important;
 
   #status {
@@ -60,9 +61,13 @@
   #day-week {
     font-weight: bold;
   }
+  #tutor-name {
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
   #tutor-icon {
     img {
-      height: 7vh;
+      height: 8vh;
     }
   }
 }
@@ -111,5 +116,29 @@
 @-webkit-keyframes preloader8 {
    0% {-webkit-transform: scale(0, 0);opacity:0.5;}
    100% {-webkit-transform: scale(1, 1);opacity:0;}
+}
+///////////////////////////////////////
+// CARD COLLAPSE///////////////////////
+.my-card{
+  transition-timing-function: ease-out;
+  overflow: hidden;
+}
+.my-expand{
+  transition: transform 300ms;
+  transition-timing-function: ease-in-out;
+}
+.flipped{
+  transform: rotate(180deg);
+}
+.big{
+  height: 400px;
+}
+.my-content{
+  margin: 5% -4%;
+  background: #fff;
+  transition: opacity 200ms;
+}
+.my-hidden{
+  opacity: 0;
 }
 ///////////////////////////////////////

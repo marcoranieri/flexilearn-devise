@@ -1,11 +1,14 @@
 <!-- index.html.erb -->
 
-<% if @lessons %>
+<% if @lessons.present? %>
 <!-- <div class="preloader8">
     <span></span>
     <span></span>
 </div> -->
-  <div class="small-card" style="background: #fff;">
+
+
+
+  <div class="small-card my-card"" style="background: #fff;">
     <div class="info left-info">
       <div id="status">
         SCHEDULE
@@ -18,13 +21,13 @@
       </div>
     </div>
     <div class="info center-info">
-      <div id="tutor-name">
+      <div id="tutor-name" class="text-center">
         Dr. Kusrt Waisman
       </div>
       <div id="category">
         Geography
       </div>
-      <div id="address">
+      <div id="address" class="text-center">
         0 emily club, new Tina, VS9897
       </div>
     </div>
@@ -35,11 +38,57 @@
       <div id="tutor-icon">
         <%= image_tag "tutorICON.png" %>
       </div>
-      <div id="expand-btn">
+      <div id="expand-btn" class="my-expand">
         <i class="fas fa-angle-down"></i>
       </div>
     </div>
   </div>
+
+<div id="hidden-card" class="my-content my-hidden">
+  Ciao PAPONE!
+</div>
+
+
+
+
+
+
+
+<!-- https://codepen.io/pjayaramli/pen/JeEwqE
+<div class="my-card">
+  I AM A CARD
+  <button class="my-expand"><i class="material-icons">
+V
+</i></button>
+  <p class="my-content my-hidden">Here is the stuff that lives inside the card.<p>
+</div> -->
+<script>
+// $(".expand").click(function(){
+//   $(".expand").toggleClass("flipped");
+//   $(".card").toggleClass("big");
+//   setTimeout(function(){
+//     $(".content").toggleClass("hidden");
+//   }, 200)
+// });
+
+  const btn     = document.querySelector(".my-expand");
+  const card    = document.querySelector(".my-card");
+  const content = document.querySelector(".my-content");
+
+  btn.addEventListener("click", function() {
+
+    btn.classList.toggle("flipped");
+    content.classList.toggle("big");
+
+    setTimeout(function(){
+      content.classList.toggle("my-hidden");
+    }, 200)
+
+  });
+
+</script>
+
+
 
 <% else %> <!-- NO LESSON  ---------------------------------------------------->
 
