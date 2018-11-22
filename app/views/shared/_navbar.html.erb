@@ -18,6 +18,8 @@
     <%= link_to student_path(current_student) do %>
       <i class="fas fa-user-graduate"></i>
     <% end %>
+  <% else %>
+    <%= link_to "signIN", login_path %>
   <% end %>
   </div>
 
