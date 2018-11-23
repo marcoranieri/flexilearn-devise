@@ -3,7 +3,8 @@
 
   <div class="log-out-icon">
   <% if current_student %>
-    <%= link_to destroy_student_session_path, method: :delete do %>
+    <%= link_to destroy_student_session_path, method: :delete,
+    data: { confirm: "Are you sure?" } do %>
       <i class="fas fa-sign-out-alt"></i>
     <% end %>
   <% end %>

@@ -29,6 +29,7 @@ body {
   overflow-x: hidden;
   color: #747681;
   letter-spacing: 4px;
+  padding-bottom: 50px;
 }
 
 hr.style18 {
@@ -38,6 +39,7 @@ hr.style18 {
   border-color: #8c8b8b;
   border-width: 1px 0 0 0;
   border-radius: 20px;
+  opacity: .2;
 }
 hr.style18:before {
   display: block;
@@ -48,4 +50,5 @@ hr.style18:before {
   border-color: #8c8b8b;
   border-width: 0 0 1px 0;
   border-radius: 20px;
+  opacity: .2;
 }
