@@ -101,11 +101,6 @@
 }
 
 #btn-plus {
-
-display: flex; // Centering Loader
-align-items:center;
-justify-content: center;
-
   position: fixed;
   bottom: 10%;
   right: 3%;
@@ -115,10 +110,6 @@ justify-content: center;
   img {
     width:25vw;
   }
-}
-#loader {
-  position: absolute;
-  bottom: 27%;
 }
 
 /////////////////////////////////////////////////////////
