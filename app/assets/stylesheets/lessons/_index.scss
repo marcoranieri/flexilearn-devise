@@ -111,6 +111,10 @@
     width:25vw;
   }
 }
+#frenk {
+  margin:0 auto;
+  width: 90vw;
+}
 
 /////////////////////////////////////////////////////////
 // PRELOADER ////////////////////////////////////////////
@@ -157,14 +161,16 @@
   transform: rotate(180deg);
 }
 .big{
-  height: 400px;
-  margin: 5% -4%;
+  height: auto;
+  //margin: 5% -4%;
 }
 .my-content{
   background: #fff;
   transition: opacity 200ms;
 }
 .my-hidden{
+  height: 0vh;
   opacity: 0;
+  margin: 5% -4%;
 }
 /////////////////////////////////////////////////////////
