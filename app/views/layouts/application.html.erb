@@ -49,13 +49,13 @@
 
 <body>
   <%#= render 'shared/flashes' %>
-  <%= render 'shared/navbar' %>
+  <%= render 'shared/navbar' unless @navigation %>
 
   <div class="container-fluid" style="margin-top:12vh;">
     <%= yield %>
   </div>
 
-  <%= render 'shared/footer' %>
+  <%= render 'shared/footer' unless @navigation %>
 
   <script src="https://cdn.jsdelivr.net/npm/places.js@1.13.0/dist/cdn/placesAutocompleteDataset.min.js"></script>
 

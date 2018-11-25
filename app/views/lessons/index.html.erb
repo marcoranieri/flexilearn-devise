@@ -233,11 +233,23 @@
 //   }, 200)
 // });
 
-  const btn     = document.querySelector(".my-expand");
-  const card    = document.querySelector(".my-card");
-  const content = document.querySelector(".my-content");
+  var btn     = document.querySelector(".my-expand");
+  var card    = document.querySelector(".my-card");
+  var content = document.querySelector(".my-content");
+  var icon    = document.getElementById("tutor-icon");
 
   btn.addEventListener("touchstart", function() {
+
+    btn.classList.toggle("flipped");
+    content.classList.toggle("big");
+
+    setTimeout(function(){
+      content.classList.toggle("my-hidden");
+    }, 200)
+
+  });
+
+  icon.addEventListener("touchstart", function() {
 
     btn.classList.toggle("flipped");
     content.classList.toggle("big");
