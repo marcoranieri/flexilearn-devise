@@ -1,3 +1,6 @@
+<!-- HIDING Navigation for Device -->
+<% @navigation = true  if controller_name == "registrations" %>
+
 <h2>STUDENT | Sign up</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>

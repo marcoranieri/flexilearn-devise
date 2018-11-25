@@ -1,3 +1,6 @@
+<!-- HIDING Navigation for Device -->
+<% @navigation = true  if controller_name == "registrations" %>
+
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= simple_form_for(resource, as: resource_name,
