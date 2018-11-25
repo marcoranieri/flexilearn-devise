@@ -1,3 +1,6 @@
+<!-- HIDING Navigation for Device -->
+<% @navigation = true  if controller_name == "sessions" %>
+
 <h2>STUDENT | Log in</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
