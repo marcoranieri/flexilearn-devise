@@ -7,6 +7,8 @@
     data: { confirm: "Are you sure?" } do %>
       <i class="fas fa-sign-out-alt"></i>
     <% end %>
+  <% else %>
+    <i class="fas fa-sign-out-alt" style="opacity: 0;"></i>
   <% end %>
   </div>
 
@@ -20,7 +22,7 @@
       <i class="fas fa-user-graduate"></i>
     <% end %>
   <% else %>
-    <%= link_to "signIN", login_path %>
+    <%= link_to("LogIn", login_path) %>
   <% end %>
   </div>
 

@@ -32,5 +32,15 @@ Rails.application.routes.draw do
   # Index.ALL
   get '/all' => 'pages#all'
 
-  root to: "lessons#index"
+# root to: "lessons#index"
+# root to: "pages#credential"
+
+  unauthenticated do
+     root to: "pages#credential"
+  end
+
+  authenticated do
+    root to: "lessons#index"
+  end
+
 end
