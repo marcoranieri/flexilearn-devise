@@ -19,14 +19,16 @@
         url: session_path(resource_name)) do |f| %>
 <!-- autofocus: true -->
 <div class="text-center white-text">
-      <%= f.label :email, "email" %>
+      <%#= f.label :email, "email" %>
       <%= f.input :email,label: false, required: false,
+          placeholder: "@email",
           input_html: { value: "student@test.com"} %>
 </div>
 
 <div class="text-center white-text">
-      <%= f.label :password, "password" %>
+      <%#= f.label :password, "password" %>
       <%= f.input :password,label: false, required: false,
+          placeholder: "password",
           input_html: { value: "student@test.com"} %>
 
 </div>
