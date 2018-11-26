@@ -13,6 +13,8 @@
 @import "layouts/index";
 @import "components/index";
 @import "pages/index";
+@import "pages/index";
+@import "students/sessions/new";
 
 @import "lessons/main";
 
@@ -25,7 +27,6 @@ body {
   position:relative;
   background: #fafafa;
   word-wrap: break-word;
-//  overflow-y: hidden;
   overflow-x: hidden;
   color: #747681;
   letter-spacing: 4px;
