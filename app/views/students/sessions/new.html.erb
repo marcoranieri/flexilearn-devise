@@ -18,27 +18,27 @@
   <%= simple_form_for(resource, as: resource_name,
         url: session_path(resource_name)) do |f| %>
 <!-- autofocus: true -->
-<div class="text-center white-text">
-      <%#= f.label :email, "email" %>
-      <%= f.input :email,label: false, required: false,
-          placeholder: "@email",
-          input_html: { value: "student@test.com"} %>
-</div>
-
-<div class="text-center white-text">
-      <%#= f.label :password, "password" %>
-      <%= f.input :password,label: false, required: false,
-          placeholder: "password",
-          input_html: { value: "student@test.com"} %>
-
-  <div class="text-center" id="remember">
-        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+  <div class="text-center white-text">
+        <%= f.input :email,label: false, required: false,
+            placeholder: "@email",
+            input_html: { value: "student@test.com"} %>
   </div>
-</div>
 
-    <div class="form-actions">
-      <%= f.button :submit, "LOG IN", class: "form-white-btn" %>
+  <div class="text-center white-text">
+
+        <%= f.input :password,label: false, required: false,
+            placeholder: "password",
+            input_html: { value: "student@test.com"} %>
+
+    <div class="text-center" id="remember">
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
     </div>
+
+  </div>
+
+  <div class="form-actions m-top-10vh">
+    <%= f.button :submit, "LOG IN", class: "form-white-btn" %>
+  </div>
 
   <% end %>
 
