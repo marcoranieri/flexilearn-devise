@@ -31,9 +31,9 @@
           placeholder: "password",
           input_html: { value: "student@test.com"} %>
 
-</div>
-<div class="text-center" id="remember">
-      <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+  <div class="text-center" id="remember">
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+  </div>
 </div>
 
     <div class="form-actions">
