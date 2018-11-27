@@ -1,0 +1,44 @@
+// STUDENT Registration _edit.scss
+
+#header {
+  position: fixed;
+  top:0;
+  left:0;
+
+  width:100vw;
+  background: #fff;
+  z-index: 999;
+
+}
+
+#logo-edit {
+  opacity: .9;
+
+  img {
+    width:25vw;
+  }
+}
+
+#update input {
+  background: #fff;
+
+  position: fixed;
+  bottom:1vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 90vw;
+  height: 8vh;
+
+  margin: 0 auto;
+  border-radius: 30px;
+  border: 2px solid $flexi;
+
+  color: $flexi;
+  font-weight: 300;
+  font-size: 1.5em;
+  text-decoration: none;
+  letter-spacing: 5px;
+ }
