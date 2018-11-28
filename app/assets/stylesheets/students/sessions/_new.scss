@@ -84,7 +84,8 @@ label.checkbox {
   }
 }
 
-input[type=email],
+div.blu-wrap >
+input[type=email]
 input[type=password] {
   background: $fake-flexi;
   border-bottom: 2px solid #fff;

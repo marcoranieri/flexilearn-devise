@@ -1,44 +1,120 @@
 // STUDENT Registration _edit.scss
 
-#header {
+#gray-header {
   position: fixed;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
 
-  width:100vw;
-  background: #fff;
+  background: #fafafa;
   z-index: 999;
 
+  width: 100vw;
+  height: 2vh;
+  max-height: 2vh;
 }
 
-#logo-edit {
-  opacity: .9;
-
-  img {
-    width:25vw;
+#edit-hint {
+  font-size: .6em;
+  position: sticky;
+  top: 1.9vh;
+  padding: 2%;
+  background: #fff;
+  width: 100%;
+  height: 7vh;
+  border-bottom: 2px solid #fafafa;
+  em {
+    opacity: .5;
   }
 }
 
-#update input {
+// #logo-edit {
+//   opacity: .9;
+
+//   img {
+//     width:25vw;
+//   }
+// }
+
+#edit_student { // FORM
   background: #fff;
 
-  position: fixed;
-  bottom:1vh;
+  margin-top: -8vh;
+  padding: 2vh 8vw 50px 8vw;
 
+  label {
+    display: block;
+    margin-bottom: 1vh;
+
+    color: $flexi;
+    font-weight: lighter;
+  }
+
+  input {
+    width: 100%;
+
+    border: none !important; // Reset border
+    border-bottom: 2px solid rgba(149,173,236, .5) !important;
+
+    margin-bottom: 4vh;
+    padding-bottom: 1vh;
+
+    font-weight: 300;
+    letter-spacing: 2px;
+
+    &:focus-within { // Inside TEXT
+      opacity: .8;
+    }
+
+    &:focus {
+      outline: none;
+      border-bottom: 2px solid $flexi !important;
+    }
+  }
+
+  textarea {
+    background: #fcfcfc;
+
+    margin-bottom: 4vh;
+    padding: 5%;
+
+    border: none !important; // Reset border
+
+    &:focus {
+      outline: none;
+      border-bottom: 2px solid $flexi !important;
+    }
+  }
+
+  .hint {
+    display: block;
+    margin-top: -4vh;
+
+    border-bottom: 2px solid #fafafa;
+
+    font-size: .6em;
+    color: #cacaca;
+  }
+}
+
+//#update input { // UPDATE btn
+#btn { // UPDATE btn
+  background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 90vw;
-  height: 8vh;
-
-  margin: 0 auto;
+  border: 1px solid $flexi;
   border-radius: 30px;
-  border: 2px solid $flexi;
+  min-width: 40vw;
+  width: 100%;
+  height: 6vh;
+  opacity: .9;
+  margin: 0 auto;
+  margin-top: 8vh;
 
-  color: $flexi;
-  font-weight: 300;
-  font-size: 1.5em;
-  text-decoration: none;
-  letter-spacing: 5px;
+
+    text-decoration: none;
+    color: $flexi;
+    font-style: none;
+    letter-spacing: 5px;
  }

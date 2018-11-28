@@ -1,24 +1,33 @@
 <!-- HIDING Navigation for Device -->
 <% @navigation = true  if controller_name == "registrations" %>
 
-<div id="header" class="text-center">
+
+<div id="gray-header">
+<!--
   <div id="logo-edit">
-    <%= image_tag "edit.png" %>
+    <%#= image_tag "edit.png" %>
   </div>
+-->
 </div>
 
 <%= simple_form_for(resource, as: resource_name,
-    url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+    url: registration_path(resource_name),
+    html: { method: :put }) do |f| %>
 
+  <p id="edit-hint" class="text-center" >
+   <em>Edit your profile and press "UPDATE"</em>
+  </p>
+
+  <%= f.error_notification %>
   <div class="form-inputs">
-    <%= f.input :first_name, autofocus: true %>
+    <%= f.input :first_name %>
     <%= f.input :last_name %>
 
     <%= f.input :email %>
     <%= f.input :phone %>
-    <%= f.input :birthdate, as: :date, html5: true %>
-
+    <%= f.input :birthdate, as: :string, html5: true,
+        input_html: { value: @student.birthdate.strftime('%Y-%m-%d').to_s,
+        class: "datepicker-student-edit"} %>
     <%= f.input :bio, placeholder: "Tell us something about you!",
         input_html: { :style=> 'width: 100%;', :rows => 8 } %>
 
@@ -33,19 +42,20 @@
         hint: "leave it blank if you don't want to change it",
         required: false %>
     <%= f.input :password_confirmation, required: false %>
-    <%#= f.input :current_password,
+    <%= f.input :current_password,
         hint: "we need your current password to confirm your changes",
         required: true %>
   </div>
 
-  <div id="update" class="form-actions edit-fix-btn">
-    <%= f.button :submit, "UPDATE" %>
+  <div id="update" class="form-actions">
+    <%= f.button :submit, "UPDATE", id: "btn" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<br>
+<br>
 
-<p>
+<p style="opacity: .7;">
   Unhappy? <%= link_to "Cancel my account", registration_path(resource_name),
     data: { confirm: "Are you sure?" }, method: :delete %>
 </p>

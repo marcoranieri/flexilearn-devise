@@ -14,7 +14,9 @@
   <div class="bottom-gray text-center">
 
     <% if @student.photo.present? %>
-    <%= cl_image_tag @student.photo.url(:bright_face) %>
+    <div class="round">
+      <%= cl_image_tag @student.photo.url(:bright_face) %>
+    </div>
     <% end %>
 
     <h4 id="email" >

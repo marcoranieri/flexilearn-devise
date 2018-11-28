@@ -9,7 +9,7 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-// Your CSS partials
+// Your CSS partials //////////////////////////////////
 @import "layouts/index";
 @import "components/index";
 
@@ -19,10 +19,15 @@
 
 @import "lessons/main";
 
+
+// Flatpickr Calendar /////////////////////////////////
 @import "flatpickr/dist/flatpickr.min";
+// positioning Flatpickr
+div.flatpickr-calendar {
+  top: 36vh !important;
+}
 
-
-// TEST backend ////////////////////////////////////////////////
+// BODY ///////////////////////////////////////////////
 body {
   min-height:80vh;
   position:relative;
