@@ -18,13 +18,13 @@
   <%= simple_form_for(resource, as: resource_name,
         url: session_path(resource_name)) do |f| %>
 <!-- autofocus: true -->
-  <div class="text-center white-text">
+  <div class="text-center white-text force-devise-new">
         <%= f.input :email,label: false, required: false,
             placeholder: "@email",
             input_html: { value: "student@test.com"} %>
   </div>
 
-  <div class="text-center white-text">
+  <div class="text-center white-text force-devise-new">
 
         <%= f.input :password,label: false, required: false,
             placeholder: "password",

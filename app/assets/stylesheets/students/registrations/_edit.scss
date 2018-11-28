@@ -14,26 +14,24 @@
 }
 
 #edit-hint {
-  font-size: .6em;
+  background: #fff;
+
   position: sticky;
   top: 1.9vh;
-  padding: 2%;
-  background: #fff;
+
   width: 100%;
   height: 7vh;
+
+  padding: 2%;
   border-bottom: 2px solid #fafafa;
+
+  font-size: .6em;
+  color: #333;
+
   em {
     opacity: .5;
   }
 }
-
-// #logo-edit {
-//   opacity: .9;
-
-//   img {
-//     width:25vw;
-//   }
-// }
 
 #edit_student { // FORM
   background: #fff;
@@ -41,28 +39,54 @@
   margin-top: -8vh;
   padding: 2vh 8vw 50px 8vw;
 
+///////////////////////////////////////////////////
   label {
     display: block;
     margin-bottom: 1vh;
 
     color: $flexi;
-    font-weight: lighter;
+    font-weight: 300;
   }
 
+///////////////////////////////////////////////////
+  .force-devise-edit input {
+      width: 100% !important;
+
+      border: none !important; // Reset border
+      border-bottom: 2px solid rgba(149,173,236, .5) !important;
+
+      margin-bottom: 8vh !important;
+      padding-bottom: 1vh !important;
+
+      font-weight: 300 !important;
+      letter-spacing: 2px !important;
+
+      &:focus-within { // Inside TEXT
+        opacity: .8 !important;
+      }
+
+      &:focus {
+        outline: none !important;
+        border-bottom: 2px solid $flexi !important;
+      }
+    }
+
+///////////////////////////////////////////////////
   input {
     width: 100%;
 
     border: none !important; // Reset border
     border-bottom: 2px solid rgba(149,173,236, .5) !important;
 
-    margin-bottom: 4vh;
+    margin-bottom: 8vh;
     padding-bottom: 1vh;
 
     font-weight: 300;
     letter-spacing: 2px;
 
     &:focus-within { // Inside TEXT
-      opacity: .8;
+      // opacity: .8;
+      color: #999  ;
     }
 
     &:focus {
@@ -71,6 +95,7 @@
     }
   }
 
+///////////////////////////////////////////////////
   textarea {
     background: #fcfcfc;
 
@@ -79,42 +104,56 @@
 
     border: none !important; // Reset border
 
+    &:focus-within { // Inside TEXT
+      color: #999  ;
+    }
+
     &:focus {
       outline: none;
       border-bottom: 2px solid $flexi !important;
     }
   }
 
+///////////////////////////////////////////////////
   .hint {
     display: block;
-    margin-top: -4vh;
+    margin-top: -7vh;
+    margin-bottom: 4vh;
 
     border-bottom: 2px solid #fafafa;
 
+    color: #999;
     font-size: .6em;
-    color: #cacaca;
   }
 }
 
-//#update input { // UPDATE btn
 #btn { // UPDATE btn
   background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  border: 1px solid $flexi;
-  border-radius: 30px;
   min-width: 40vw;
   width: 100%;
   height: 6vh;
-  opacity: .9;
+
   margin: 0 auto;
   margin-top: 8vh;
+  border: 1px solid $flexi;
+  border-radius: 30px;
 
+  color: $flexi;
+  font-style: none;
+  letter-spacing: 5px;
+  text-decoration: none;
 
-    text-decoration: none;
-    color: $flexi;
-    font-style: none;
-    letter-spacing: 5px;
+  opacity: .9;
  }
+
+// #logo-edit {
+//   opacity: .9;
+
+//   img {
+//     width:25vw;
+//   }
+// }
