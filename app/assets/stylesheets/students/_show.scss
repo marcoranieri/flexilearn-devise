@@ -27,9 +27,11 @@
 }
 
 #name {
-  word-break: break-word;
+  margin: 7vh 0vh;
+  border-bottom: 1px solid #A1ACEA;
+
   font-weight: 300 !important;
-  border-bottom: 1px solid $flexi;
+  word-break: break-word;
 }
 
 #email {
@@ -59,9 +61,12 @@
   position: fixed;
   bottom: 10%;
   right: 3%;
-  border: 1px solid #95adec;
+
+  border: 2px solid #ffffff;
   border-radius: 50%;
-  opacity: .9;
+
+  opacity: .95;
+
   img {
     width:25vw;
   }

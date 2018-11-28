@@ -18,10 +18,23 @@
 
   <div class="profile-icon">
   <% if current_student %>
-    <%= link_to student_path(current_student) do %>
-      <i class="fas fa-user-graduate"></i>
+
+    <!-- switch STUDENT icon <> X icon ---------------------------------------->
+    <% if current_page?(student_path(current_student)) %>
+
+      <%= link_to root_path do %><!-- X icon ---------------------------------->
+        <i class="fas fa-times"></i>
+      <% end %>
+
+    <% else %>
+
+      <%= link_to student_path(current_student) do %><!-- STUDENT ------------->
+        <i class="fas fa-user-graduate"></i>
+      <% end %>
+
     <% end %>
-  <% else %>
+
+  <% else %><!-- Not Logged in ------------------------------------------------>
     <%= link_to("LogIn", login_path) %>
   <% end %>
   </div>
