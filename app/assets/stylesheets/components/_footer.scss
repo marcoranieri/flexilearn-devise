@@ -16,7 +16,9 @@ footer {
 
   p {
     margin: 0 auto;
-    border: 1px solid lightgray;
+    border: 1px solid $flexi;
     width:100%;
+    text-align: center;
+    opacity: .6;
   }
 }

@@ -24,7 +24,8 @@
 @import "flatpickr/dist/flatpickr.min";
 // positioning Flatpickr
 div.flatpickr-calendar {
-  top: 36vh !important;
+  //top: 36vh !important;
+  left: 5vh !important;
 }
 
 // BODY ///////////////////////////////////////////////
