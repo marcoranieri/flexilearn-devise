@@ -29,6 +29,7 @@ $( document ).ready(function() {
 // Callback for TURBOLINKS loaded
 document.addEventListener("turbolinks:load", function() {
 
+// placesAutocomplete /////////////////////////////////////////////
   if (document.querySelector('#search')){
     var placesAutocomplete = places({
       appId: 'plC8UYAMHK2J',
@@ -44,17 +45,29 @@ document.addEventListener("turbolinks:load", function() {
   var ready = function() {
      setTimeout(clearNotice, 1000);  //Flash fade
   };
-
+///////////////////////////////////////////////////////////////////
 
 
 // Prevent Android keyboard to push Content up
 // https://stackoverflow.com/questions/23757345/android-does-not-correctly-scroll-on-input-focus-if-not-body-element
+
   if(/Android [4-6]/.test(navigator.appVersion)) {
      window.addEventListener("resize", function() {
+
         if(document.activeElement.tagName=="INPUT" || document.activeElement.tagName=="TEXTAREA") {
            window.setTimeout(function() {
-              document.activeElement.scrollIntoViewIfNeeded();
-           },0);
+
+//console.log("Resizing");
+document.querySelector(".form-actions").style.position= "relative";
+document.querySelector(".form-actions").style.top= "-40px";
+
+document.querySelector("#new_student").style.position= "relative";
+document.querySelector("#new_student").style.top= "20px";
+
+document.querySelector(".form-white-btn").style.minHeight= "60px";
+
+  //         document.activeElement.scrollIntoView();
+           },10);
         }
      })
   }
@@ -62,8 +75,9 @@ document.addEventListener("turbolinks:load", function() {
 // NO autocomplete (form suggestion)
   if(/Android/.test(navigator.appVersion)){
     $('input[type="text"]').attr('autocomplete', "off");
+    $('input[type="email"]').attr('autocomplete', "off");
   }
 
 
 
-})
+}) /////// END - document.addEventListener("turbolinks:load", function() {
