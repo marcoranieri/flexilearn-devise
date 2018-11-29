@@ -45,4 +45,25 @@ document.addEventListener("turbolinks:load", function() {
      setTimeout(clearNotice, 1000);  //Flash fade
   };
 
+
+
+// Prevent Android keyboard to push Content up
+// https://stackoverflow.com/questions/23757345/android-does-not-correctly-scroll-on-input-focus-if-not-body-element
+  if(/Android [4-6]/.test(navigator.appVersion)) {
+     window.addEventListener("resize", function() {
+        if(document.activeElement.tagName=="INPUT" || document.activeElement.tagName=="TEXTAREA") {
+           window.setTimeout(function() {
+              document.activeElement.scrollIntoViewIfNeeded();
+           },0);
+        }
+     })
+  }
+
+// NO autocomplete (form suggestion)
+  if(/Android/.test(navigator.appVersion)){
+    $('input[type="text"]').attr('autocomplete', "off");
+  }
+
+
+
 })
