@@ -1,7 +1,6 @@
 <!-- HIDING Navigation for Device -->
 <% @navigation = true  if controller_name == "registrations" %>
 
-
 <div id="gray-header">
 <!--
   <div id="logo-edit">
@@ -14,12 +13,19 @@
     url: registration_path(resource_name),
     html: { method: :put }) do |f| %>
 
-  <p id="edit-hint" class="text-center" >
-   <em>Edit your profile and press "UPDATE"</em>
-  </p>
+  <div id="logo-edit"><!-- Logo + Hint sticky TOP ----------------------------->
+
+    <%= image_tag "edit.png" %>
+    <p id="edit-hint" class="text-center" >
+      <span id="text-hint">
+        Edit your profile <br> and press "UPDATE"
+      </span>
+    </p>
+
+  </div>
 
   <%= f.error_notification %>
-  <div class="form-inputs">
+  <div class="form-inputs"><!-- FORM ------------------------------------------>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
 
@@ -41,21 +47,49 @@
     <%= f.input :password, autocomplete: "off",
         hint: "leave it blank if you don't want to change it",
         required: false %>
-    <%= f.input :password_confirmation, required: false, class: "force-devise-edit" %>
+    <%= f.input :password_confirmation, required: false,
+        class: "force-devise-edit" %>
     <%= f.input :current_password,
         hint: "we need your current password to confirm your changes",
         required: true %>
   </div>
 
-  <div id="update" class="form-actions">
+  <div class="form-actions"><!-- Update BTN ----------------------------------->
     <%= f.button :submit, "UPDATE", id: "btn" %>
   </div>
+
+    <%= link_to url_for(:back), id: "back", class: "text-center" do %>
+      <!-- <i class="fas fa-angle-double-left"></i> -->
+      <i class="far fa-arrow-alt-circle-left"></i>
+    <% end %>
 <% end %>
 
 <br>
-<br>
 
-<p style="opacity: .7;">
-  Unhappy? <%= link_to "Cancel my account", registration_path(resource_name),
+<p id="unhappy"><!-- UNHAPPY Link --------------------------------------------->
+  Unhappy?<br>
+  <%= link_to "Cancel my account", registration_path(resource_name),
     data: { confirm: "Are you sure?" }, method: :delete %>
 </p>
+
+<script>
+
+// Prevent Android keyboard to push Content up
+// https://stackoverflow.com/questions/23757345/android-does-not-correctly-scroll-on-input-focus-if-not-body-element
+
+  if(/Android [4-6]/.test(navigator.appVersion)) {
+     window.addEventListener("resize", function() {
+        if(document.activeElement.tagName=="INPUT" || document.activeElement.tagName=="TEXTAREA") {
+           window.setTimeout(function() {
+              document.activeElement.scrollIntoViewIfNeeded();
+           },0);
+        }
+     })
+  }
+
+// NO autocomplete (form suggestion)
+  if(/Android/.test(navigator.appVersion)){
+    $('input[type="text"]').attr('autocomplete', "off");
+  }
+
+</script>
