@@ -52,24 +52,23 @@ document.addEventListener("turbolinks:load", function() {
 // https://stackoverflow.com/questions/23757345/android-does-not-correctly-scroll-on-input-focus-if-not-body-element
 
   if(/Android [4-6]/.test(navigator.appVersion)) {
-     window.addEventListener("resize", function() {
+    window.addEventListener("resize", function() {
 
-        if(document.activeElement.tagName=="INPUT" || document.activeElement.tagName=="TEXTAREA") {
-           window.setTimeout(function() {
+      if(document.activeElement.tagName=="INPUT" || document.activeElement.tagName=="TEXTAREA") {
+        window.setTimeout(function() {
+        //console.log("Resizing");
+document.querySelector(".form-actions").style.position = "relative";
+document.querySelector(".form-actions").style.top      = "-40px";
 
-//console.log("Resizing");
-document.querySelector(".form-actions").style.position= "relative";
-document.querySelector(".form-actions").style.top= "-40px";
+document.querySelector("#new_student").style.position  = "relative";
+document.querySelector("#new_student").style.top       = "20px";
 
-document.querySelector("#new_student").style.position= "relative";
-document.querySelector("#new_student").style.top= "20px";
+document.querySelector(".form-white-btn").style.minHeight = "50px";
 
-document.querySelector(".form-white-btn").style.minHeight= "60px";
-
-  //         document.activeElement.scrollIntoView();
-           },10);
-        }
-     })
+        //document.activeElement.scrollIntoView();
+        },10);
+      }
+    })
   }
 
 // NO autocomplete (form suggestion)

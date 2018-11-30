@@ -109,13 +109,22 @@
   opacity: .92;
 
   img {
-    width:25vw;
+    width:20vw;
   }
 }
 
 #frenk {
   margin:0 auto;
   width: 90vw;
+  * {
+    padding:5%;
+  }
+}
+#photo {
+  width:95vw;
+position: relative;
+    top: 0;
+    right: 4vh;
 }
 
 /////////////////////////////////////////////////////////
