@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+
   # skip_before_action :authenticate_student!, only: :home
   before_action :find_student, only: [ :show, :edit, :update ]
 

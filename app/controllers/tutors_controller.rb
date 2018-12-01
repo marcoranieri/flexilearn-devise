@@ -1,4 +1,5 @@
 class TutorsController < ApplicationController
+
   # skip_before_action :authenticate_tutor!, only: :home
   before_action :find_tutor, only: [ :new, :show, :edit, :update ]
   before_action :find_student, only: [ :new, :show, :edit, :update ]

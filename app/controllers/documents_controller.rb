@@ -1,10 +1,13 @@
 class DocumentsController < ApplicationController
 
+    before_action :skip_authorization
+
     before_action :find_document, only: [ :show, :edit, :update, :destroy ]
     before_action :set_tutor, only: [ :index, :show, :edit, :update, :destroy ]
 
   def index
-    @documents = policy_scope(Document).where(" tutor_id = ?", params[:tutor_id])
+    # @documents = policy_scope(Document).where(" tutor_id = ?", params[:tutor_id])
+    @documents = policy_scope(Document).where(tutor_id: 22)
   end
 
   def show
@@ -17,7 +20,10 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new(document_params)
-    @document.tutor = current_tutor
+
+    # @document.tutor = current_tutor
+    @document.tutor = Tutor.find(22) #PROTOTYPE
+
     authorize @document
 
     respond_to do | format |
@@ -58,7 +64,7 @@ class DocumentsController < ApplicationController
 
   def set_tutor
     @tutor = Tutor.find(params[:tutor_id])
-    authorize @tutor
+    # authorize @tutor
   end
 
   def find_document
