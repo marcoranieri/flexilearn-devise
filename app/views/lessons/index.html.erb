@@ -1,31 +1,132 @@
-<!-- index.html.erb -->
+<!-- LESSONS index.html.erb -->
 
-<% if @lessons.present? %>
+<% if @lessons.present? %><!-- WITH Lessons -------------------------------->
 <!-- <div class="preloader8">
     <span></span>
     <span></span>
 </div> -->
 
+<!-- //////////////////////////////////////////////////////////////////// -->
+<div class="small-card my-card"" style="background: #fff;">
+  <div class="info left-info">
+    <div id="status">
+      SCHEDULED
+    </div>
+    <div id="day-number">
+      27
+    </div>
+    <div id="day-week">
+      WEN
+    </div>
+  </div>
+  <div class="info center-info">
+    <div id="tutor-name" class="text-center">
+      Dr. Kurt Waisman
+    </div>
+    <div id="category">
+      Geography
+    </div>
+    <div id="address" class="text-center">
+      0 emily club, new Tina, VS9897
+    </div>
+  </div>
+  <div class="info right-info">
+    <div id="time">
+      21:00 PM
+    </div>
+    <div id="tutor-icon">
+      <%= image_tag "tutorICON.png" %>
+    </div>
+    <div id="expand-btn" class="my-expand">
+      <i class="fas fa-angle-down"></i>
+    </div>
+  </div>
+</div>
 
+<div id="hidden-card" class="my-content my-hidden">
+  <div id="opened">
 
-  <div class="small-card my-card"" style="background: #fff;">
+    <div class="small-title">
+      <%= image_tag "student-hat.png", class: "small-icon"%>
+      <p>Need help with...</p>
+      <%= image_tag "tutorICON.png", class: "small-icon"%>
+    </div>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero repudiandae aliquam ad earum fuga vitae, <br><br> repellendus nesciunt eaque fugiat veritatis quisquam excepturi a vero corrupti atque delectus nemo maiores non.</p>
+
+    <div>
+      <%= image_tag "trigo.png", id: "photo" %>
+    </div>
+
+    <div class="tutor-name">
+      <p>T U T O R</p>
+      <%= image_tag "tutor.png", id: "photo-tutor" %>
+      <p>Dr. Kurt Waisman</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- //////////////////////////////////////////////////////////////////// -->
+
+<div class="small-card my-card"" style="background: #fff;">
+  <div class="info left-info">
+    <div id="status">
+      PENDING
+    </div>
+    <div id="day-number">
+      7
+    </div>
+    <div id="day-week">
+      TUE
+    </div>
+  </div>
+  <div class="info center-info">
+    <div id="tutor-name" class="text-center">
+      Dr. Kelly Waisman
+    </div>
+    <div id="category">
+      Geography
+    </div>
+    <div id="address" class="text-center">
+      0 emily club, new Tina, VS9897
+    </div>
+  </div>
+  <div class="info right-info">
+    <div id="time">
+      6:00 PM
+    </div>
+    <div id="tutor-icon">
+      <%= image_tag "tutorICON.png" %>
+    </div>
+    <div id="expand-btn" class="my-expand">
+      <i class="fas fa-angle-down"></i>
+    </div>
+  </div>
+</div>
+
+<div id="hidden-card" class="my-content my-hidden">
+  Ciao PAPONE!
+</div>
+
+<div class="small-card my-card"" style="background: #fff;">
     <div class="info left-info">
       <div id="status">
         CANCELED
       </div>
       <div id="day-number">
-        27
+        14
       </div>
       <div id="day-week">
-        WEN
+        SAT
       </div>
     </div>
     <div class="info center-info">
       <div id="tutor-name" class="text-center">
-        Dr. Kusrt Waisman
+        Dr. Mario Rossy
       </div>
       <div id="category">
-        Geography
+        Algebra
       </div>
       <div id="address" class="text-center">
         0 emily club, new Tina, VS9897
@@ -33,7 +134,7 @@
     </div>
     <div class="info right-info">
       <div id="time">
-        21:00 PM
+        4:00 PM
       </div>
       <div id="tutor-icon">
         <%= image_tag "tutorICON.png" %>
@@ -43,49 +144,6 @@
       </div>
     </div>
   </div>
-
-<div id="hidden-card" class="my-content my-hidden">
-        <%= image_tag "frenk.png", id: "frenk" %>
-</div>
-
-
-
-  <div class="small-card my-card"" style="background: #fff;">
-    <div class="info left-info">
-      <div id="status">
-        SCHEDULE
-      </div>
-      <div id="day-number">
-        7
-      </div>
-      <div id="day-week">
-        TUE
-      </div>
-    </div>
-    <div class="info center-info">
-      <div id="tutor-name" class="text-center">
-        Dr. Kusrt Waisman
-      </div>
-      <div id="category">
-        Geography
-      </div>
-      <div id="address" class="text-center">
-        0 emily club, new Tina, VS9897
-      </div>
-    </div>
-    <div class="info right-info">
-      <div id="time">
-        6:00 PM
-      </div>
-      <div id="tutor-icon">
-        <%= image_tag "tutorICON.png" %>
-      </div>
-      <div id="expand-btn" class="my-expand">
-        <i class="fas fa-angle-down"></i>
-      </div>
-    </div>
-  </div>
-
 
 <div id="hidden-card" class="my-content my-hidden">
   Ciao PAPONE!
@@ -127,7 +185,6 @@
     </div>
   </div>
 
-
 <div id="hidden-card" class="my-content my-hidden">
   Ciao PAPONE!
 </div>
@@ -135,7 +192,7 @@
 <div class="small-card my-card"" style="background: #fff;">
     <div class="info left-info">
       <div id="status">
-        PENDING
+        SCHEDULED
       </div>
       <div id="day-number">
         14
@@ -146,7 +203,7 @@
     </div>
     <div class="info center-info">
       <div id="tutor-name" class="text-center">
-        Dr. Mario Rossy
+        Dr. Julius Frusciante
       </div>
       <div id="category">
         Algebra
@@ -168,58 +225,14 @@
     </div>
   </div>
 
-
-<div id="hidden-card" class="my-content my-hidden">
-  Ciao PAPONE!
-</div>
-
-<div class="small-card my-card"" style="background: #fff;">
-    <div class="info left-info">
-      <div id="status">
-        PENDING
-      </div>
-      <div id="day-number">
-        14
-      </div>
-      <div id="day-week">
-        SAT
-      </div>
-    </div>
-    <div class="info center-info">
-      <div id="tutor-name" class="text-center">
-        Dr. Mario Rossy
-      </div>
-      <div id="category">
-        Algebra
-      </div>
-      <div id="address" class="text-center">
-        0 emily club, new Tina, VS9897
-      </div>
-    </div>
-    <div class="info right-info">
-      <div id="time">
-        4:00 PM
-      </div>
-      <div id="tutor-icon">
-        <%= image_tag "tutorICON.png" %>
-      </div>
-      <div id="expand-btn" class="my-expand">
-        <i class="fas fa-angle-down"></i>
-      </div>
-    </div>
-  </div>
-
-
 <div id="hidden-card" class="my-content my-hidden">
   Ciao PAPONE!
 </div>
 
 
-
-<div id="btn-plus">
+<div id="btn-plus"><!-- PLUS btn ---------------------------------------------->
   <%= image_tag "plus.png" %>
 </div>
-
 
 
 
@@ -268,7 +281,7 @@
 
     <div class="wrapper-white">
 
-    <h2 id="welcome" class="font-lighter text-center">
+    <h2 id="index-welcome" class="font-lighter text-center">
       Welcome<br>
       <%= current_user.first_name if current_user %>
     </h2>

@@ -29,6 +29,10 @@ div.flatpickr-calendar {
 }
 
 // BODY ///////////////////////////////////////////////
+html {
+  overflow-x: hidden;
+}
+
 body {
   min-height:80vh;
   position:relative;
