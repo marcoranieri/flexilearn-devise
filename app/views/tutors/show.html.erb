@@ -1,97 +1,65 @@
-<!-- Dynamic Head Title -->
-<% provide(:title, 'Tutor') %>
+<!-- TUTOR show.html.erb -->
 
-<div class="text-center">
+<div id="wrapper">
 
-  <h2>
-    <strong>TUTOR:</strong><br>
-      <% if @tutor.last_name %>
-        <%= @tutor.last_name.capitalize %> <%= @tutor.first_name.capitalize %>
-      <% elsif @tutor.name %><!-- Facebook name -->
-        <%= @tutor.name %>
-      <% end  %>
-  </h2>
+  <div class="top-white text-center">
 
-  <!-- IMAGE ------------------------------------------------------------------>
-  <% if @tutor.photo.present? %><!-- Cloudinary ------------------------------->
-    <%= cl_image_tag @tutor.photo.url(:bright_face) %>
+    <h3 id="name">
+      <% if @tutor.last_name  %>
+      <%= @tutor.first_name.capitalize%> <%= @tutor.last_name.capitalize%>
+      <% end %>
+    </h3>
 
-  <% elsif @tutor.image_fb.present? %><!-- Facebook --------------------------->
-    <div style="border-radius: 50%">
-      <%= image_tag @tutor.image_fb + "?type=large",style:"border-radius:50%" %>
+  </div>
+
+  <div class="bottom-gray text-center">
+
+    <% if @tutor.photo.present? %>
+    <div class="round">
+      <%= cl_image_tag @tutor.photo.url(:bright_face) %>
     </div>
-
-  <% else %><!-- Loremflickr -------------------------------------------------->
-    <img style="border-radius: 50%;"
-         src="https://loremflickr.com/150/150/boy,girl/all" alt="Profile Pic">
-  <% end %>
-
-  <p><strong>@Email:</strong><br><%= @tutor.email %></p><!-- @Email ----------->
-
-  <% if @tutor.birthdate %><!-- Birthdate ------------------------------------->
-    <p><strong>Birthdate:</strong><br><%= @tutor.birthdate %></p>
-  <% end %>
-
-  <p><strong>Bio:</strong><br><!-- Bio ---------------------------------------->
-    <% if @tutor.bio.present? %>
-      <div style="width:80%;margin:0 auto;">
-        <p><%= @tutor.bio %></p>
-      </div>
-    <% else %>
-      <p style="opacity: .7"><em>
-        You did not provide any description yet.<br>
-        Please <strong>tell us about yourself</strong>!
-      </em></p>
-    <% end %>
-  </p>
-
-  <!-- EDIT btn - Profile TUTOR ----------------------------------------------->
-  <% if current_user.is_a?(Tutor) && @tutor == current_tutor %>
-    <%= link_to "Edit",edit_tutor_registration_path,class:"btn btn-warning"%>
-  <% end %>
-  <br>
-  <br>
-
-<!-- IDENTITY ----------------------------------------------------------------->
-  <% if current_tutor == @tutor  %>
-
-    <% if @tutor.identity.present? %><!-- Show ID ----------------------------->
-      <%= link_to "Show Identity",tutor_identity_path(@tutor),
-          class:"btn btn-primary" %>
-
-    <% else %><!-- Add ID ----------------------------------------------------->
-      <%= link_to "Add Identity",new_tutor_identity_path(@tutor),
-          class:"btn btn-primary" %>
     <% end %>
 
+    <h4 id="email" >
+      <%= @tutor.email if @tutor.email %>
+    </h4>
+
+    <p id="birth" >
+      <!-- <i class="fas fa-birthday-cake"></i> -->
+      <!-- <i class="fas fa-ribbon"></i> -->
+      <i class="fas fa-star"></i>
+      <%= @tutor.birthdate.strftime('%d %b %Y') if @tutor.birthdate %>
+    </p>
+
+  </div>
+
+  <% if @tutor.bio.present? %>
+  <div id="bio">
+      <p><%= @tutor.bio %></p>
+  </div>
+
+  <% else %>
+    <p id="bio">
+      <em>You did not provide any description yet.
+      <br>
+      Please <strong>tell us about yourself</strong>!</em>
+    </p>
+
   <% end %>
-  <br>
-  <br>
 
-<!-- DOCUMENTS ---------------------------------------------------------------->
-  <% if current_tutor == @tutor  %>
 
-    <%= link_to "Add Document", new_tutor_document_path(@tutor),
-        class:"btn btn-success" %>
-    <%= link_to "Show Documents", tutor_documents_path(@tutor),
-        class:"btn btn-success" if @tutor.documents.present? %>
-
+<div id="btn-edit">
+  <%= link_to tutor_documents_path(@tutor) do %>
+    <%= image_tag "tutor-round-dark.png" %>
   <% end %>
+</div>
 
-  <br>
-  <br>
-<!-- REVIEWS ------------------------------------------------------------------>
-<% if current_user.is_a?(Student) %>
-  <%=link_to "Add Review",new_tutor_review_path(@tutor),class:"btn btn-success" if (@tutor.lessons.pluck(:id) & @student.lessons.pluck(:id)) != []%>
-<% end %>
-
-  <% if @tutor.reviews.present? %>
-    <h3>Reviews:</h3>
+<!-- Reviews --------------------------------------------------->
 
     <div class="row">
-      <% @tutor.reviews.each do | review | %>
-        <div class="col-sm-6">
-          <hr class="style18">
+      <% @tutor.reviews.last(3).each do | review | %>
+        <div class="col-xs-12 text-center">
+          <hr class="style18 " style="width:100vw;margin-left:-9vw">
 
           <!-- Img STUDENT - Link to reviewer's profile ----------------------->
           <%= link_to (cl_image_tag review.student.photo.url(:bright_face_small)),
@@ -114,51 +82,4 @@
         </div>
       <% end %>
     </div><!-- /row -->
-
-  <% else %><!-- No reviews --------------------------------------------------->
-    <p style="opacity: .7"><em>No reviews yet...</em></p>
-  <% end %>
-
-  <br>
-  <br>
-
-<!-- FAVOURITE Students ------------------------------------------------------->
-  <% if current_user.is_a?(Tutor) && @tutor == current_tutor &&
-        @tutor.lessons %>
-    <% @tutor.lessons.reverse.each do |lesson| %>
-
-      <hr class="style18">
-      <div style="display:flex; justify-content:space-between; padding:5%;">
-
-        <div><!-- Link student Img -------------------------------------------->
-        <% if lesson.student.nil? %>
-          <i class="fas fa-user-graduate" style="font-size:3em;opacity:.3"></i>
-
-        <% else %>
-          <%= link_to (cl_image_tag(lesson.student.photo.url(:bright_face_small))),student_path(lesson.student) %>
-
-        <% end %>
-        </div>
-
-        <div><!-- lesson Title ------------------------------------------------>
-          <p><strong>
-            <%= link_to lesson.title, lesson_path(lesson) %>
-          </strong></p>
-        </div>
-
-        <div><!-- lesson Date + Status ---------------------------------------->
-          <p><%= lesson.date.strftime("%a, %e %b %Y") %></p>
-
-          <% color = "darkorange" if lesson.status == "requested" %>
-          <% color = "cadetblue"  if lesson.status == "scheduled" %>
-          <% color = "green"      if lesson.status == "completed" %>
-          <% color = "red"        if lesson.status == "canceled"  %>
-          <p><span style="color:<%= color %>;"><%= lesson.status %></span></p>
-        </div>
-
-      </div>
-
-    <% end %>
-  <% end %>
-
-</div>
+  </div><!-- /WRAPPER -->

@@ -1,0 +1,73 @@
+// DOCUMENTS index.scss
+
+#btn-edit {
+  position: fixed;
+  bottom: 10%;
+  right: 3%;
+
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+
+  opacity: .95;
+
+  img {
+    width:20vw;
+  }
+}
+
+
+#documents-wrapper {
+  padding: 5%;
+  background: #fff;
+  margin-top: 2vh;
+}
+
+.name {
+  color: $flexi;
+  margin-bottom: 4vh;
+  font-weight: 300;
+}
+.institute {
+  font-weight: 300;
+  i {
+    opacity: .6;
+  }
+}
+.qualification {
+
+}
+.achieved {
+
+}
+.years {
+
+}
+
+
+#certificate {
+
+  .small-title {
+    display: flex;
+    justify-content:space-between;
+
+    margin-bottom: 5vh;
+    border-bottom: 1px solid $flexi;
+
+    p { // TITLE
+      color:$flexi;
+      letter-spacing: 7px;
+      opacity: .8;
+    }
+    .small-icon {
+     font-size:1.6em;
+     color: $flexi;
+     opacity: .8;
+    }
+  }
+
+}
+
+.image {
+  margin-top: 4vh;
+  box-shadow: 0px 0px 10px #dadada;
+}

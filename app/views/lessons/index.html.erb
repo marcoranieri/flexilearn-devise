@@ -24,7 +24,7 @@
       Dr. Kurt Waisman
     </div>
     <div id="category">
-      Geography
+      Trigonometry
     </div>
     <div id="address" class="text-center">
       0 emily club, new Tina, VS9897
@@ -59,8 +59,12 @@
     </div>
 
     <div class="tutor-name">
-      <p>T U T O R</p>
-      <%= image_tag "tutor.png", id: "photo-tutor" %>
+      <p style="border-bottom:1px solid ">T U T O R</p>
+
+      <%= link_to tutor_path(id: 22) do %>
+        <%= image_tag "tutor.png", id: "photo-tutor" %>
+      <% end%>
+
       <p>Dr. Kurt Waisman</p>
     </div>
 
@@ -206,7 +210,7 @@
         Dr. Julius Frusciante
       </div>
       <div id="category">
-        Algebra
+        Art
       </div>
       <div id="address" class="text-center">
         0 emily club, new Tina, VS9897

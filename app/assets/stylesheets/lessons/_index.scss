@@ -122,10 +122,8 @@
   margin-top: 1vh;
   padding-top: 5vh;
 
-  opacity: .8;
-
   p{ // BIG text
-    opacity: .9;
+    opacity: .8;
   }
 
   .small-title {
@@ -150,6 +148,8 @@
 #photo {
   width:85vw;
   margin: 5vh 0;
+
+  opacity: .8;
 }
 
 .tutor-name {
@@ -165,7 +165,7 @@
     margin: 1vh 0;
 
     border-radius: 50%;
-    box-shadow: 0px 2px 4px #dadada;
+    box-shadow: 0px 0px 8px #dadada;
   }
 
   p{
