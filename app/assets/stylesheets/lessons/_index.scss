@@ -75,6 +75,12 @@
   #category {
     letter-spacing: 2px;
   }
+  #address {
+    text-decoration: none;
+    a {
+      color: $flexi !important;
+    }
+  }
   #tutor-icon {
     position: relative;
     top: 8%;
