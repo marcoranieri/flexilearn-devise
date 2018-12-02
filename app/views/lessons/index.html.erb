@@ -7,7 +7,7 @@
 </div> -->
 
 <!-- //////////////////////////////////////////////////////////////////// -->
-<div class="small-card my-card"" style="background: #fff;">
+<div class="small-card my-card" style="background: #fff;">
   <div class="info left-info">
     <div id="status">
       SCHEDULED
@@ -27,12 +27,14 @@
       Trigonometry
     </div>
     <div id="address" class="text-center">
-      0 emily club, new Tina, VS9897
+      <%= link_to "https://www.google.com/maps/dir/?api=1&destination=Westminster, London SW1A 2JH, Regno Unito", target: "_blank" do %>
+      <i class="fas fa-map-marker-alt"></i> Westminster, London SW1A 2JH, Regno Unito
+    <% end %>
     </div>
   </div>
   <div class="info right-info">
     <div id="time">
-      21:00 PM
+      11:00 AM
     </div>
     <div id="tutor-icon">
       <%= image_tag "tutorICON.png" %>
@@ -61,7 +63,7 @@
     <div class="tutor-name">
       <p style="border-bottom:1px solid ">T U T O R</p>
 
-      <%= link_to tutor_path(id: 22) do %>
+      <%= link_to tutor_path(id: 1) do %>
         <%= image_tag "tutor.png", id: "photo-tutor" %>
       <% end%>
 
