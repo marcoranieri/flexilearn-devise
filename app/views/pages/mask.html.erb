@@ -1,0 +1,112 @@
+<!-- PAGES mask.html.erb -->
+
+<div id="wrapper">
+
+  <div class="top-white text-center">
+
+    <h3 id="name">
+      Dr. Kurt Waisman
+    </h3>
+
+  </div>
+
+  <div class="bottom-gray text-center">
+
+    <div class="round">
+      <%= image_tag "tutor.png" %>
+    </div>
+
+    <h4 id="email" >
+      tutor@test.com
+    </h4>
+
+    <p id="birth" >
+      <i class="fas fa-star"></i>
+      14-09-1982
+    </p>
+
+  </div>
+
+  <div id="bio">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed consectetur ut voluptates corporis itaque hic, asperiores voluptate quae, repellat ducimus vitae sequi, illo commodi fugit aliquid. Rerum dolorem autem beatae?</p>
+  </div>
+
+<div id="btn-edit">
+  <%= link_to documents_path do %>
+    <%= image_tag "tutor-round-dark.png" %>
+  <% end %>
+</div>
+
+<!-- Reviews --------------------------------------------------->
+
+    <div class="row">
+
+        <div class="col-xs-12 text-center">
+          <hr class="style18 " style="width:100vw;margin-left:-9vw">
+
+          <!-- Img STUDENT - Link to reviewer's profile ----------------------->
+          <%= link_to image_tag("stu.png"),
+              student_path(Student.where(email: "student@test.com")[0]) %>
+
+          <p><strong>Very good!</strong></p>
+
+          <% 3.times do  %>
+            <i style="color:#94b5ef" class="fas fa-circle"></i>
+          <% end %>
+
+          <% 2.times do %>
+            <i style="color:#94b5ef" class="far fa-circle"></i>
+          <% end %>
+
+          <p><small>
+            Nice and really prepared :)
+          </small></p>
+
+        </div>
+
+        <div class="col-xs-12 text-center">
+          <hr class="style18 " style="width:100vw;margin-left:-9vw">
+
+          <%= link_to image_tag("stu.png"),
+              student_path(Student.where(email: "student@test.com")[0]) %>
+
+          <p><strong>Really helpful</strong></p>
+
+          <% 4.times do  %>
+            <i style="color:#94b5ef" class="fas fa-circle"></i>
+          <% end %>
+
+          <% 1.times do %>
+            <i style="color:#94b5ef" class="far fa-circle"></i>
+          <% end %>
+
+          <p><small>
+            He helped me a lot with my exam
+          </small></p>
+
+        </div>
+
+        <div class="col-xs-12 text-center">
+          <hr class="style18 " style="width:100vw;margin-left:-9vw">
+
+          <%= link_to image_tag("stu.png"),
+              student_path(Student.where(email: "student@test.com")[0]) %>
+
+          <p><strong>Not so good...</strong></p>
+
+          <% 2.times do  %>
+            <i style="color:#94b5ef" class="fas fa-circle"></i>
+          <% end %>
+
+          <% 3.times do %>
+            <i style="color:#94b5ef" class="far fa-circle"></i>
+          <% end %>
+
+          <p><small>
+            Too much expensive!!
+          </small></p>
+
+        </div>
+
+    </div><!-- /row -->
+  </div><!-- /WRAPPER -->

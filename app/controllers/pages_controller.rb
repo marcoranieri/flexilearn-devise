@@ -28,4 +28,11 @@ class PagesController < ApplicationController
     @u = current_user # for refactoring the IF statement
   end
 
+  def mask
+# Pototyping purpose (static tutor#show)
+  end
+  def documents
+# Pototyping purpose (static tutor#show)
+  end
+
 end

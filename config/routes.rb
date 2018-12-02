@@ -32,6 +32,11 @@ Rails.application.routes.draw do
   # Index.ALL
   get '/all' => 'pages#all'
 
+  # Tutor#Mask --> Prototyping purpose
+  get '/mask' => 'pages#mask'
+  # Tutor#Documents --> Prototyping purpose
+  get '/documents' => 'pages#documents'
+
 # root to: "lessons#index"
 # root to: "pages#credential"
 
