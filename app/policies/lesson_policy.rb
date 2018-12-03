@@ -16,7 +16,9 @@ class LessonPolicy < ApplicationPolicy
 
   def create?
     # Only Student can create a Lesson
-    user.is_a?(Student) && user.created_at #is saved?
+#   user.is_a?(Student) && user.created_at #is saved?
+
+    true #PROTOTYPING purpose
   end
 
   def update?
