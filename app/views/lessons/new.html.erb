@@ -51,7 +51,10 @@
 
   <br>
 
-  <%= f.submit "Create Lesson", id: "btn" %>
+  <%= f.submit "Create Lesson", id: "btn", style: "display:none;" %>
+
+  <%= link_to "Create Lesson", url_for(:back), id: "btn", class: "text-center" %>
+
 <% end %>
 
 <br>

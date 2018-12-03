@@ -45,6 +45,7 @@ document.addEventListener("turbolinks:load", function() {
   var ready = function() {
      setTimeout(clearNotice, 1000);  //Flash fade
   };
+
 ///////////////////////////////////////////////////////////////////
 
 
@@ -76,6 +77,7 @@ document.querySelector(".form-white-btn").style.minHeight = "50px";
     $('input[type="text"]').attr('autocomplete', "off");
     $('input[type="email"]').attr('autocomplete', "off");
   }
+
 
 
 
