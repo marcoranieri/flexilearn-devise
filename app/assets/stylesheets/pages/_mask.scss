@@ -106,3 +106,12 @@
     box-shadow: 0px 0px 5px #eaeaea;
   }
 }
+
+#review {
+  color: $flexi;
+  letter-spacing: 2px;
+  font-weight: 400;
+  font-size: 1.2em;
+  margin-bottom: 7vh;
+  border-bottom: 1px solid rgba(149, 173, 236, 0.6);
+}

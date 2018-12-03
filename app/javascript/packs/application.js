@@ -79,6 +79,4 @@ document.querySelector(".form-white-btn").style.minHeight = "50px";
   }
 
 
-
-
 }) /////// END - document.addEventListener("turbolinks:load", function() {
