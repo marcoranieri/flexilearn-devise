@@ -1,4 +1,5 @@
 class LessonsController < ApplicationController
+
   # skip_before_action :authenticate_student!, only: :home
   # skip_before_action :authenticate_tutor!, only: :home
   before_action :find_lesson, only: [ :show, :edit, :update, :destroy ]

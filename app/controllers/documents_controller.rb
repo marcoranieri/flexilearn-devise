@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
 
+    # Pundit OFF - Prototype
     before_action :skip_authorization
 
     before_action :find_document, only: [ :show, :edit, :update, :destroy ]
