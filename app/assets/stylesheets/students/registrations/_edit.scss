@@ -73,7 +73,7 @@
       border: none !important; // Reset border
       border-bottom: 2px solid rgba(149,173,236, .5) !important;
 
-      margin-bottom: 8vh !important;
+      margin-bottom: 10vh !important;
       padding-bottom: 1vh !important;
 
       font-weight: 300 !important;
@@ -96,7 +96,7 @@
     border: none !important; // Reset border
     border-bottom: 2px solid rgba(149,173,236, .5) !important;
 
-    margin-bottom: 8vh;
+    margin-bottom: 10vh;
     padding-bottom: 1vh;
 
     font-weight: 300;
@@ -186,6 +186,20 @@
 #unhappy,
 #unhappy  a {
   opacity: .7;
-  font-size: 1em;
+  font-size: .8em;
 }
 
+.student_photo {
+  background: transparent url(http://localhost:3000/assets/photo-5bcaea38b6fb056556376b86e0e7e606dc080ffd48b746fb2e15302419b1d086.png) left top no-repeat;
+  background-size: cover;
+
+  width:30vw;
+  height: 30vw;
+  margin: 6vh auto;
+
+  opacity: .8;
+}
+
+ .student_photo input {
+     opacity: 0;
+ }

@@ -37,7 +37,7 @@
     <%= f.input :bio, placeholder: "Tell us something about you!",
         input_html: { :style=> 'width: 100%;', :rows => 8 } %>
 
-    <%= f.input :photo, hint: "Please, only you in the photo" %>
+    <%= f.input :photo, label: false %>
     <%= f.input :photo_cache, as: :hidden %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

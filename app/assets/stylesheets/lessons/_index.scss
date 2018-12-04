@@ -34,17 +34,18 @@
 /////////////////////////////////////////////////////////
 // WITH LESSONS /////////////////////////////////////////
 .small-card {
-//  border: 2px solid black;
-//  box-shadow: 0 1px 2px darkgrey;
-  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
   display: flex;
-  color: $flexi;
-  min-height: 20vh;
-  padding:1%;
-
-  margin-top: 2vh;
   width: 100vw;
+  min-height: 20vh;
+
+  padding:1%;
+  margin-top: 2vh;
   margin-left: -15px;
+
+  color: $flexi;
+
+  border-bottom: 1px solid #95ADEC;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
 }
 
 .info {
@@ -74,11 +75,15 @@
   }
   #category {
     letter-spacing: 2px;
+    color: darkgray;
   }
   #address {
     text-decoration: none;
     a {
       color: $flexi !important;
+    }
+    i {
+      color: rgba(220,0,50,.6);
     }
   }
   #tutor-icon {
@@ -122,13 +127,20 @@
 }
 
 #opened {
-  margin:0 auto;
   width: 90vw;
-  padding:4vw;
+
+  margin:0 auto;
   margin-top: 1vh;
+
+  padding:4vw;
   padding-top: 5vh;
 
+  border-bottom: 1px solid rgba(149,173,236, .8);
+
   p{ // BIG text
+    line-height: 2em;
+    letter-spacing: 4px;
+
     opacity: .8;
   }
 
