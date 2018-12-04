@@ -47,9 +47,7 @@
   <%#= f.label "Private_lesson", class: "text-center"  %>
   <%#= f.check_box :private %>
 
-  <%= f.input :photo, label: false,
-  style: "background: transparent url(#{image_tag('photo.png')}) left top no-repeat;
-" %>
+  <%= f.input :photo, label: false %>
   <%= f.input :photo_cache, as: :hidden %>
 
   <br>
