@@ -23,7 +23,7 @@ $( document ).ready(function() {
   //   container: document.querySelector('#search')
   // });
 
-}); // DOCUMENT ready
+}); // /DOCUMENT ready
 
 
 // Callback for TURBOLINKS loaded
