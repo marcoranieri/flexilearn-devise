@@ -30,8 +30,10 @@
 
 #name {
   margin: 7vh 0vh;
-  border-bottom: 3px solid rgba(149,173,236, .5);
+  padding-bottom: 1vh;
+
   border-radius: 5px;
+  border-bottom: 3px solid rgba(149,173,236, .5);
 
   font-weight: 300 !important;
   word-break: break-word;

@@ -79,9 +79,14 @@
   }
   #address {
     text-decoration: none;
+
     a {
       color: $flexi !important;
+      &:hover, &:active, &:visited, &:focus {
+        text-decoration:none;
+      }
     }
+
     i {
       color: rgba(220,0,50,.6);
     }
@@ -189,6 +194,9 @@
   p{
     color: rgba(0,0,0, 0.5);
   }
+}
+.gray-icon {
+  color: #cacaca !important;
 }
 
 /////////////////////////////////////////////////////////
