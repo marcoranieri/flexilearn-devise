@@ -2,34 +2,29 @@
 <html>
 <head>
 
-
-    <script type="text/javascript">
-        (function(document,navigator,standalone) {
-            // prevents links from apps from oppening in mobile safari
-            // this javascript must be the first script in your <head>
-            if ((standalone in navigator) && navigator[standalone]) {
-                var curnode, location=document.location, stop=/^(a|html)$/i;
-                document.addEventListener('click', function(e) {
-                    curnode=e.target;
-                    while (!(stop).test(curnode.nodeName)) {
-                        curnode=curnode.parentNode;
-                    }
-                    // Condidions to do this only on links to your own app
-                    // if you want all links, use if('href' in curnode) instead.
-                    if('href' in curnode && ( curnode.href.indexOf('http') || ~curnode.href.indexOf(location.host) ) ) {
-                        e.preventDefault();
-                        location.href = curnode.href;
-                    }
-                },false);
-            }
-        })(document,window.navigator,'standalone');
-    </script>
-
-
-
-  <!-- Add these line for detecting device width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!--
+<script type="text/javascript">
+    (function(document,navigator,standalone) {
+        // prevents links from apps from oppening in mobile safari
+        // this javascript must be the first script in your <head>
+        if ((standalone in navigator) && navigator[standalone]) {
+            var curnode, location=document.location, stop=/^(a|html)$/i;
+            document.addEventListener('click', function(e) {
+                curnode=e.target;
+                while (!(stop).test(curnode.nodeName)) {
+                    curnode=curnode.parentNode;
+                }
+                // Condidions to do this only on links to your own app
+                // if you want all links, use if('href' in curnode) instead.
+                if('href' in curnode && ( curnode.href.indexOf('http') || ~curnode.href.indexOf(location.host) ) ) {
+                    e.preventDefault();
+                    location.href = curnode.href;
+                }
+            },false);
+        }
+    })(document,window.navigator,'standalone');
+</script>
+ -->
 
   <!-- Dynamic Title -->
   <!-- <title>Flexi Learn | <%#= yield(:title) %></title> -->
@@ -38,34 +33,32 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-<link rel="manifest" href="/site.webmanifest">
-<!-- https://realfavicongenerator.net/ --------------->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="FlexiLearn">
-<!--
+  <!-- Add these line for detecting device width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#9b97e4">
-<meta name="msapplication-TileColor" content="#da532c">
- -->
-
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#97a3e8">
+<meta name="msapplication-TileColor" content="#97a3e8">
+<meta name="theme-color" content="#97a3e8">
 
 
-<!-- Android  -->
-<meta name="mobile-web-app-capable" content="yes">
-<!-- <meta name="theme-color" content="#9b97e4"> -->
+
+<!-- Splash Screen iOS -->
+<link href="splashscreens/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+<link href="splashscreens/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+<link href="splashscreens/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+<link href="splashscreens/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+<link href="splashscreens/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+
+
 
   <!-- IMPORT Font Awesome - Open Sans-->
-<!--   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet"> -->
+  <!--   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet"> -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
   <!-- IMPORT BOOTSTRAP 4.1.0 -->
