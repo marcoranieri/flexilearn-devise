@@ -15,10 +15,15 @@ footer {
   border-top: 2px solid darkgray;
 
   p {
-    margin: 0 auto;
-    border: 1px solid $flexi;
     width:100%;
+    margin: 0 auto;
+
+    border-left: 1px solid $flexi;
+    border-right: 1px solid $flexi;
+
     text-align: center;
+    font-size: 1.2em;
+
     opacity: .6;
   }
 }

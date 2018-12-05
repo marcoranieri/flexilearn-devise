@@ -17,7 +17,7 @@
 
     <%= image_tag "edit.png" %>
     <p id="edit-hint" class="text-center" >
-      <span id="text-hint">
+      <span id="text-hint" class="bounce-top">
         Edit your profile <br> and press "UPDATE"
       </span>
     </p>
@@ -29,8 +29,8 @@
     <%= f.input :first_name %>
     <%= f.input :last_name %>
 
-    <%= f.input :email %>
-    <%= f.input :phone, as: :tel %>
+    <%= f.input :email, label: ("<i class='far fa-envelope'></i> Email").html_safe %>
+    <%= f.input :phone, label: ("<i class='fas fa-mobile-alt'></i> Phone").html_safe, as: :tel %>
     <%= f.input :birthdate, as: :string, html5: true,
         input_html: { value: @student.birthdate.strftime('%Y-%m-%d').to_s,
         class: "datepicker-student-edit"} %>
@@ -49,9 +49,10 @@
         required: false %>
     <%= f.input :password_confirmation, required: false,
         class: "force-devise-edit" %>
-    <%= f.input :current_password,
+    <%= f.input :current_password, label: ("<i class='fas fa-user-lock'></i> Current Password").html_safe,
         hint: "we need your current password to confirm your changes",
-        required: true %>
+        input_html: { value: "student@test.com"},
+        required: false %>
   </div>
 
   <div class="form-actions"><!-- Update BTN ----------------------------------->
