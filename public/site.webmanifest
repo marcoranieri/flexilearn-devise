@@ -1,6 +1,6 @@
 {
-    "name": "Flexi Learn",
-    "short_name": "Flexi Learn",
+    "name": "FlexiLearn",
+    "short_name": "FlexiLearn",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#9b97e4",
-    "background_color": "#9b97e4",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
     "display": "standalone"
 }
