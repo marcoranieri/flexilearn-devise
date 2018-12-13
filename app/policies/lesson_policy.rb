@@ -6,9 +6,9 @@ class LessonPolicy < ApplicationPolicy
     end
   end
 
-  # def index?
-  #   true
-  # end
+  def index?
+    true
+  end
 
   def show?
     return true if user.is_a?(Student) && user.created_at #is saved?
