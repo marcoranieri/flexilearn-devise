@@ -1,0 +1,96 @@
+<!-- HIDING Navigation for Device -->
+<% @navigation = true  if controller_name == "registrations" %>
+
+<div id="gray-header">
+<!--
+  <div id="logo-edit">
+    <%#= image_tag "edit.png" %>
+  </div>
+-->
+</div>
+
+<%= simple_form_for(resource, as: resource_name,
+    url: registration_path(resource_name),
+    html: { method: :put }) do |f| %>
+
+  <div id="logo-edit"><!-- Logo + Hint sticky TOP ----------------------------->
+
+    <%= image_tag "edit.png", class: "heartbeat" %>
+    <p id="edit-hint" class="text-center" >
+      <span id="text-hint" class="bounce-top">
+        Edit your profile <br> and press "UPDATE"
+      </span>
+    </p>
+
+  </div>
+
+  <%= f.error_notification %>
+  <div class="form-inputs"><!-- FORM ------------------------------------------>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+
+    <%= f.input :email, label: ("<i class='far fa-envelope'></i> Email").html_safe %>
+    <%= f.input :phone, label: ("<i class='fas fa-mobile-alt'></i> Phone").html_safe, as: :tel %>
+    <%= f.input :birthdate, as: :string, html5: true,
+        input_html: { value: @student.birthdate.strftime('%Y-%m-%d').to_s,
+        class: "datepicker-student-edit"} %>
+    <%= f.input :bio, placeholder: "Tell us something about you!",
+        input_html: { :style=> 'width: 100%;', :rows => 8 } %>
+
+    <%= f.input :photo, label: false %>
+    <%= f.input :photo_cache, as: :hidden %>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <p>Currently waiting confirmation for: <%=resource.unconfirmed_email%></p>
+    <% end %>
+    <br>
+    <%= f.input :password, autocomplete: "off",
+        hint: "leave it blank if you don't want to change it",
+        required: false %>
+    <%= f.input :password_confirmation, required: false,
+        class: "force-devise-edit" %>
+    <%= f.input :current_password, label: ("<i class='fas fa-user-lock'></i> Current Password").html_safe,
+        hint: "we need your current password to confirm your changes",
+        input_html: { value: "student@test.com"},
+        required: false %>
+  </div>
+
+  <div class="form-actions"><!-- Update BTN ----------------------------------->
+    <%= f.button :submit, "UPDATE", id: "btn" %>
+  </div>
+
+    <%= link_to url_for(:back), id: "back", class: "text-center" do %>
+      <!-- <i class="fas fa-angle-double-left"></i> -->
+      <i class="far fa-arrow-alt-circle-left"></i>
+    <% end %>
+<% end %>
+
+<br>
+
+<p id="unhappy"><!-- UNHAPPY Link --------------------------------------------->
+  Unhappy?<br>
+  <i class="far fa-trash-alt" style="color:rgb(149,173,236)"></i> <%= link_to "Cancel my account", registration_path(resource_name),
+    data: { confirm: "Are you sure?" }, method: :delete %>
+</p>
+
+<script>
+
+// Prevent Android keyboard to push Content up
+// https://stackoverflow.com/questions/23757345/android-does-not-correctly-scroll-on-input-focus-if-not-body-element
+
+  if(/Android [4-6]/.test(navigator.appVersion)) {
+     window.addEventListener("resize", function() {
+        if(document.activeElement.tagName=="INPUT" || document.activeElement.tagName=="TEXTAREA") {
+           window.setTimeout(function() {
+              document.activeElement.scrollIntoViewIfNeeded();
+           },0);
+        }
+     })
+  }
+
+// NO autocomplete (form suggestion)
+  if(/Android/.test(navigator.appVersion)){
+    $('input[type="text"]').attr('autocomplete', "off");
+  }
+
+</script>

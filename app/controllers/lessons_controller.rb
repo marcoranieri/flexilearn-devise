@@ -12,7 +12,7 @@ class LessonsController < ApplicationController
       @lessons = policy_scope(Lesson).where(tutor: current_user).order(created_at: :desc)
     end
 
-      authorize @lessons
+    authorize @lessons
   end
 
   def show
@@ -45,6 +45,10 @@ class LessonsController < ApplicationController
   def update
     respond_to do | format |
       if @lesson.update(lesson_params)
+        if current_tutor #When Tutor fake "deleted" redirect_to #INDEX, not #show
+          format.html { redirect_to lessons_url, notice: 'Lesson was successfully deleted.' }
+          format.json { render :show, status: :ok, location: @lessons }
+        end
         format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
         format.json { render :show, status: :ok, location: @lesson }
       else
@@ -57,7 +61,7 @@ class LessonsController < ApplicationController
   def destroy
     @lesson.destroy
     respond_to do | format |
-      format.html { redirect_to lessons_url, alert: 'Lesson was successfully destroyed.' }
+      format.html { redirect_to lessons_path, alert: 'Lesson was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,6 +74,6 @@ class LessonsController < ApplicationController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:id, :student_id, :category_id, :tutor_id, :date, :title, :request, :time, :location, :status, :notes, :tutor_notes, :photo, :price_cents, :price )
+    params.require(:lesson).permit(:id, :student_id, :category_id, :tutor_id, :date, :title, :request, :time, :location, :status, :notes, :tutor_notes, :photo, :price_cents, :price, :tutor_lvl )
   end
 end

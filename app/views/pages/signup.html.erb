@@ -1,9 +1,11 @@
 <!-- Dynamic Head Title -->
 <% provide(:title, 'SignUp') %>
 
-<div style="display: flex; justify-content: space-around;" >
+<h1 class="text-center">SIGN UP</h1>
 
-  <div><!-- S T U D E N T  Sign Up  -------------------------------------------->
+<div class="row" >
+
+  <div class="col-md-offset-1 col-md-5"><!-- S T U D E N T  Sign Up  ---------->
 
     <h2>Sign up as a <strong>Student</strong></h2>
 
@@ -11,15 +13,20 @@
       <%= f.error_notification %>
 
       <div class="form-inputs">
-        <%= f.input :first_name, required: true, autofocus: true %>
-        <%= f.input :last_name, required: true, autofocus: true %>
-        <%= f.input :phone, required: true, autofocus: true %>
+        <%= f.label :first_name %>
+        <%= f.input :first_name, label: false, required: true, autofocus: true %>
+        <%= f.label :last_name %>
+        <%= f.input :last_name, label: false, required: true, autofocus: true %>
+        <%= f.label :phone %>
+        <%= f.input :phone, label: false, required: true, autofocus: true %>
 
-        <%= f.input :email, required: true, autofocus: true %>
-        <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-        <%= f.input :password_confirmation, required: true %>
+        <%= f.label :email %>
+        <%= f.input :email, label: false, required: true, autofocus: true %>
+        <%= f.label :password %>
+        <%= f.input :password, label: false, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+        <%= f.label :password_confirmation %>
+        <%= f.input :password_confirmation, label: false, required: true %>
 
-        <%= f.label :photo %>
         <%= f.input :photo, hint: "Please, only you in the photo" %>
         <%= f.input :photo_cache, as: :hidden %>
       </div>
@@ -33,7 +40,7 @@
 
   </div>
 
-  <div><!-- T U T O R  Sign Up  ------------------------------------------------>
+  <div class="col-md-offset-1 col-md-5"><!-- T U T O R  Sign Up --------------->
 
     <h2>Sign up as a <strong>Tutor</strong></h2>
 
@@ -41,17 +48,22 @@
       <%= f.error_notification %>
 
       <div class="form-inputs">
-        <%= f.input :first_name, required: true, autofocus: true %>
-        <%= f.input :last_name, required: true, autofocus: true %>
-        <%= f.input :phone, required: true, autofocus: true %>
+        <%= f.label :first_name %>
+        <%= f.input :first_name, label: false, required: true, autofocus: true %>
+        <%= f.label :last_name %>
+        <%= f.input :last_name, label: false, required: true, autofocus: true %>
+        <%= f.label :phone %>
+        <%= f.input :phone, label: false, required: true, autofocus: true %>
 
-        <%= f.input :email, required: true, autofocus: true %>
-        <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-        <%= f.input :password_confirmation, required: true %>
+        <%= f.label :email %>
+        <%= f.input :email, label: false, required: true, autofocus: true %>
+        <%= f.label :password %>
+        <%= f.input :password, label: false, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+        <%= f.label :password_confirmation %>
+        <%= f.input :password_confirmation, label: false, required: true %>
 
         <%= f.input :photo, hint: "Please, only you in the photo" %>
-        <%= f.input :photo_cache, as: :hidden %>
-      </div>
+        <%= f.input :photo_cache, as: :hidden %>      </div>
 
       <div class="form-actions">
         <%= f.button :submit, "Sign up" %>
@@ -61,4 +73,11 @@
     <%#= render "tutors/shared/links" %>
   </div>
 
+</div>
+
+<br>
+<br>
+<br>
+<div class="text-center">
+  <%= link_to "LOG IN", login_path, class: "btn btn-primary" %>
 </div>

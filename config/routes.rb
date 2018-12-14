@@ -3,14 +3,14 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   #get 'pages/login'
-  devise_for :students, :controllers => { :omniauth_callbacks => "callbacks" }
+  devise_for :students #, controllers: { omniauth_callbacks: "callbacks" }
   devise_for :tutors
 
   #API
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :lessons, only: [ :index, :show ]
-      resources :tutors, only: [ :index, :show ]
+      resources :lessons,  only: [ :index, :show ]
+      resources :tutors,   only: [ :index, :show ]
       resources :students, only: [ :index, :show ]
     end
   end
@@ -36,9 +36,9 @@ Rails.application.routes.draw do
   # SignUp for both Student/Tutor
   get '/signup' => 'pages#signup'
   # LogIn for both Student/Tutor
-  get '/login' => 'pages#login'
+  get '/login'  => 'pages#login'
   # Index.ALL
-  get '/all' => 'pages#all'
+  get '/all'    => 'pages#all'
 
   # Tutor#Mask --> Prototyping purpose
   get '/mask' => 'pages#mask'
@@ -48,12 +48,15 @@ Rails.application.routes.draw do
 # root to: "lessons#index"
 # root to: "pages#credential"
 
-  unauthenticated do
-     root to: "pages#credential"
-  end
 
   authenticated do
     root to: "lessons#index"
   end
+  unauthenticated do
+     root to: "pages#switch"
+  end
+
+  # handling Routes ERROR
+  match '*path', via: :all, to: redirect('/lessons')
 
 end

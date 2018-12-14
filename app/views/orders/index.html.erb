@@ -2,16 +2,21 @@
 <% provide(:title, 'My Orders') %>
 
 <h3>Email:<%= current_student.email %></h3>
+<%= link_to "My Lessons", lessons_path, class: "btn btn-primary" %> <br>
+
 <h1>Your Orders:</h1>
 
 <ul>
   <% @orders.each do | order | %>
     <li>
-      Lesson: <%= order.name %> <br>
+      Lesson: <%= link_to order.lesson.title, lesson_path(order.lesson) %> <br>
+      Category: <%= order.lesson.category.name %> <br>
       Amount: <%= humanized_money_with_symbol(order.amount) %> <br>
       State: <%= order.state %><br>
       Tutor: <%= link_to order.lesson.tutor.last_name.capitalize,
-        tutor_path(order.lesson.tutor) %> <br><br>
+        tutor_path(order.lesson.tutor) %> <br>
+      <%= link_to "Show Order", order_path(order), class: "btn btn-success" %> <br>
+      <br><br>
     </li>
   <% end %>
 </ul>

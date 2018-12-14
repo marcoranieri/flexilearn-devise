@@ -13,16 +13,16 @@
 @import "layouts/index";
 @import "components/index";
 
-@import "pages/index";
+// @import "pages/index";
 
-@import "students/index";
+// @import "students/index";
 
-@import "lessons/main";
+// @import "lessons/main";
 
-@import "documents/import";
+// @import "documents/import";
 
 
-// Flatpickr Calendar /////////////////////////////////
+// // Flatpickr Calendar /////////////////////////////////
 @import "flatpickr/dist/flatpickr.min";
 // positioning Flatpickr
 div.flatpickr-calendar {
@@ -66,4 +66,31 @@ hr.style18:before {
   border-width: 0 0 1px 0;
   border-radius: 20px;
   opacity: .6;
+}
+
+
+.new_lesson > div {
+  margin-bottom: 3vh;
+}
+
+#profileAndLogout {
+  margin-top: -12vh;
+}
+@media screen and (min-width: 600px) { // DESKTOP
+#profileAndLogout {
+  margin-top: 8vh;
+}
+  body {
+    padding-bottom:0 !important;
+  }
+  div.container-fluid {
+    margin-top:0 !important;
+  }
+  div[role=navigation] {
+    display: none !important;
+  }
+  footer {
+    display: none !important;
+  }
+
 }

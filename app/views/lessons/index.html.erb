@@ -1,279 +1,224 @@
-<!-- LESSONS index.html.erb -->
-
-<% if @lessons.present? %><!-- WITH Lessons -------------------------------->
-<!-- <div class="preloader8">
-    <span></span>
-    <span></span>
-</div> -->
-
-<!-- //////////////////////////////////////////////////////////////////// -->
-<div class="small-card my-card" style="background: #fff;">
-  <div class="info left-info">
-    <div id="status">
-      SCHEDULED
-    </div>
-    <div id="day-number">
-      27
-    </div>
-    <div id="day-week">
-      WEN
-    </div>
-  </div>
-  <div class="info center-info">
-    <div id="tutor-name" class="text-center">
-      Dr. Kurt Waisman
-    </div>
-    <div id="category">
-      Trigonometry
-    </div>
-    <div id="address" class="text-center">
-      <%= link_to "https://www.google.com/maps/dir/?api=1&destination=Westminster, London SW1A 2JH, Regno Unito", target: "_blank" do %>
-      <i class="fas fa-map-marker-alt shake-bottom"></i> Westminster, London SW1A 2JH, Regno Unito
-    <% end %>
-    </div>
-  </div>
-  <div class="info right-info">
-    <div id="time">
-      11:00 AM
-    </div>
-    <div id="tutor-icon">
-      <%= image_tag "tutorICON.png" %>
-    </div>
-    <div id="expand-btn" class="my-expand">
-      <i class="fas fa-angle-down shake-bottom"></i>
-    </div>
-  </div>
-</div>
-
-<div id="hidden-card" class="my-content my-hidden">
-  <div id="opened">
-
-    <div class="small-title">
-      <%= image_tag "student-hat.png", class: "small-icon"%>
-      <p>Need help with...</p>
-      <%= image_tag "tutorICON.png", class: "small-icon"%>
-    </div>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero repudiandae aliquam ad earum fuga vitae, <br><br> repellendus nesciunt eaque fugiat veritatis quisquam excepturi a vero corrupti atque delectus nemo maiores non.</p>
-
-    <div>
-      <%= image_tag "trigo.png", id: "photo" %>
-    </div>
-
-    <div class="tutor-name">
-      <p style="border-bottom:1px solid ">T U T O R</p>
-
-      <%= link_to mask_path do %>
-        <%= image_tag "tutor.png", id: "photo-tutor" %>
-      <% end%>
-
-      <p>Dr. Kurt Waisman</p>
-    </div>
-
-  </div>
-</div>
-
-<!-- //////////////////////////////////////////////////////////////////// -->
-
-<div class="small-card my-card"" style="background: #fff;">
-  <div class="info left-info">
-    <div id="status">
-      PENDING
-    </div>
-    <div id="day-number">
-      7
-    </div>
-    <div id="day-week">
-      TUE
-    </div>
-  </div>
-  <div class="info center-info">
-    <div id="tutor-name" class="text-center">
-      Dr. Kelly Waisman
-    </div>
-    <div id="category">
-      Geography
-    </div>
-    <div id="address" class="text-center">
-      0 emily club, new Tina, VS9897
-    </div>
-  </div>
-  <div class="info right-info">
-    <div id="time">
-      6:00 PM
-    </div>
-    <div id="tutor-icon">
-      <%= image_tag "tutorICON.png" %>
-    </div>
-    <div id="expand-btn" class="my-expand">
-      <i class="fas fa-angle-down gray-icon"></i>
-    </div>
-  </div>
-</div>
-
-<div id="hidden-card" class="my-content my-hidden">
-  Ciao PAPONE!
-</div>
-
-<div class="small-card my-card"" style="background: #fff;">
-    <div class="info left-info">
-      <div id="status">
-        PENDING
-      </div>
-      <div id="day-number">
-        14
-      </div>
-      <div id="day-week">
-        SAT
-      </div>
-    </div>
-    <div class="info center-info">
-      <div id="tutor-name" class="text-center">
-        Dr. Mario Rossy
-      </div>
-      <div id="category">
-        Algebra
-      </div>
-      <div id="address" class="text-center">
-        0 emily club, new Tina, VS9897
-      </div>
-    </div>
-    <div class="info right-info">
-      <div id="time">
-        4:00 PM
-      </div>
-      <div id="tutor-icon">
-        <%= image_tag "tutorICON.png" %>
-      </div>
-      <div id="expand-btn" class="my-expand">
-        <i class="fas fa-angle-down gray-icon"></i>
-      </div>
-    </div>
-  </div>
-
-<div id="hidden-card" class="my-content my-hidden">
-  Ciao PAPONE!
-</div>
-
-<div class="small-card my-card"" style="background: #fff;">
-    <div class="info left-info">
-      <div id="status">
-        SCHEDULED
-      </div>
-      <div id="day-number">
-        14
-      </div>
-      <div id="day-week">
-        SAT
-      </div>
-    </div>
-    <div class="info center-info">
-      <div id="tutor-name" class="text-center">
-        Dr. Julius Frusciante
-      </div>
-      <div id="category">
-        Art
-      </div>
-      <div id="address" class="text-center">
-        0 emily club, new Tina, VS9897
-      </div>
-    </div>
-    <div class="info right-info">
-      <div id="time">
-        4:00 PM
-      </div>
-      <div id="tutor-icon">
-        <%= image_tag "tutorICON.png" %>
-      </div>
-      <div id="expand-btn" class="my-expand">
-        <i class="fas fa-angle-down gray-icon "></i>
-      </div>
-    </div>
-  </div>
-
-<div id="hidden-card" class="my-content my-hidden">
-  Ciao PAPONE!
-</div>
+<!-- Dynamic Head Title -->
+<% provide(:title, 'My Lessons') %>
 
 
-<div id="btn-plus" class="bounce-right"><!-- PLUS btn ---------------------------------------------->
-  <%= link_to new_lesson_path do %>
-    <%= image_tag "plus.png" %>
+
+<div class="text-center" id="profileAndLogout">
+<% if current_user.is_a? Student %>
+  <!-- STUDENT show/logout ---------------------------------------------->
+  <%= link_to destroy_student_session_path, style:"padding:0 10%",
+     method: :delete do %>
+    <i class="fas fa-sign-out-alt" style="font-size:3em;opacity:.7"></i>
   <% end %>
+  <%= link_to student_path(current_student), style:"padding:0 10%" do %>
+    <i class="fas fa-user-graduate" style="font-size:3em;opacity:.7"></i>
+  <% end %>
+
+<% else %><!-- TUTOR show/logout -------------------------------------->
+  <%= link_to destroy_tutor_session_path, style:"padding:0 10%",
+   method: :delete do %>
+    <i class="fas fa-sign-out-alt" style="font-size:3em;opacity:.7"></i>
+  <% end %>
+  <%= link_to tutor_path(current_tutor), style:"padding:0 10%" do %>
+    <i class="fas fa-chalkboard-teacher" style="font-size:3em;opacity:.7"></i>
+  <% end %>
+<% end %>
+
+<!-- T U T O R ---------------------------------------------------------------->
+<% if current_user.is_a? Tutor %>
+
+  <!-- Email -->
+  <h4>Current Tutor: <%= current_tutor.email %></h4>
+
+  <!-- Name -->
+  <% if current_tutor.name %> <!-- Facebook name  -->
+    <h4>Name: <%= current_tutor.name %></h4>
+
+  <% else %> <!-- Last_name + First_name  -->
+    <h4>
+      Name: <%= current_tutor.last_name.capitalize %> <%= current_tutor.first_name.capitalize %>
+    </h4>
+  <% end %>
+
+<!-- Image-->
+<% if current_tutor.image_fb.present?  %> <!--  Facebook IMG -->
+  <div><%= image_tag current_tutor.image_fb + "?type=small"  %></div>
+<% elsif current_tutor.photo.present? %> <!-- Cloudinary IMG  -->
+  <div><%= cl_image_tag current_tutor.photo.url(:bright_face) %></div>
+<% else %> <!-- Cloudinary IMG  -->
+<% a = "https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png" %>
+    <div style="margin:0 auto;width:100px;height:100px;background-image: url(<%= a %>);background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;">
+    </div>
+<% end %>
+
+<!-- S T U D E N T ------------------------------------------------------------>
+<% elsif current_student %>
+  <!-- Email -->
+  <h4>Current Student: <%= current_student.email %></h4>
+
+  <!-- Name -->
+  <% if current_student.name %> <!-- Facebook name  -->
+    <h4>Name: <%= current_student.name %></h4>
+  <% else %> <!-- Last_name + First_name  -->
+    <h4>Name: <%= current_student.last_name.capitalize %> <%= current_student.first_name.capitalize %></h4>
+  <% end %>
+
+  <!-- Image-->
+  <% if current_student.image_fb.present?  %>  <!--  Facebook IMG -->
+    <div><%= image_tag current_student.image_fb + "?type=small"  %></div>
+  <% elsif current_student.photo.present? %> <!-- Cloudinary IMG  -->
+    <div><%= cl_image_tag current_student.photo.url(:bright_face) %></div>
+  <% else %> <!-- Rescue IMG  -->
+<% a = "https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png" %>
+    <div style="margin:0 auto;width:100px;height:100px;background-image: url(<%= a %>);background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;">
+    </div>
+  <% end %>
+
+<% else %> <!-- Not Logged In -->
+  <h4><i class="fas fa-user-slash"></i> Not Logged In...</h4>
+<% end %>
+
 </div>
 
+<hr>
+<br>
+
+<!-- N A V I G A T I O N ------------------------------------------------------>
+<%= link_to "All Lessons", all_path, class:"btn btn-primary" %>
+<%= link_to "Request a LESSON", new_lesson_path,
+    class:"btn btn-success" if current_user.is_a? Student  %>
+
+<!-- O R D E R S -------------------------------------------------------------->
+<% if current_student && current_student.orders.count > 0 %>
+  <%= link_to "My Orders", orders_path, class:"btn btn-outline-danger" %>
+<% elsif current_student && current_student.orders.count.zero?%>
+  <div class="btn btn-secondary">No Orders..</div>
+<% end %>
+
+<h1>My Lessons</h1>
+
+<br>
+<br>
+<br>
+<!-- L E S S O N S ------------------------------------------------------------>
+<% if @lessons.present? %>
+
+  <% @lessons.each do |lesson| %>
+    <p>
+      <i class="fas fa-book"></i> Lesson Title:<br>
+      <strong><%= link_to lesson.title, lesson_path(lesson) %></strong>
+      | <%= link_to "Edit", edit_lesson_path(lesson),style:"color:darkorange;"%>
+
+      <!-- Student DELETE - method: :delete ----------------------------------->
+      <% if current_user.is_a? Student %>
+        | <%= link_to 'Delete',lesson_path(lesson),data:{confirm:'Are you sure?'},
+            method: :delete, style:"color:red;" %>
+      <% end %>
+
+      <br>
+    <!--   Category: <%#= link_to lesson.category.name,category_path(lesson.category)%> -->
+      Category: <%= lesson.category.name %>
+      <br>
+      <br>
+
+      <!-- AMOUNT setting ----------------------------------------------------->
+      <% if lesson.price.zero? %>
+        <em>Looking for a tutor...</em>
+      <% else %>
 
 
-<script>
-// EXPAND CARD /////////////////////////////////////////////
-// <!--https://codepen.io/pjayaramli/pen/JeEwqE -->
-// $(".expand").click(function(){
-//   $(".expand").toggleClass("flipped");
-//   $(".card").toggleClass("big");
-//   setTimeout(function(){
-//     $(".content").toggleClass("hidden");
-//   }, 200)
-// });
+        <% if current_user.is_a? Student %><!-- Tutor name -------------------->
 
-  var btn     = document.querySelector(".my-expand");
-  var card    = document.querySelector(".my-card");
-  var content = document.querySelector(".my-content");
-  var icon    = document.getElementById("tutor-icon");
+      <!-- Tutor Image-->
+        <% if lesson.tutor.image_fb.present?  %>  <!--  Facebook IMG -->
+          <div><%= image_tag lesson.tutor.image_fb + "?type=small"  %></div>
+        <% elsif lesson.tutor.photo.present? %> <!-- Cloudinary IMG  -->
+          <div>
+           <%= link_to (cl_image_tag lesson.tutor.photo.url(:bright_face_small)),
+               tutor_path(lesson.tutor)%>
+          </div>
 
-  var title = document.querySelector(".small-title p")
+        <% else %> <!-- Rescue IMG  -->
+      <% a = "https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png" %>
+          <div style="width:70px;height:70px;background-image: url(<%= a %>);background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;">
+          </div>
+        <% end %>
 
-  btn.addEventListener("touchstart", function() {
+          <% if lesson.tutor.name %><!-- Facebook name -->
+            Tutor: <%= link_to lesson.tutor.name, tutor_path(lesson.tutor)%>
+          <% else %>
+            Tutor: <%= link_to lesson.tutor.last_name.capitalize,
+              tutor_path(lesson.tutor)%>
+          <% end %>
 
-    btn.classList.toggle("flipped");
-    content.classList.toggle("big");
-    //Trigger Animation on title hidden card
-    title.classList.add("tracking-in-expand");
+        <% else %><!-- Student name ------------------------------------------->
 
-    setTimeout(function(){
-      content.classList.toggle("my-hidden");
-    }, 200)
+      <!-- Student Image-->
+        <% if lesson.student.image_fb.present?  %>  <!--  Facebook IMG -->
+          <div><%= image_tag lesson.student.image_fb + "?type=small"  %></div>
+        <% elsif lesson.student.photo.present? %> <!-- Cloudinary IMG  -->
+          <div>
+           <%= link_to (cl_image_tag lesson.student.photo.url(:bright_face_small)),
+               student_path(lesson.student)%>
+          </div>
+        <% else %> <!-- Rescue IMG  -->
+      <% a = "https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png" %>
+          <div style="width:70px;height:70px;background-image: url(<%= a %>);background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;">
+          </div>
+        <% end %>
 
-  });
+          <% if lesson.student.image_fb  %>  <!--  Facebook IMG -->
+            <div><%= image_tag lesson.student.image_fb + "?type=small"  %></div>
 
-  icon.addEventListener("touchstart", function() {
+          <% else %> <!-- Cloudinary IMG  -->
+            <div>
+          <% end %>
 
-    btn.classList.toggle("flipped");
-    content.classList.toggle("big");
-    //Trigger Animation on title hidden card
-    title.classList.add("tracking-in-expand");
+          <% if lesson.student.name %><!-- Facebook name -->
+            Student: <%= link_to lesson.student.name,student_path(lesson.student)%>
+          <% else %>
+            Student: <%= link_to lesson.student.last_name.capitalize,
+              student_path(lesson.student)%>
+          <% end %>
 
-    setTimeout(function(){
-      content.classList.toggle("my-hidden");
-    }, 200)
+        <% end %>
+        <br>
 
-  });
-////////////////////////////////////////////////////////////
-
-
-</script>
+        Amount: <%= humanized_money_with_symbol(lesson.price) %>
+      <% end %>
 
 
+      <!-- Tutor DELETE ( updating attributes - NOT deleting ) ---------------->
+      <% if current_user.is_a? Tutor %>
+        <%= form_for lesson do |f| %>
+          <%= f.hidden_field :status, value: "requested" %>
+          <%= f.hidden_field :tutor_id, value: nil %>
+          <%= f.hidden_field :tutor_notes, value: nil %>
+          <%= f.hidden_field :price, value: 0 %>
+          <%= f.submit "Delete", data:{confirm:'Are you sure?'},
+            class:"btn btn-link", style:"color:red; padding:0;" %>
+        <% end %>
+      <% end %>
 
-<% else %> <!-- NO LESSON  ---------------------------------------------------->
+    </p>
+  ------------------------------ <br> <br>
+  <% end %>
 
-    <div class="wrapper-white">
+<% else %><br> <!-- IF NO LESSON ---------------------------------------------->
 
-    <h2 id="index-welcome" class="font-lighter text-center">
-      Welcome<br>
-      <%= current_user.first_name if current_user %>
-    </h2>
+  <% if current_user.is_a? Student %> <!-- Student Hint -->
+    <p><%= "Simply create your lesson by clicking the button above!" %></p>
 
-    <%= image_tag "bubble.png", id: "bubble", width: :auto; %>
-
-    <h2 id="first-lesson" class="font-lighter">
-      Create your<br>
-      first lesson
-    </h2>
-
-    <div class="light-btn text-center">
-      <%= link_to "Request Lesson", new_lesson_path %>
-    </div>
-
-  </div>
+  <% else%> <!-- Tutor Hint -->
+    <p><%= "No lessons yet..." %></p>
+  <% end %>
 
 <% end %>

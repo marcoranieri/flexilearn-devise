@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_23_164429) do
+ActiveRecord::Schema.define(version: 2018_12_13_173738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2018_09_23_164429) do
     t.integer "price_cents", default: 0, null: false
     t.bigint "category_id"
     t.string "photo"
+    t.integer "tutor_lvl", default: 1, null: false
     t.index ["category_id"], name: "index_lessons_on_category_id"
     t.index ["student_id"], name: "index_lessons_on_student_id"
     t.index ["tutor_id"], name: "index_lessons_on_tutor_id"
@@ -176,7 +177,7 @@ ActiveRecord::Schema.define(version: 2018_09_23_164429) do
     t.integer "status"
     t.boolean "pro"
     t.integer "like"
-    t.integer "level"
+    t.integer "level", default: 1, null: false
     t.string "degree"
     t.string "institution"
     t.decimal "desirability"

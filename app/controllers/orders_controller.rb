@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_lesson, only: [:create, :show]
+  before_action :set_lesson, only: [:create]
 
 
 
@@ -31,5 +31,6 @@ private
 
   def set_lesson
     params[:id] ? @lesson = Lesson.find(params[:id]) : @lesson = Lesson.find(params[:lesson_id])
+    # @lesson = Lesson.find(params[:lesson_id])
   end
 end
