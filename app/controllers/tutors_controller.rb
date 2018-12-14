@@ -9,6 +9,9 @@ class TutorsController < ApplicationController
   end
 
   def show
+    if Review.where(tutor: params[:id]).present?
+      @average = (Review.where(tutor: params[:id]).pluck(:rating).reduce(:+) / Review.where(tutor: params[:id]).count.to_f).round(2)
+    end
   end
 
   def new

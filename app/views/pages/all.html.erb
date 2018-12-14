@@ -1,8 +1,13 @@
 <!-- Dynamic Head Title -->
 <% provide(:title, 'All Lessons') %>
 
-<h1>All Lessons in Flexi Learn</h1>
-
+<% if current_tutor %>
+  <h2>All Lessons (without Tutor)</h2>
+  <h5>filtered by (current tutor) Categories</h5>
+  <h5>filtered by (current tutor) Level</h5>
+<% else %>
+  <h2>All Lessons in Flexi Learn</h2>
+<% end %>
 <!-- N A V I G A T I O N ------------------------------------------------------>
 <!-- @u = current_user in Pages#All for refactoring -->
 <% if @u.is_a?(Student) && @u.created_at || @u.is_a?(Tutor)  %>
@@ -10,16 +15,25 @@
 <% end %>
 
 <% if @u.is_a?(Student) && @u.created_at  %>
-  <%= link_to "Request a LESSON", new_lesson_path, class:"btn btn-primary" %>
+  <%= link_to "Request a LESSON", new_lesson_path, class:"btn btn-success" %>
 <% end %>
 
+<br>
+<br>
 <br>
 <!-- L E S S O N S ------------------------------------------------------------>
 <% if @lessons.present? %>
   <% @lessons.each do |lesson| %>
-    <br>
-    - <strong><%= link_to lesson.title, lesson_path(lesson) %></strong>
-    → Category : <%= link_to lesson.category.name, lesson_path(lesson) %>
+
+<% if current_tutor %>
+  <% next if current_tutor.level.to_i != lesson.tutor_lvl.to_i %>
+  <% next unless current_tutor.category_ids.include?(lesson.category.id) %>
+<% end %>
+
+    <i class="fas fa-book"></i>
+    <strong><%= link_to lesson.title, lesson_path(lesson) %></strong><br>
+    <!-- → Category : <%= link_to lesson.category.name, lesson_path(lesson) %> -->
+    → <small>Category:</small> <%= lesson.category.name %>
 
     <% if lesson.student == current_student %>
 <!--ADMIN--  || @u.is_a?(Student) && @u.email == "marco.ranieri14@libero.it" -->
@@ -28,5 +42,8 @@
     | <%= link_to 'Delete', lesson_path(lesson), data:{confirm:'Are you sure?'},
         method: :delete, style:"color:red;" %>
     <% end %>
+
+    <br>
+    <br>
   <% end %>
 <% end %>

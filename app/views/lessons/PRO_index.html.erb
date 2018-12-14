@@ -1,0 +1,279 @@
+<!-- LESSONS index.html.erb -->
+
+<% if @lessons.present? %><!-- WITH Lessons -------------------------------->
+<!-- <div class="preloader8">
+    <span></span>
+    <span></span>
+</div> -->
+
+<!-- //////////////////////////////////////////////////////////////////// -->
+<div class="small-card my-card" style="background: #fff;">
+  <div class="info left-info">
+    <div id="status">
+      SCHEDULED
+    </div>
+    <div id="day-number">
+      27
+    </div>
+    <div id="day-week">
+      WEN
+    </div>
+  </div>
+  <div class="info center-info">
+    <div id="tutor-name" class="text-center">
+      Dr. Kurt Waisman
+    </div>
+    <div id="category">
+      Trigonometry
+    </div>
+    <div id="address" class="text-center">
+      <%= link_to "https://www.google.com/maps/dir/?api=1&destination=Westminster, London SW1A 2JH, Regno Unito", target: "_blank" do %>
+      <i class="fas fa-map-marker-alt shake-bottom"></i> Westminster, London SW1A 2JH, Regno Unito
+    <% end %>
+    </div>
+  </div>
+  <div class="info right-info">
+    <div id="time">
+      11:00 AM
+    </div>
+    <div id="tutor-icon">
+      <%= image_tag "tutorICON.png" %>
+    </div>
+    <div id="expand-btn" class="my-expand">
+      <i class="fas fa-angle-down shake-bottom"></i>
+    </div>
+  </div>
+</div>
+
+<div id="hidden-card" class="my-content my-hidden">
+  <div id="opened">
+
+    <div class="small-title">
+      <%= image_tag "student-hat.png", class: "small-icon"%>
+      <p>Need help with...</p>
+      <%= image_tag "tutorICON.png", class: "small-icon"%>
+    </div>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero repudiandae aliquam ad earum fuga vitae, <br><br> repellendus nesciunt eaque fugiat veritatis quisquam excepturi a vero corrupti atque delectus nemo maiores non.</p>
+
+    <div>
+      <%= image_tag "trigo.png", id: "photo" %>
+    </div>
+
+    <div class="tutor-name">
+      <p style="border-bottom:1px solid ">T U T O R</p>
+
+      <%= link_to mask_path do %>
+        <%= image_tag "tutor.png", id: "photo-tutor" %>
+      <% end%>
+
+      <p>Dr. Kurt Waisman</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- //////////////////////////////////////////////////////////////////// -->
+
+<div class="small-card my-card"" style="background: #fff;">
+  <div class="info left-info">
+    <div id="status">
+      PENDING
+    </div>
+    <div id="day-number">
+      7
+    </div>
+    <div id="day-week">
+      TUE
+    </div>
+  </div>
+  <div class="info center-info">
+    <div id="tutor-name" class="text-center">
+      Dr. Kelly Waisman
+    </div>
+    <div id="category">
+      Geography
+    </div>
+    <div id="address" class="text-center">
+      0 emily club, new Tina, VS9897
+    </div>
+  </div>
+  <div class="info right-info">
+    <div id="time">
+      6:00 PM
+    </div>
+    <div id="tutor-icon">
+      <%= image_tag "tutorICON.png" %>
+    </div>
+    <div id="expand-btn" class="my-expand">
+      <i class="fas fa-angle-down gray-icon"></i>
+    </div>
+  </div>
+</div>
+
+<div id="hidden-card" class="my-content my-hidden">
+  Ciao PAPONE!
+</div>
+
+<div class="small-card my-card"" style="background: #fff;">
+    <div class="info left-info">
+      <div id="status">
+        PENDING
+      </div>
+      <div id="day-number">
+        14
+      </div>
+      <div id="day-week">
+        SAT
+      </div>
+    </div>
+    <div class="info center-info">
+      <div id="tutor-name" class="text-center">
+        Dr. Mario Rossy
+      </div>
+      <div id="category">
+        Algebra
+      </div>
+      <div id="address" class="text-center">
+        0 emily club, new Tina, VS9897
+      </div>
+    </div>
+    <div class="info right-info">
+      <div id="time">
+        4:00 PM
+      </div>
+      <div id="tutor-icon">
+        <%= image_tag "tutorICON.png" %>
+      </div>
+      <div id="expand-btn" class="my-expand">
+        <i class="fas fa-angle-down gray-icon"></i>
+      </div>
+    </div>
+  </div>
+
+<div id="hidden-card" class="my-content my-hidden">
+  Ciao PAPONE!
+</div>
+
+<div class="small-card my-card"" style="background: #fff;">
+    <div class="info left-info">
+      <div id="status">
+        SCHEDULED
+      </div>
+      <div id="day-number">
+        14
+      </div>
+      <div id="day-week">
+        SAT
+      </div>
+    </div>
+    <div class="info center-info">
+      <div id="tutor-name" class="text-center">
+        Dr. Julius Frusciante
+      </div>
+      <div id="category">
+        Art
+      </div>
+      <div id="address" class="text-center">
+        0 emily club, new Tina, VS9897
+      </div>
+    </div>
+    <div class="info right-info">
+      <div id="time">
+        4:00 PM
+      </div>
+      <div id="tutor-icon">
+        <%= image_tag "tutorICON.png" %>
+      </div>
+      <div id="expand-btn" class="my-expand">
+        <i class="fas fa-angle-down gray-icon "></i>
+      </div>
+    </div>
+  </div>
+
+<div id="hidden-card" class="my-content my-hidden">
+  Ciao PAPONE!
+</div>
+
+
+<div id="btn-plus" class="bounce-right"><!-- PLUS btn ---------------------------------------------->
+  <%= link_to new_lesson_path do %>
+    <%= image_tag "plus.png" %>
+  <% end %>
+</div>
+
+
+
+<script>
+// EXPAND CARD /////////////////////////////////////////////
+// <!--https://codepen.io/pjayaramli/pen/JeEwqE -->
+// $(".expand").click(function(){
+//   $(".expand").toggleClass("flipped");
+//   $(".card").toggleClass("big");
+//   setTimeout(function(){
+//     $(".content").toggleClass("hidden");
+//   }, 200)
+// });
+
+  var btn     = document.querySelector(".my-expand");
+  var card    = document.querySelector(".my-card");
+  var content = document.querySelector(".my-content");
+  var icon    = document.getElementById("tutor-icon");
+
+  var title = document.querySelector(".small-title p")
+
+  btn.addEventListener("touchstart", function() {
+
+    btn.classList.toggle("flipped");
+    content.classList.toggle("big");
+    //Trigger Animation on title hidden card
+    title.classList.add("tracking-in-expand");
+
+    setTimeout(function(){
+      content.classList.toggle("my-hidden");
+    }, 200)
+
+  });
+
+  icon.addEventListener("touchstart", function() {
+
+    btn.classList.toggle("flipped");
+    content.classList.toggle("big");
+    //Trigger Animation on title hidden card
+    title.classList.add("tracking-in-expand");
+
+    setTimeout(function(){
+      content.classList.toggle("my-hidden");
+    }, 200)
+
+  });
+////////////////////////////////////////////////////////////
+
+
+</script>
+
+
+
+<% else %> <!-- NO LESSON  ---------------------------------------------------->
+
+    <div class="wrapper-white">
+
+    <h2 id="index-welcome" class="font-lighter text-center">
+      Welcome<br>
+      <%= current_user.first_name if current_user %>
+    </h2>
+
+    <%= image_tag "bubble.png", id: "bubble", width: :auto; %>
+
+    <h2 id="first-lesson" class="font-lighter">
+      Create your<br>
+      first lesson
+    </h2>
+
+    <div class="light-btn text-center">
+      <%= link_to "Request Lesson", new_lesson_path %>
+    </div>
+
+  </div>
+
+<% end %>

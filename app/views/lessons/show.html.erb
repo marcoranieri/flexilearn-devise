@@ -46,7 +46,7 @@
 <!-- T U T O R Name ----------------------------------------------------------->
   <h3>
     <i class="fas fa-chalkboard-teacher"></i>
-    <strong>Tutor:</strong><br>
+    <strong>Tutor<br><small>(lvl requested: <%=@lesson.tutor_lvl%>):</small></strong><br>
     <% if @lesson.tutor.present? %>
       <%= link_to @lesson.tutor.first_name.capitalize+" "+
           @lesson.tutor.last_name.capitalize, tutor_path(@lesson.tutor) %>
@@ -55,6 +55,8 @@
     <% end %>
   </h3>
 
+<br>
+<br>
 <!-- Status ------------------------------------------------------------------->
   <% color = "darkorange" if @lesson.status == "requested" %>
   <% color = "cadetblue"  if @lesson.status == "scheduled" %>
@@ -99,13 +101,14 @@
     <img src="https://loremflickr.com/200/300/job,book,library/all" alt="LessonPic">
   <% end %>
   <br>
+  <br>
 
 <!-- P U R C H A S E - STRIPE Btn --------------------------------------------->
   <% if current_user.is_a?(Student) && @lesson.tutor.present? &&
-      @lesson.student == current_user %>
+      @lesson.student == current_user && !@lesson.paid? %>
     <%= form_tag orders_path do %>
       <%= hidden_field_tag 'lesson_id', @lesson.id %>
-      <%= submit_tag 'Purchase', class: 'btn btn-primary' %>
+      <%= submit_tag 'Purchase', class: 'btn btn-success' %>
     <% end %>
   <% end %>
   <br>
@@ -117,7 +120,7 @@
 
   <!-- STUDENT Btn to EDIT ( Lesson#EDIT ) -->
   <% if current_user.is_a?(Student) && @lesson.student == current_student %>
-    <%= link_to "Edit",edit_lesson_path(@lesson),class:"btn btn-primary"%>
+    <%= link_to "Edit",edit_lesson_path(@lesson),class:"btn btn-warning"%>
   <% end %>
 
 </div>

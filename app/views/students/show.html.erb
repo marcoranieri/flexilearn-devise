@@ -1,56 +1,103 @@
-<!-- show.html.erb -->
-<div id="wrapper">
+<!-- Dynamic Head Title -->
+<% provide(:title, 'Student') %>
 
-  <div class="top-white text-center">
+<div class="text-center">
 
-    <h3 id="name">
+  <h2>
+    <strong>STUDENT:</strong><br>
       <% if @student.last_name  %>
-      <%= @student.first_name.capitalize%><br><%= @student.last_name.capitalize%>
-      <% end %>
-    </h3>
+        <%= @student.last_name.capitalize%> <%= @student.first_name.capitalize%>
+      <% elsif @student.name %><!-- Facebook name -->
+        <%= @student.name %>
+      <% end  %>
+  </h2>
 
-  </div>
+  <!-- Cloudinary ------------------------------------------------------------->
+  <% if @student.photo.present? %>
+    <%= cl_image_tag @student.photo.url(:bright_face) %>
 
-  <div class="bottom-gray text-center">
-
-    <% if @student.photo.present? %>
-    <div class="round">
-      <%= cl_image_tag @student.photo.url(:bright_face) %>
+  <!-- Facebook --------------------------------------------------------------->
+  <% elsif @student.image_fb.present? %>
+    <div style="border-radius: 50%">
+      <%= image_tag @student.image_fb + "?type=large",style:"border-radius:50%"%>
     </div>
-    <% end %>
 
-    <h4 id="email" >
-      <%= @student.email if @student.email %>
-    </h4>
-
-    <p id="birth" >
-      <!-- <i class="fas fa-birthday-cake"></i> -->
-      <!-- <i class="fas fa-ribbon"></i> -->
-      <i class="fas fa-star"></i>
-      <%= @student.birthdate.strftime('%d %b %Y') if @student.birthdate %>
-    </p>
-
-  </div>
-
-  <% if @student.bio.present? %>
-  <div id="bio">
-      <p><%= @student.bio %></p>
-  </div>
-
+  <!-- Loremflickr ------------------------------------------------------------>
   <% else %>
-    <p id="bio">
-      <em>You did not provide any description yet.
-      <br>
-      Please <strong>tell us about yourself</strong>!</em>
-    </p>
-
+    <% a = "https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png" %>
+    <div style="margin:0 auto;width:100px;height:100px;background-image: url(<%= a %>);background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;">
+    </div>
   <% end %>
-  </div>
+
+  <p><strong>@Email:</strong><br><%= @student.email %></p><!-- @Email --------->
+
+  <% if @student.birthdate %><!-- Birthdate ----------------------------------->
+    <p><strong>Birthdate:</strong><br><%= @student.birthdate %></p>
+  <% end %>
+
+  <p><strong>Bio:</strong><br><!-- Bio ---------------------------------------->
+    <% if @student.bio.present? %>
+      <div style="width:80%;margin:0 auto;">
+        <p><%= @student.bio %></p>
+      </div>
+    <% else %>
+      <p style="opacity: .7"><em>
+        You did not provide any description yet.<br>
+        Please <strong>tell us about yourself</strong>!
+      </em></p>
+    <% end %>
+  </p>
+
+  <!-- STUDENT - EDIT btn ----------------------------------------------------->
+  <% if current_user.is_a?(Student) && @student == current_student %>
+    <%= link_to "Edit",edit_student_registration_path, class:"btn btn-primary"%>
+  <% end %>
+
+  <br>
+  <br>
+
+<!-- FAVOURITE Tutors --------------------------------------------------------->
+  <% if current_user.is_a?(Student) && @student == current_student &&
+        @student.lessons %>
+    <% @student.lessons.each do |lesson| %>
+
+      <hr class="style18">
+      <div style="display:flex;justify-content:space-between;padding: 5%;">
+
+        <div><!-- Link Tutor Img ---------------------------------------------->
+        <% if lesson.tutor.nil? %>
+          <i class="fas fa-chalkboard-teacher" style="font-size:3em;opacity:.3"></i>
+
+        <% else %>
+          <%= link_to (cl_image_tag(lesson.tutor.photo.url(:bright_face_small))),tutor_path(lesson.tutor) %>
+
+        <% end %>
+        </div>
+
+        <div><!-- Lesson Title ------------------------------------------------>
+          <p><strong>
+            <%= link_to lesson.title, lesson_path(lesson) %>
+          </strong></p>
+        </div>
+
+        <div><!-- Lesson Date + Status ---------------------------------------->
+          <p><%= lesson.date.strftime("%a, %e %b %Y") %></p>
+
+          <% color = "darkorange" if lesson.status == "requested" %>
+          <% color = "cadetblue"  if lesson.status == "scheduled" %>
+          <% color = "green"      if lesson.status == "completed" %>
+          <% color = "red"        if lesson.status == "canceled"  %>
+          <p><span style="color:<%= color %>;"><%= lesson.status %></span></p>
+        </div>
+
+      </div>
+
+    <% end %>
+  <% end %>
 
 </div>
 
-<div id="btn-edit" class="bounce-right">
-  <%= link_to edit_student_registration_path(current_student) do %>
-  <%= image_tag "edit.png" %>
-  <% end %>
-</div>
+
+

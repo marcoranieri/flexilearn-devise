@@ -10,7 +10,7 @@ class AddFieldsToTutors < ActiveRecord::Migration[5.2]
     add_column :tutors, :status, :integer
     add_column :tutors, :pro, :boolean
     add_column :tutors, :like, :integer
-    add_column :tutors, :level, :integer
+    add_column :tutors, :level, :integer, null: false, default: 1
     add_column :tutors, :degree, :string
     add_column :tutors, :institution, :string
     add_column :tutors, :desirability, :decimal

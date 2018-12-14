@@ -28,6 +28,14 @@ class PagesController < ApplicationController
     @u = current_user # for refactoring the IF statement
   end
 
+def switch
+  if current_user.is_a? Tutor
+    redirect_to lessons_path
+  else
+    render 'pages/switch'
+  end
+end
+
   def mask
 # Pototyping purpose (static tutor#show)
   end

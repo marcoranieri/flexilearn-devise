@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::Base
+
+  # RESCUE_from ActiveRecord::RecordNotFound
+  rescue_from ActiveRecord::RecordNotFound, with: :redirect_to_root_page
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -22,12 +26,12 @@ class ApplicationController < ActionController::Base
   after_action :verify_authorized, except: :index, unless: :skip_pundit?
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
-  # Uncomment when you *really understand* Pundit!
-  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  # def user_not_authorized
-  #   flash[:alert] = "You are not authorized to perform this action."
-  #   redirect_to(root_path)
-  # end
+  # RESCUE_from Pundit::NotAuthorizedError
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to(root_path)
+  end
 
   protected
 
@@ -71,6 +75,11 @@ class ApplicationController < ActionController::Base
     else
       Student.new # Not-LoggedIn User (Pundit)
     end
+  end
+
+  def redirect_to_root_page
+#    render file: "#{Rails.root}/public/404", layout: true, status: :not_found
+    redirect_to root_path
   end
 
 end

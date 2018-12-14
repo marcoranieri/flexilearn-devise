@@ -1,0 +1,49 @@
+<!-- HIDING Navigation for Device -->
+<% @navigation = true  if controller_name == "sessions" %>
+
+<div class="blu-wrap">
+
+<div id="title">
+
+  <div id="logo-div">
+    <%= image_tag "logo-transp-white.png", id: "logo" %>
+  </div>
+
+  <h4 id="welcome" class="text-center white-text" >
+    STUDENT
+  </h4>
+
+</div>
+
+  <%= simple_form_for(resource, as: resource_name,
+        url: session_path(resource_name)) do |f| %>
+<!-- autofocus: true -->
+  <div class="text-center white-text force-devise-new">
+        <%= f.input :email,label: false, required: false,
+            placeholder: "@email",
+            input_html: { value: "student@test.com"} %>
+  </div>
+
+  <div class="text-center white-text force-devise-new">
+
+        <%= f.input :password,label: false, required: false,
+            placeholder: "password",
+            input_html: { value: "student@test.com"} %>
+
+    <div class="text-center" id="remember">
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    </div>
+
+  </div>
+
+  <div class="form-actions m-top-10vh">
+    <%= f.button :submit, "LOG IN", class: "form-white-btn" %>
+  </div>
+
+  <% end %>
+
+  <%# FB LOGIN Link is comment out in shared/links %>
+  <div class="links" >
+    <%= render "students/shared/links" %>
+  </div>
+</div>

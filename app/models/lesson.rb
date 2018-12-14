@@ -14,4 +14,8 @@ class Lesson < ApplicationRecord
   # MoneyRails Gem
   monetize :price_cents
 
+  def paid?
+    Order.all.pluck(:lesson_id).include?(self.id)
+  end
+
 end
