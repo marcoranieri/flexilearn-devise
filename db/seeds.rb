@@ -22,17 +22,17 @@ puts "Tutor: tutor@test.com => A D M I N"
 Tutor.create(
   email: "tutor@test.com",
   password: "tutor@test.com",
-  first_name: "Mario",
-  last_name: "Tutorelli",
+  first_name: "Julius",
+  last_name: "Verne",
   phone: Faker::PhoneNumber.cell_phone,
   bio: Faker::Lorem.sentence,
   birthdate: Faker::Date.birthday(25, 65),
   level: 2,
   admin: true,
-  photo: "https://randomuser.me/api/portraits/#{['men', 'women'].sample}/#{rand(1..99)}.jpg",
+  placeholder: "https://randomuser.me/api/portraits/men/#{rand(1..99)}.jpg",
 )
 Identity.create!(
-  name: "Mario Tutorelli",
+  name: "Julius Verne",
   document_type: 0,
   document_number: "1234567890",
   expired: "12/12/2024",
@@ -53,12 +53,12 @@ Document.create!(
 Student.create(
   email: "student@test.com",
   password: "student@test.com",
-  first_name: "Luca",
-  last_name: "Studentini",
+  first_name: "Diana",
+  last_name: "Smith",
   phone: Faker::PhoneNumber.cell_phone,
   bio: Faker::Lorem.sentence,
   birthdate: Faker::Date.birthday(12, 30),
-  photo: "https://randomuser.me/api/portraits/#{['men', 'women'].sample}/#{rand(1..99)}.jpg",
+  placeholder: "https://randomuser.me/api/portraits/women/#{rand(1..99)}.jpg",
 )
 
 # U S E R S - Student Tutor ////////////////////////////////////////////////////
@@ -73,7 +73,7 @@ puts "Creating Users"
     phone: Faker::PhoneNumber.cell_phone,
     bio: Faker::Lorem.sentence,
     birthdate: Faker::Date.birthday(25, 65),
-    photo: "https://randomuser.me/api/portraits/#{['men', 'women'].sample}/#{rand(1..99)}.jpg",
+    placeholder: "https://randomuser.me/api/portraits/#{['men', 'women'].sample}/#{rand(1..99)}.jpg",
     level: rand(1..3),
   )
 
@@ -85,7 +85,7 @@ puts "Creating Users"
     phone: Faker::PhoneNumber.cell_phone,
     bio: Faker::Lorem.sentence,
     birthdate: Faker::Date.birthday(12, 30),
-    photo: "https://randomuser.me/api/portraits/#{['men', 'women'].sample}/#{rand(1..99)}.jpg",
+    placeholder: "https://randomuser.me/api/portraits/#{['men', 'women'].sample}/#{rand(1..99)}.jpg",
   )
 
 end
@@ -165,11 +165,11 @@ Tutor.all.each do |tutor|
   tutor.categories << b
   tutor.categories << c
 
-  tutor.categories = tutor.categories.uniq
+  tutor.categories = tutor.categories.uniq{|c| c.name}
 
   tutor.save!
 end
 
-# "https://randomuser.me/api/portraits/men/1.jpg"
 
+# "https://randomuser.me/api/portraits/men/1.jpg"
 # "https://randomuser.me/api/portraits/#{['men', 'women'].sample}/#{rand(1..99)}.jpg"

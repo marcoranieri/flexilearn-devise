@@ -18,16 +18,16 @@
 
   <!-- Facebook --------------------------------------------------------------->
   <% elsif @student.image_fb.present? %>
-    <div style="border-radius: 50%">
+    <div style="border-radius:50%">
       <%= image_tag @student.image_fb + "?type=large",style:"border-radius:50%"%>
     </div>
-
+  <% elsif @student.placeholder.present? %> <!-- Random Avatar  -->
+    <div><%= image_tag @student.placeholder, style: "border-radius:50%;" %></div>
   <!-- Loremflickr ------------------------------------------------------------>
   <% else %>
-    <% a = "https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png" %>
-    <div style="margin:0 auto;width:100px;height:100px;background-image: url(<%= a %>);background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;">
+    <div style="margin:0 auto;width:100px;height:100px;
+      background-image: url(<%= @a %>); background-position: center;
+      background-repeat: no-repeat; background-size: cover;">
     </div>
   <% end %>
 
@@ -57,10 +57,15 @@
 
   <br>
   <br>
+  <br>
+  <br>
 
 <!-- FAVOURITE Tutors --------------------------------------------------------->
   <% if current_user.is_a?(Student) && @student == current_student &&
         @student.lessons %>
+
+  <h3><i class="fas fa-history"></i> Last Lessons:</h3>
+
     <% @student.lessons.each do |lesson| %>
 
       <hr class="style18">
@@ -69,10 +74,23 @@
         <div><!-- Link Tutor Img ---------------------------------------------->
         <% if lesson.tutor.nil? %>
           <i class="fas fa-chalkboard-teacher" style="font-size:3em;opacity:.3"></i>
+          <br> no tutor yet
 
-        <% else %>
+        <% elsif lesson.tutor.photo.present? %>
           <%= link_to (cl_image_tag(lesson.tutor.photo.url(:bright_face_small))),tutor_path(lesson.tutor) %>
 
+        <% elsif lesson.tutor.placeholder.present? %> <!-- Random Avatar  -->
+          <div><%= link_to tutor_path(lesson.tutor) do %>
+            <%= image_tag lesson.tutor.placeholder, style: "border-radius:50%;" %>
+            <% end %>
+          </div>
+        <!-- Loremflickr ------------------------------------------------------------>
+
+        <% else %>
+          <div style="margin:0 auto;width:100px;height:100px;
+            background-image: url(<%= @a %>); background-position: center;
+            background-repeat: no-repeat; background-size: cover;">
+          </div>
         <% end %>
         </div>
 

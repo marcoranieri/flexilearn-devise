@@ -16,5 +16,6 @@ class AddFieldsToTutors < ActiveRecord::Migration[5.2]
     add_column :tutors, :desirability, :decimal
     add_column :tutors, :specialties, :text
     add_column :tutors, :qualifications, :text
+    add_column :tutors, :placeholder, :string
   end
 end

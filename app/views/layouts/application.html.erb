@@ -84,13 +84,13 @@
 
 <body>
   <%= render 'shared/flashes' %>
-  <%= render 'shared/navbar' unless @navigation %>
+  <%#= render 'shared/navbar' unless @navigation %>
 
   <%= link_to root_path, class: "btn btn-outline-primary" do %>
     <i class="fas fa-home"></i> HOME
   <% end %>
 
-  <div class="container-fluid" style="margin-top:8vh;background: #fcfcfc;">
+  <div class="container-fluid" style="margin-top:2vh;background: #fcfcfc;">
     <%= yield %>
   </div>
 

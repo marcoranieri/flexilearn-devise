@@ -1,28 +1,28 @@
 <!-- Dynamic Head Title -->
 <% provide(:title, 'My Lessons') %>
 
+<div class="text-center" id="profileAndLogout" >
 
-
-<div class="text-center" id="profileAndLogout">
 <% if current_user.is_a? Student %>
   <!-- STUDENT show/logout ---------------------------------------------->
   <%= link_to destroy_student_session_path, style:"padding:0 10%",
      method: :delete do %>
-    <i class="fas fa-sign-out-alt" style="font-size:3em;opacity:.7"></i>
+    <i class="fas fa-sign-out-alt" style="font-size:2.5em"></i>
   <% end %>
   <%= link_to student_path(current_student), style:"padding:0 10%" do %>
-    <i class="fas fa-user-graduate" style="font-size:3em;opacity:.7"></i>
+    <i class="fas fa-user-graduate" style="font-size:2.5em"></i>
   <% end %>
 
 <% else %><!-- TUTOR show/logout -------------------------------------->
   <%= link_to destroy_tutor_session_path, style:"padding:0 10%",
    method: :delete do %>
-    <i class="fas fa-sign-out-alt" style="font-size:3em;opacity:.7"></i>
+    <i class="fas fa-sign-out-alt" style="font-size:2.5em"></i>
   <% end %>
   <%= link_to tutor_path(current_tutor), style:"padding:0 10%" do %>
-    <i class="fas fa-chalkboard-teacher" style="font-size:3em;opacity:.7"></i>
+    <i class="fas fa-chalkboard-teacher" style="font-size:2.5em"></i>
   <% end %>
 <% end %>
+<hr>
 
 <!-- T U T O R ---------------------------------------------------------------->
 <% if current_user.is_a? Tutor %>
@@ -45,12 +45,13 @@
   <div><%= image_tag current_tutor.image_fb + "?type=small"  %></div>
 <% elsif current_tutor.photo.present? %> <!-- Cloudinary IMG  -->
   <div><%= cl_image_tag current_tutor.photo.url(:bright_face) %></div>
+<% elsif current_tutor.placeholder.present? %> <!-- Random Avatar  -->
+  <div><%= image_tag current_tutor.placeholder, style: "border-radius:50%;" %></div>
 <% else %> <!-- Cloudinary IMG  -->
-<% a = "https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png" %>
-    <div style="margin:0 auto;width:100px;height:100px;background-image: url(<%= a %>);background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;">
-    </div>
+  <div style="margin:0 auto;width:100px;height:100px;
+    background-image: url(<%= @a %>);background-position: center;
+    background-repeat: no-repeat; background-size: cover;">
+  </div>
 <% end %>
 
 <!-- S T U D E N T ------------------------------------------------------------>
@@ -70,11 +71,12 @@
     <div><%= image_tag current_student.image_fb + "?type=small"  %></div>
   <% elsif current_student.photo.present? %> <!-- Cloudinary IMG  -->
     <div><%= cl_image_tag current_student.photo.url(:bright_face) %></div>
+  <% elsif current_student.placeholder.present? %> <!-- Random Avatar  -->
+    <div><%= image_tag current_student.placeholder, style: "border-radius:50%;" %></div>
   <% else %> <!-- Rescue IMG  -->
-<% a = "https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png" %>
-    <div style="margin:0 auto;width:100px;height:100px;background-image: url(<%= a %>);background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;">
+    <div style="margin:0 auto;width:100px;height:100px;
+      background-image: url(<%= @a %>);background-position: center;
+      background-repeat: no-repeat; background-size: cover;">
     </div>
   <% end %>
 
@@ -111,12 +113,12 @@
     <p>
       <i class="fas fa-book"></i> Lesson Title:<br>
       <strong><%= link_to lesson.title, lesson_path(lesson) %></strong>
-      | <%= link_to "Edit", edit_lesson_path(lesson),style:"color:darkorange;"%>
+      | <%= link_to "Edit", edit_lesson_path(lesson), class: "btn btn-warning"%>
 
       <!-- Student DELETE - method: :delete ----------------------------------->
       <% if current_user.is_a? Student %>
-        | <%= link_to 'Delete',lesson_path(lesson),data:{confirm:'Are you sure?'},
-            method: :delete, style:"color:red;" %>
+        | <%= link_to 'Delete',lesson_path(lesson), data:{confirm:'Are you sure?'},
+            method: :delete, class: "btn btn-danger" %>
       <% end %>
 
       <br>
@@ -127,28 +129,28 @@
 
       <!-- AMOUNT setting ----------------------------------------------------->
       <% if lesson.price.zero? %>
-        <em>Looking for a tutor...</em>
+        <i class="fas fa-search"></i><small>Looking for Tutor</small>
       <% else %>
 
 
         <% if current_user.is_a? Student %><!-- Tutor name -------------------->
 
-      <!-- Tutor Image-->
-        <% if lesson.tutor.image_fb.present?  %>  <!--  Facebook IMG -->
-          <div><%= image_tag lesson.tutor.image_fb + "?type=small"  %></div>
-        <% elsif lesson.tutor.photo.present? %> <!-- Cloudinary IMG  -->
-          <div>
-           <%= link_to (cl_image_tag lesson.tutor.photo.url(:bright_face_small)),
-               tutor_path(lesson.tutor)%>
-          </div>
-
-        <% else %> <!-- Rescue IMG  -->
-      <% a = "https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png" %>
-          <div style="width:70px;height:70px;background-image: url(<%= a %>);background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;">
-          </div>
-        <% end %>
+          <!-- Tutor Image-->
+          <% if lesson.tutor.present? %>
+            <% if lesson.tutor.image_fb.present?  %>  <!--  Facebook IMG -->
+              <div><%= image_tag lesson.tutor.image_fb + "?type=small"  %></div>
+            <% elsif lesson.tutor.photo.present? %> <!-- Cloudinary IMG  -->
+              <div>
+               <%= link_to (cl_image_tag lesson.tutor.photo.url(:bright_face_small)),
+                   tutor_path(lesson.tutor)%>
+              </div>
+              <% elsif lesson.tutor.placeholder.present? %> <!-- Random Avatar  -->
+                <div><%= image_tag lesson.tutor.placeholder, style: "border-radius:50%;" %></div>
+            <% else %> <!-- Rescue IMG  -->
+              <div style="width:70px;height:70px;background-image:url(<%= @a %>);background-position:center;background-repeat:no-repeat;
+                background-size:cover;">
+              </div>
+            <% end %>
 
           <% if lesson.tutor.name %><!-- Facebook name -->
             Tutor: <%= link_to lesson.tutor.name, tutor_path(lesson.tutor)%>
@@ -156,6 +158,20 @@
             Tutor: <%= link_to lesson.tutor.last_name.capitalize,
               tutor_path(lesson.tutor)%>
           <% end %>
+
+
+        <%= form_for lesson do |f| %>
+          <%= f.hidden_field :status, value: "requested" %>
+          <%= f.hidden_field :tutor_id, value: nil %>
+          <%= f.hidden_field :tutor_notes, value: nil %>
+          <%= f.hidden_field :price, value: 0 %>
+          <%= f.submit "Decline Tutor", data: {confirm:'Are you sure?'},
+            class:"btn btn-danger" %>
+        <% end %>
+      <% end %>
+
+
+
 
         <% else %><!-- Student name ------------------------------------------->
 
@@ -167,20 +183,14 @@
            <%= link_to (cl_image_tag lesson.student.photo.url(:bright_face_small)),
                student_path(lesson.student)%>
           </div>
+        <% elsif lesson.student.placeholder.present? %> <!-- Random Avatar  -->
+          <div><%= image_tag lesson.student.placeholder, style: "border-radius:50%;" %></div>
         <% else %> <!-- Rescue IMG  -->
-      <% a = "https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png" %>
-          <div style="width:70px;height:70px;background-image: url(<%= a %>);background-position: center;
+          <div style="width:70px;height:70px;background-image: url(<%= @a %>);background-position: center;
             background-repeat: no-repeat;
             background-size: cover;">
           </div>
         <% end %>
-
-          <% if lesson.student.image_fb  %>  <!--  Facebook IMG -->
-            <div><%= image_tag lesson.student.image_fb + "?type=small"  %></div>
-
-          <% else %> <!-- Cloudinary IMG  -->
-            <div>
-          <% end %>
 
           <% if lesson.student.name %><!-- Facebook name -->
             Student: <%= link_to lesson.student.name,student_path(lesson.student)%>
@@ -204,7 +214,7 @@
           <%= f.hidden_field :tutor_notes, value: nil %>
           <%= f.hidden_field :price, value: 0 %>
           <%= f.submit "Delete", data:{confirm:'Are you sure?'},
-            class:"btn btn-link", style:"color:red; padding:0;" %>
+            class:"btn btn-danger" %>
         <% end %>
       <% end %>
 

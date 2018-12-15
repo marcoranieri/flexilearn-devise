@@ -6,12 +6,18 @@ class TutorsController < ApplicationController
 
   def index
     @tutors = policy_scope(Tutor)
+
+    # Avatar placeholder
+    @a = "https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png"
   end
 
   def show
     if Review.where(tutor: params[:id]).present?
       @average = (Review.where(tutor: params[:id]).pluck(:rating).reduce(:+) / Review.where(tutor: params[:id]).count.to_f).round(2)
     end
+
+    # Avatar placeholder
+    @a = "https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png"
   end
 
   def new

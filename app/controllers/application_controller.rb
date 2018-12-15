@@ -79,6 +79,7 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_root_page
 #    render file: "#{Rails.root}/public/404", layout: true, status: :not_found
+    flash[:alert] = "Sorry, record not found."
     redirect_to root_path
   end
 

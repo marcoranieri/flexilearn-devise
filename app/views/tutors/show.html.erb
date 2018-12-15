@@ -19,12 +19,12 @@
     <div style="border-radius: 50%">
       <%= image_tag @tutor.image_fb + "?type=large",style:"border-radius:50%" %>
     </div>
-
+  <% elsif @tutor.placeholder.present? %> <!-- Random Avatar  -->
+    <div><%= image_tag @tutor.placeholder, style: "border-radius:50%;" %></div>
   <% else %><!-- Loremflickr -------------------------------------------------->
-<% a = "https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png" %>
-    <div style="margin:0 auto;width:100px;height:100px;background-image: url(<%= a %>);background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;">
+    <div style="margin:0 auto;width:100px;height:100px;
+      background-image: url(<%= @a %>); background-position: center;
+      background-repeat: no-repeat; background-size: cover;">
     </div>
   <% end %>
 
@@ -64,9 +64,9 @@
   <!-- EDIT btn - Profile TUTOR ----------------------------------------------->
   <% if current_user.is_a?(Tutor) && @tutor == current_tutor %>
     <%= link_to "Edit",edit_tutor_registration_path,class:"btn btn-warning"%>
+  <br>
+  <br>
   <% end %>
-  <br>
-  <br>
 
 <!-- IDENTITY ----------------------------------------------------------------->
   <% if current_tutor == @tutor  %>
@@ -76,18 +76,17 @@
           class:"btn btn-primary" %>
 
     <% else %><!-- Add ID ----------------------------------------------------->
-      <%= link_to "Add Identity",new_tutor_identity_path(@tutor),
+      <%= link_to "+ Add Identity",new_tutor_identity_path(@tutor),
           class:"btn btn-primary" %>
     <% end %>
-
+  <br>
+  <br>
   <% end %>
-  <br>
-  <br>
 
 <!-- DOCUMENTS ---------------------------------------------------------------->
   <% if current_tutor == @tutor  %>
 
-    <%= link_to "Add Document", new_tutor_document_path(@tutor),
+    <%= link_to "+ Add Document", new_tutor_document_path(@tutor),
         class:"btn btn-success" %>
     <%= link_to "Show Documents", tutor_documents_path(@tutor),
         class:"btn btn-success" if @tutor.documents.present? %>
@@ -96,11 +95,6 @@
 
   <br>
   <br>
-<!-- REVIEWS ------------------------------------------------------------------>
-<% if current_user.is_a?(Student) %>
-  <%=link_to "Add Review",new_tutor_review_path(@tutor),class:"btn btn-success" if (@tutor.lessons.pluck(:id) & @student.lessons.pluck(:id)) != []%>
-<% end %>
-
   <% if @tutor.reviews.present? %>
 
     <h3>Average Rating:</h3>
@@ -115,42 +109,55 @@
 
     <br>
     <br>
+    <br>
+<!-- REVIEWS ------------------------------------------------------------------>
+<% if current_user.is_a?(Student) %>
+  <%=link_to "+ Add Review",new_tutor_review_path(@tutor),class:"btn btn-success" if (@tutor.lessons.pluck(:id) & @student.lessons.pluck(:id)) != []%>
+<% end %>
 
-    <h3>Reviews:</h3>
+
+    <h3>
+      <i class="fas fa-user-edit"></i> Reviews:
+    </h3>
+
     <div class="row">
-      <% @tutor.reviews.each do | review | %>
-        <div class="col-sm-6">
-          <hr class="style18">
+    <% @tutor.reviews.each do | review | %>
+      <div class="col-sm-6">
+      <hr class="style18">
 
-          <!-- Img STUDENT - Link to reviewer's profile ----------------------->
-          <% if review.student.photo.present? %>
-            <%= link_to (cl_image_tag review.student.photo.url(:bright_face_small)),
-                student_path(review.student) %>
-
-          <% else %>
-            <% a = "https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png" %>
-            <div style="margin:0 auto;width:70px;height:70px;background-image: url(<%= a %>);background-position: center;
-              background-repeat: no-repeat;
-              background-size: cover;">
-            </div>
-          <% end %>
-
-          <p><strong><%= review.title %></strong></p>
-
-          <% blank_stars = 5 - review.rating.to_i %><!-- Stars ---------------->
-          <% review.rating.to_i.times do  %>
-            <!-- <i style="color:gold;" class="fas fa-star filledstars"></i> -->
-            <i style="color:#94b5ef" class="fas fa-circle"></i>
-          <% end %>
-          <% blank_stars.times do %>
-            <!-- <i class="far fa-star blankstars"></i> -->
-            <i style="color:#94b5ef" class="far fa-circle"></i>
-          <% end %>
-
-          <p><small><%= review.content %></small></p>
-
+      <!-- Img STUDENT - Link to reviewer's profile ----------------------->
+      <% if review.student.photo.present? %>
+        <%= link_to (cl_image_tag review.student.photo.url(:bright_face_small)),
+            student_path(review.student) %>
+      <% elsif review.student.placeholder.present? %> <!-- Random Avatar  -->
+        <div>
+        <%#= link_to student_path(review.student) do %>
+          <%= image_tag review.student.placeholder,style:"border-radius:50%;"%>
+        <%# end %>
+        </div>
+      <% else %>
+        <div style="margin:0 auto;width:70px;height:70px;
+          background-image: url(<%= @a %>); background-position: center;
+          background-repeat: no-repeat; background-size: cover;">
         </div>
       <% end %>
+
+        <p><strong><%= review.title %></strong></p>
+
+        <% blank_stars = 5 - review.rating.to_i %><!-- Stars ---------------->
+        <% review.rating.to_i.times do  %>
+          <!-- <i style="color:gold;" class="fas fa-star filledstars"></i> -->
+          <i style="color:#94b5ef" class="fas fa-circle"></i>
+        <% end %>
+        <% blank_stars.times do %>
+          <!-- <i class="far fa-star blankstars"></i> -->
+          <i style="color:#94b5ef" class="far fa-circle"></i>
+        <% end %>
+
+        <p><small><%= review.content %></small></p>
+
+      </div>
+    <% end %>
     </div><!-- /row -->
 
   <% else %><!-- No reviews --------------------------------------------------->
@@ -167,21 +174,25 @@
   <% if current_user.is_a?(Tutor) && @tutor == current_tutor &&
         @tutor.lessons.present? %>
 
-    <h3>Last Lessons:</h3>
+    <h3><i class="fas fa-history"></i> Last Lessons:</h3>
 
     <% @tutor.lessons.reverse.each do |lesson| %>
-
       <hr class="style18">
       <div style="display:flex; justify-content:space-between; padding:5%;">
 
         <div><!-- Link student Img -------------------------------------------->
         <% if lesson.student.photo.present? %>
           <%= link_to (cl_image_tag(lesson.student.photo.url(:bright_face_small))),student_path(lesson.student) %>
+
+        <% elsif lesson.student.placeholder.present? %> <!-- Random Avatar  -->
+          <div>
+          <%= link_to student_path(lesson.student) do %>
+            <%= image_tag lesson.student.placeholder,style:"border-radius:50%;"%>
+          <% end %>
+          </div>
+
         <% else %>
-          <!-- <i class="fas fa-user-graduate" style="font-size:3em;opacity:.3"></i> -->
-          <% a = "https://kooledge.com/assets/default_medium_avatar-57d58da4fc778fbd688dcbc4cbc47e14ac79839a9801187e42a796cbd6569847.png" %>
-          <div style="width:70px;height:70px;background-image: url(<%= a %>);background-position: center;
-            background-repeat: no-repeat;
+          <div style="width:70px;height:70px;background-image: url(<%= @a %>);background-position: center;background-repeat: no-repeat;
             background-size: cover;">
           </div>
         <% end %>
@@ -189,6 +200,7 @@
 
         <div><!-- lesson Title ------------------------------------------------>
           <p><strong>
+            <i class="fas fa-book"></i> Lesson Title:<br>
             <%= link_to lesson.title, lesson_path(lesson) %>
           </strong></p>
         </div>

@@ -52,31 +52,38 @@ document.addEventListener("turbolinks:load", function() {
 // Prevent Android keyboard to push Content up
 // https://stackoverflow.com/questions/23757345/android-does-not-correctly-scroll-on-input-focus-if-not-body-element
 
-  if(/Android [4-6]/.test(navigator.appVersion)) {
-    window.addEventListener("resize", function() {
+//   if(/Android [4-6]/.test(navigator.appVersion)) {
+//     window.addEventListener("resize", function() {
 
-      if(document.activeElement.tagName=="INPUT" || document.activeElement.tagName=="TEXTAREA") {
-        window.setTimeout(function() {
-        //console.log("Resizing");
-document.querySelector(".form-actions").style.position = "relative";
-document.querySelector(".form-actions").style.top      = "-40px";
+//       if(document.activeElement.tagName=="INPUT" || document.activeElement.tagName=="TEXTAREA") {
+//         window.setTimeout(function() {
+//         //console.log("Resizing");
+// document.querySelector(".form-actions").style.position = "relative";
+// document.querySelector(".form-actions").style.top      = "-40px";
 
-document.querySelector("#new_student").style.position  = "relative";
-document.querySelector("#new_student").style.top       = "20px";
+// document.querySelector("#new_student").style.position  = "relative";
+// document.querySelector("#new_student").style.top       = "20px";
 
-document.querySelector(".form-white-btn").style.minHeight = "50px";
+// document.querySelector(".form-white-btn").style.minHeight = "50px";
 
-        //document.activeElement.scrollIntoView();
-        },10);
-      }
-    })
-  }
+//         //document.activeElement.scrollIntoView();
+//         },10);
+//       }
+//     })
+//   }
 
 // NO autocomplete (form suggestion)
   if(/Android/.test(navigator.appVersion)){
     $('input[type="text"]').attr('autocomplete', "off");
     $('input[type="email"]').attr('autocomplete', "off");
   }
+
+
+// Auto FadeOut notice
+  $(document).ready( function() {
+    $('.alert') .delay(2500).fadeOut();
+    $('.notice').delay(2500).fadeOut();
+  });
 
 
 }) /////// END - document.addEventListener("turbolinks:load", function() {
