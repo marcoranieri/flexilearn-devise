@@ -76,4 +76,12 @@ class LessonsController < ApplicationController
   def lesson_params
     params.require(:lesson).permit(:id, :student_id, :category_id, :tutor_id, :date, :title, :request, :time, :location, :status, :notes, :tutor_notes, :photo, :price_cents, :price, :tutor_lvl )
   end
+
+  def decline_tutor
+    self.tutor = nil
+    self.save
+
+    redirect_to lessons_path
+  end
+
 end

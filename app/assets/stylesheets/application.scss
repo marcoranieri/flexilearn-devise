@@ -32,7 +32,7 @@ div.flatpickr-calendar {
 
 // BODY ///////////////////////////////////////////////
 html {
-  overflow-x: hidden;
+//  overflow-x: hidden;
 }
 
 body {
@@ -41,7 +41,7 @@ body {
   background: #fafafa;
 //  word-wrap: break-word;
 //  word-break: break-all;
-  overflow-x: hidden;
+//  overflow-x: hidden;
   color: #747681;
   letter-spacing: 4px;
   padding-bottom: 50px;
@@ -73,19 +73,19 @@ hr.style18:before {
   margin-bottom: 3vh;
 }
 
-#profileAndLogout {
-  margin-top: -12vh;
-}
-@media screen and (min-width: 600px) { // DESKTOP
-#profileAndLogout {
-  margin-top: 8vh;
-}
-  body {
-    padding-bottom:0 !important;
-  }
-  div.container-fluid {
-    margin-top:0 !important;
-  }
+// #profileAndLogout {
+//   margin-top: -12vh;
+// }
+// @media screen and (min-width: 600px) { // DESKTOP
+// #profileAndLogout {
+//   margin-top: 8vh;
+// }
+//   body {
+//     padding-bottom:0 !important;
+//   }
+//   div.container-fluid {
+//     margin-top:0 !important;
+//   }
   div[role=navigation] {
     display: none !important;
   }
@@ -93,4 +93,4 @@ hr.style18:before {
     display: none !important;
   }
 
-}
+// }

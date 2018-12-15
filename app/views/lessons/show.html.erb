@@ -8,29 +8,6 @@
     </small></em>
   </p>
 
-  <h2>Title:<strong><br><%= @lesson.title %></strong></h2>
-  <h3>Category:<strong><br><%= @lesson.category.name %></strong></h3>
-  <br>
-
-
-  <!-- Location + GoogleMAPS Link --------------------------------------------->
-  <p><strong>Location:</strong><br><%= @lesson.location %></p>
-  <div class="goto-maps">
-    <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{URI::encode(
-        @lesson.location)}", target: "_blank" do %>
-      <!-- <p><i class="fas fa-street-view"></i></p> -->
-      <%= image_tag "google-maps.svg", width:40; %>
-    <% end %>
-  </div>
-
-  <!-- Date + Time ------------------------------------------------------------>
-  <p>
-    <strong>Date: </strong><big><%= @lesson.date.strftime("%a, %e %b %Y") %></big>
-  </p>
-  <p>
-    <strong>Time: </strong><big><%= @lesson.time.strftime("%I:%M%p") %></big>
-  </p>
-
 <!-- S T U D E N T Name ------------------------------------------------------->
   <h3>
     <i class="fas fa-user-graduate"></i>
@@ -46,7 +23,9 @@
 <!-- T U T O R Name ----------------------------------------------------------->
   <h3>
     <i class="fas fa-chalkboard-teacher"></i>
-    <strong>Tutor<br><small>(lvl requested: <%=@lesson.tutor_lvl%>):</small></strong><br>
+    <strong>Tutor<br><small>
+      (lvl requested: <%=@lesson.tutor_lvl%><i class="fas fa-medal"></i>):
+    </small></strong><br>
     <% if @lesson.tutor.present? %>
       <%= link_to @lesson.tutor.first_name.capitalize+" "+
           @lesson.tutor.last_name.capitalize, tutor_path(@lesson.tutor) %>
@@ -54,6 +33,33 @@
       <i class='fas fa-question'></i>
     <% end %>
   </h3>
+
+  <h2>Title:<strong><br><%= @lesson.title %></strong></h2>
+  <h4>Category:<strong><br><%= @lesson.category.name %></strong></h4>
+  <br>
+
+
+  <!-- Location + GoogleMAPS Link --------------------------------------------->
+  <% if @lesson.location.present? %>
+  <p><strong>Location:</strong><br><%= @lesson.location %></p>
+  <div class="goto-maps">
+    <%= link_to "https://www.google.com/maps/dir/?api=1&destination=#{URI::encode(
+        @lesson.location)}", target: "_blank" do %>
+      <!-- <p><i class="fas fa-street-view"></i></p> -->
+      <%= image_tag "google-maps.svg", width:40; %>
+    <% end %>
+  </div>
+  <% end %>
+<br>
+<br>
+
+  <!-- Date + Time ------------------------------------------------------------>
+  <p>
+    <strong>Date: </strong><big><%= @lesson.date.strftime("%a, %e %b %Y") %></big>
+  </p>
+  <p>
+    <strong>Time: </strong><big><%= @lesson.time.strftime("%I:%M%p") %></big>
+  </p>
 
 <br>
 <br>
@@ -98,7 +104,7 @@
     <%= cl_image_tag @lesson.photo, style: 'height:auto;max-width:100%;',
         effect: "improve:outdoor", quality: "auto" %>
   <% else %>
-    <img src="https://loremflickr.com/200/300/job,book,library/all" alt="LessonPic">
+    <img src="https://loremflickr.com/600/400/university,homework" alt="LessonPic" style="box-shadow: 0px 2px 4px #aaa;border-radius:2px;">
   <% end %>
   <br>
   <br>

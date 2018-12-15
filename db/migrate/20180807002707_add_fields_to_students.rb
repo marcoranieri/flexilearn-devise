@@ -10,5 +10,6 @@ class AddFieldsToStudents < ActiveRecord::Migration[5.2]
     add_column :students, :status, :integer
     add_column :students, :pro, :boolean
     add_column :students, :like, :integer
+    add_column :students, :placeholder, :string
   end
 end
