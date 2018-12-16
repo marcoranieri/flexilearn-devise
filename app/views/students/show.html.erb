@@ -4,7 +4,7 @@
 <div class="text-center">
 
   <h2>
-    <strong>STUDENT:</strong><br>
+    <strong><i class="fas fa-user-graduate"></i> STUDENT:</strong><br>
       <% if @student.last_name  %>
         <%= @student.last_name.capitalize%> <%= @student.first_name.capitalize%>
       <% elsif @student.name %><!-- Facebook name -->
@@ -30,7 +30,7 @@
       background-repeat: no-repeat; background-size: cover;">
     </div>
   <% end %>
-
+<hr>
   <p><strong>@Email:</strong><br><%= @student.email %></p><!-- @Email --------->
 
   <% if @student.birthdate %><!-- Birthdate ----------------------------------->

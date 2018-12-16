@@ -81,8 +81,8 @@ document.addEventListener("turbolinks:load", function() {
 
 // Auto FadeOut notice
   $(document).ready( function() {
-    $('.alert') .delay(2500).fadeOut();
-    $('.notice').delay(2500).fadeOut();
+    $('.alert') .delay(3600).fadeOut();
+    $('.notice').delay(3600).fadeOut();
   });
 
 

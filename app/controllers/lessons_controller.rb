@@ -46,7 +46,7 @@ class LessonsController < ApplicationController
     respond_to do | format |
       if @lesson.update(lesson_params)
         if current_tutor #When Tutor fake "deleted" redirect_to #INDEX, not #show
-          format.html { redirect_to lessons_url, notice: 'Lesson was successfully deleted.' }
+          format.html { redirect_to lessons_url, notice: 'Lesson was successfully updated.' }
           format.json { render :show, status: :ok, location: @lessons }
         end
         format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }

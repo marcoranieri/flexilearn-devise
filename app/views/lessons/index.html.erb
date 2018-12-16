@@ -90,7 +90,7 @@
 <br>
 
 <!-- N A V I G A T I O N ------------------------------------------------------>
-<%= link_to "All Lessons", all_path, class:"btn btn-primary" %>
+<%= link_to "All Lessons", all_path, class:"btn btn-primary btn-lg" %>
 <%= link_to "Request a LESSON", new_lesson_path,
     class:"btn btn-success" if current_user.is_a? Student  %>
 
@@ -101,9 +101,10 @@
   <div class="btn btn-secondary">No Orders..</div>
 <% end %>
 
+<br>
+<br>
 <h1>My Lessons</h1>
 
-<br>
 <br>
 <br>
 <!-- L E S S O N S ------------------------------------------------------------>
@@ -124,7 +125,16 @@
       <br>
     <!--   Category: <%#= link_to lesson.category.name,category_path(lesson.category)%> -->
       Category: <%= lesson.category.name %>
-      <br>
+      <!-- Status ------------------------------------------------------------->
+      <% color = "darkorange" if lesson.status == "requested" %>
+      <% color = "cadetblue"  if lesson.status == "scheduled" %>
+      <% color = "green"      if lesson.status == "completed" %>
+      <% color = "red"        if lesson.status == "canceled"  %>
+
+      <p>
+        <strong>Status: </strong>
+        <span style="color:<%= color %>;"><%= lesson.status %></span>
+      </p>
       <br>
 
       <!-- AMOUNT setting ----------------------------------------------------->
@@ -219,7 +229,7 @@
       <% end %>
 
     </p>
-  ------------------------------ <br> <br>
+  - - - - - - - - - - - - - - - - - - - - - - - - - <br> <br>
   <% end %>
 
 <% else %><br> <!-- IF NO LESSON ---------------------------------------------->

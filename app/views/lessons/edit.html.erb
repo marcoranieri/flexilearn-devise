@@ -5,8 +5,17 @@
 
 <!--  T U T O R - Edit Form --------------------------------------------------->
   <h1 class="text-center">Edit Lesson (as Tutor)<br></h1>
+  <hr>
 
   <div class="text-center">
+
+    <h4 class="btn btn-primary btn-lg"><strong>
+      <%= link_to student_path(@lesson.student), style: "text-decoration:none;color:white" do %>
+        <i class="fas fa-user-graduate"></i>
+        <%= @lesson.student.first_name %> <%= @lesson.student.last_name %>
+      <% end %>
+    </strong></h4>
+
     <h3><strong>Title:</strong> <%= @lesson.title  %></h3>
     <h4><strong>Category:</strong> <%= @lesson.category.name  %></h4>
     <p style="width: 80%;margin:0 auto;word-wrap: break-word;">
@@ -26,7 +35,7 @@
           :url => url_for(:action => 'update', :controller => 'lessons'),
           :method => 'patch' do |f| %>
 
-          <%= f.input :price, label: "Price £" %>
+          <%= f.input :price, label: "Price £", input_html:{value: "10.00"} %>
           <br>
           <%= f.input :date, as: :date, html5: true %>
           <br>
@@ -91,5 +100,3 @@
   </div>
 
 <% end %>
-<br>
-<br>
