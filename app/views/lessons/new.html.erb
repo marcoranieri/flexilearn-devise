@@ -18,10 +18,15 @@
             input_html: { :style=> 'width: 100%;', :rows => 2 } %>
         <%= f.label :category %>
         <%= f.collection_select(:category_id, Category.all, :id, :name, prompt: true) %>
+
         <%= f.input :request, placeholder: "Explain your request",
             input_html: { :style=> 'width: 100%;', :rows => 8 } %>
         <%= f.input :notes, placeholder: "Add more info about the location ( like doorbell or floor number ) or extra notes about your request.",
             input_html: { :style=> 'width: 100%;', :rows => 5 } %>
+
+        <%= f.label :tutor %>
+        <%= f.collection_select(:tutor_id, Tutor.all, :id, :last_name, prompt: true) %><br><br>
+
         <%= f.input :location, placeholder: "Where do you wanna meet him/her?",
             input_html: { :style=> 'width: 100%;', id: "search" } %>
         <%= f.input :date, as: :string, html5: true,
